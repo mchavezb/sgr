@@ -4,7 +4,7 @@ class Index extends CI_Controller {
 
  public function __construct()
  {
-  parent::Controller();
+  parent::__controller();
  }
 	/**
 	 * Index Page for this controller.
