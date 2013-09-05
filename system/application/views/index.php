@@ -38,7 +38,7 @@
       }
 
     </style>
-        <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="files/css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -68,19 +68,19 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../files/js/jquery.js"></script>
-    <script src="../files/js/bootstrap-transition.js"></script>
-    <script src="../files/js/bootstrap-alert.js"></script>
-    <script src="../files/js/bootstrap-modal.js"></script>
-    <script src="../files/js/bootstrap-dropdown.js"></script>
-    <script src="../files/js/bootstrap-scrollspy.js"></script>
-    <script src="../files/js/bootstrap-tab.js"></script>
-    <script src="../files/js/bootstrap-tooltip.js"></script>
-    <script src="../files/js/bootstrap-popover.js"></script>
-    <script src="../files/js/bootstrap-button.js"></script>
-    <script src="../files/js/bootstrap-collapse.js"></script>
-    <script src="../files/js/bootstrap-carousel.js"></script>
-    <script src="../files/js/bootstrap-typeahead.js"></script>
+    <script src="files/js/jquery.js"></script>
+    <script src="files/js/bootstrap-transition.js"></script>
+    <script src="files/js/bootstrap-alert.js"></script>
+    <script src="files/js/bootstrap-modal.js"></script>
+    <script src="files/js/bootstrap-dropdown.js"></script>
+    <script src="files/js/bootstrap-scrollspy.js"></script>
+    <script src="files/js/bootstrap-tab.js"></script>
+    <script src="files/js/bootstrap-tooltip.js"></script>
+    <script src="files/js/bootstrap-popover.js"></script>
+    <script src="files/js/bootstrap-button.js"></script>
+    <script src="files/js/bootstrap-collapse.js"></script>
+    <script src="files/js/bootstrap-carousel.js"></script>
+    <script src="files/js/bootstrap-typeahead.js"></script>
 
   </body>
 </html>
