@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Inicio | SGR</title>
-    <link href="../files/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="/files/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
       body {
         padding-top: 40px;
