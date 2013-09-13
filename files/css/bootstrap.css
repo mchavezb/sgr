@@ -1,22 +1,13 @@
 /*!
  * Bootstrap v2.3.2
  *
- * Copyright 2013 Twitter, Inc
+ * Copyright 2012 Twitter, Inc
  * Licensed under the Apache License v2.0
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Designed and built with all the love in the world by @mdo and @fat.
+ * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
 
-.pedidos  {
-	border
-} 
-
-#productos{
-	width: 10px;
-	margin-top: -330px;
-	margin-left: 800px;
-}
 .clearfix {
   *zoom: 1;
 }
@@ -401,10 +392,6 @@ a:focus {
   width: 100%;
   *zoom: 1;
 }
-.row-fluid-pedido {
-  width: 60%;
-  *zoom: 1;
-}
 
 .row-fluid:before,
 .row-fluid:after {
@@ -455,11 +442,6 @@ a:focus {
 .row-fluid .span9 {
   width: 74.46808510638297%;
   *width: 74.41489361702126%;
-}
-
-.row-fluid .mesas {
-  width: 100%;
-  *width: 100%;
 }
 
 .row-fluid .span8 {
