@@ -337,17 +337,6 @@ CREATE TABLE IF NOT EXISTS `db_sgr_xampp`.`AperturaCaja` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `db_sgr_xampp`.`table1`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_sgr_xampp`.`table1` ;
-
-CREATE TABLE IF NOT EXISTS `db_sgr_xampp`.`table1` (
-)
-ENGINE = InnoDB;
-
-
 -- -----------------------------------------------------
 -- Table `db_sgr_xampp`.`CierreCaja`
 -- -----------------------------------------------------
