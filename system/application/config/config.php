@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/sgr/';
+$config['base_url']	= 'http://net249.com/sgr/';
 
 /*
 |--------------------------------------------------------------------------
