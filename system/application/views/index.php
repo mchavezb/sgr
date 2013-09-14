@@ -60,8 +60,8 @@
       <form class="form-signin" method="post" action="administracion/index.html">
     <img src="files/img/logo.png" alt="">
         <h2 class="form-signin-heading">SGR</h2>
-        <input type="text" class="input-block-level" placeholder="Usuario">
-        <input type="password" class="input-block-level" placeholder="Contraseña">
+        <input type="text" class="input-block-level" name="usuario" placeholder="Usuario">
+        <input type="password" class="input-block-level" name="password" placeholder="Contraseña">
         <button class="btn btn-large btn-primary" type="submit">Iniciar Sesión</button>
       </form>
 
