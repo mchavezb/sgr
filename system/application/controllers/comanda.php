@@ -1,14 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Index extends CI_Controller {
+class Comanda extends CI_Controller {
 
 	public function __construct()
  	{
   	parent::__construct();
  	}
- 	
-	public function index()
+
+	public function m($id)
 	{
-		$this->load->view('index_vw');
+		$data['id'] = $id;
+		$this->load->view('comanda_vw',$data);
 	}
 }

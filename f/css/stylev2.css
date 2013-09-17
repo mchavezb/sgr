@@ -1,0 +1,170 @@
+body{
+    background: #eee url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAMAAAC6sdbXAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF3d3d////riJKgAAAAAJ0Uk5T/wDltzBKAAAAFUlEQVR42mJgBAEGGMmAxAYCgAADAAGGABmnk/7aAAAAAElFTkSuQmCC);
+    margin: 0;
+    font-family: 'Lucida sans', Arial, Helvetica;
+    font-size: small;
+}
+/*------------------------------ BLOQUES ------------------------------*/
+#header{
+	height:40px;
+	background-color:#9c9c9c;
+}
+#separator{
+	height:50px;
+	width: 100%;
+}
+#container{
+	width:980px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#aside-left{
+	width: 200px;
+	height: 400px;
+	position: relative;
+	float: left;
+	display: inline-block;
+}
+#main-content{
+	width: 780px;
+	height: 500px;
+	position: relative;
+	float: left;
+	/*background-color: white;*/
+	display: inline-block;
+}
+/*------------------------------ FIN DE LOS BLOQUES ------------------------------*/
+
+/*------------------------------ MENÚ VERTICAL ------------------------------*/
+#aside{
+    float: left;
+    width: 200px;
+    margin-right: 20px;
+}
+#menu li{
+  margin: 0 0 3px 0;             
+}
+#menu a{
+  display: block;
+  *display: inline-block;
+  *width: 190px;
+  text-decoration: none;	            
+  background: #ddd;
+  color: #444;	
+  padding: 10px 5px;
+  text-transform: uppercase;
+  font: bold 12px Arial,Helvetica;          
+  border-radius:5px;
+  box-shadow: 0 1px 0 #ccc;   
+}
+#menu a:hover{
+    color: #eee;
+    background: #9c9c9c;
+    background: linear-gradient(top, #bbb, #999);          
+}
+#menu .expandable{
+    position: relative; 
+}
+#menu .expandable:before,
+#menu .expandable:after{
+  content: '';
+  position: absolute;
+  right: 5px;
+  margin-top: 5px;
+  border-top: 6px solid #444;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;          
+}
+#menu .expandable:before{
+   border-top-color: #fff;
+   margin-top: 6px;
+}
+#menu .expanded:after{
+  border-top: 0;
+  border-bottom: 6px solid #444;       
+}
+#menu .expanded:before{
+    border-top: 0;
+    border-bottom: 6px solid #fff;               
+}
+#menu ul a{
+    background: #f2f2f2;
+    text-transform: none;
+    font-weight: normal;            
+}
+#menu ul a:hover{
+    background: #fafafa;
+    color: #444;
+}
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;         
+}
+a{
+  color: #6F3736;
+}  
+
+/*------------------------------ FIN DEL MENÚ VERTICAL ------------------------------*/
+.container-top{
+	width:980px;
+	height:40px;
+	margin-left:auto;
+	margin-right:auto;
+	padding:0 10px;
+	background-color: #9c9c9c;
+	border-bottom: 1px solid #fff;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #fff;
+}
+.divider-vertical{
+	float: left;
+	width: 1px;
+	height: 40px;
+	margin: 0 15px;
+	background-color: #e5e5e5;
+	border-right: 1px solid #fff;
+}
+.bloque-titulo{
+	float: left;
+	height: 30px;
+	margin-top: 10px;
+	font-weight: bold;
+}
+.mesa{
+  position: relative;
+  float: left;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+.num-mesa { 
+   position: absolute; 
+   top: 25px; 
+   left: 70px;
+   font-size: 20px;
+   font-weight: bold;
+   /*width: 100%;*/ 
+}
+.num-mesa span { 
+   color: white; 
+}
+.capac-mesa { 
+   position: absolute; 
+   top: 70px; 
+   left: 55px;
+   font-size: 12px;
+   font-weight: bold;
+   /*width: 100%;*/ 
+}
+.capac-mesa span{
+  color: white;
+}
+.bloque-mesa{
+  height: 70px;
+  width: 70px;
+  background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 20px;
+  left: 50px;
+}

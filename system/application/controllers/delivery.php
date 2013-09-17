@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Index extends CI_Controller {
+class Delivery extends CI_Controller {
 
 	public function __construct()
  	{
@@ -9,6 +9,6 @@ class Index extends CI_Controller {
  	
 	public function index()
 	{
-		$this->load->view('index_vw');
+		echo 'Estás ejecutando el controlador delivery.php';
 	}
 }
