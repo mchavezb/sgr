@@ -168,3 +168,273 @@ a{
   top: 20px;
   left: 50px;
 }
+/*********** PANEL DE LA COMANDA ***********/
+#comanda{
+  float: left;
+  position: relative;
+  width: 530px;
+  height: 200px;
+  /*background-color: blue;*/
+  margin: auto;
+  border-radius: 5px;
+}
+.titulo-comanda{
+  position: relative;
+  margin: auto;
+  width: 200px;
+  height: 25px;
+  padding-top: 5px;
+  /*background-color: yellow;*/
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+.mesa-comanda{
+  position: relative;
+  float: left; 
+  width: 149px;
+  height: 23px;
+  /*background-color: green;*/
+  text-align: center;
+  font-size: 12px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: 5px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  background: #ddd;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+.fecha-comanda{
+  position: relative;
+  float: left;
+  width: 249px;
+  height: 23px;
+  /*background-color: gray;*/
+  text-align: center;
+  font-size: 12px;
+  padding-top: 6px;
+  border-radius: 5px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  background: #ddd;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+.hora-comanda{
+  position: relative;
+  float: left;
+  width: 129px;
+  height: 23px;
+  /*background-color: red;*/
+  text-align: center;
+  font-size: 12px;
+  padding-top: 6px;
+  border-radius: 5px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  background: #ddd;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+.mozo-comanda{
+  position: relative;
+  float: left;
+  width: 229px;
+  height: 23px;
+  /*background-color: white;*/
+  text-align: center;
+  font-size: 12px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: 5px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  background: #ddd;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+.client-comanda{
+  position: relative;
+  float: left;
+  width: 99px;
+  height: 23px;
+  /*background-color: orange;*/
+  text-align: center;
+  font-size: 12px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: 5px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  background: #ddd;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+.tit-codigo-producto{
+  position: relative;
+  float: left;
+  width: 49px;
+  height: 23px;
+  /*background-color: orange;*/
+  text-align: center;
+  font-size: 12px;
+  padding-top: 6px;
+  border-radius: 5px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  background: #ddd;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+.tit-desc-producto{
+  position: relative;
+  float: left;
+  width: 326px;
+  height: 23px;
+  /*background-color: gray;*/
+  text-align: left;
+  font-size: 12px;
+  padding-top: 6px;
+  border-radius: 5px;
+  padding-left: 3px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  background: #ddd;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+.tit-cant-producto{
+  position: relative;
+  float: left;
+  width: 29px;
+  height: 23px;
+  /*background-color: green;*/
+  text-align: center;
+  font-size: 12px;
+  padding-top: 6px;
+  border-radius: 5px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  background: #ddd;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+.tit-precio-u-producto{
+  position: relative;
+  float: left;
+  width: 49px;
+  height: 23px;
+  /*background-color: red;*/
+  text-align: center;
+  font-size: 12px;
+  padding-top: 6px;
+  border-radius: 5px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  background: #ddd;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+.tit-importe-producto{
+  position: relative;
+  float: left;
+  width: 69px;
+  height: 23px;
+  /*background-color: yellow;*/
+  text-align: center;
+  font-size: 12px;
+  padding-top: 6px;
+  border-radius: 5px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  background: #ddd;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+.codigo-producto{
+  position: relative;
+  float: left;
+  width: 49px;
+  height: 23px;
+  /*background-color: orange;*/
+  text-align: center;
+  font-size: 12px;
+  padding-top: 6px;
+  border-radius: 5px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+.desc-producto{
+  position: relative;
+  float: left;
+  width: 326px;
+  height: 23px;
+  /*background-color: gray;*/
+  text-align: left;
+  font-size: 12px;
+  padding-top: 6px;
+  border-radius: 5px;
+  padding-left: 3px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+.cant-producto{
+  position: relative;
+  float: left;
+  width: 29px;
+  height: 23px;
+  /*background-color: green;*/
+  text-align: center;
+  font-size: 12px;
+  padding-top: 6px;
+  border-radius: 5px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+.precio-u-producto{
+  position: relative;
+  float: left;
+  width: 49px;
+  height: 23px;
+  /*background-color: red;*/
+  text-align: center;
+  font-size: 12px;
+  padding-top: 6px;
+  border-radius: 5px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+.importe-producto{
+  position: relative;
+  float: left;
+  width: 69px;
+  height: 23px;
+  /*background-color: yellow;*/
+  text-align: center;
+  font-size: 12px;
+  padding-top: 6px;
+  border-radius: 5px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+#platillos{
+  float: left;
+  position: relative;
+  width: 250px;
+  height: 200px;
+  /*background-color: green;*/
+  margin: auto;
+}

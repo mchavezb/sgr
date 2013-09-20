@@ -8,7 +8,7 @@ class Mesas_mo extends CI_Model {
 
   /*--- OBTIENE LAS MESAS DEL RESTAURANTE ---*/
   function get_mesas(){
-    $q = "SELECT `idMesa`, `mesa_num`, `mesa_estado`, `capacidad`, `client_mesa` FROM `mesa` ";
+    $q = "SELECT idMesa, mesa_num, mesa_estado, capacidad, client_mesa FROM mesa ;";
     $c = $this->db->query($q);
       return $c->result();  
   }
