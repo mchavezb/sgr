@@ -18,6 +18,12 @@ class Comanda_mo extends CI_Model {
             }
   	}
 
+    function get_detalle_comanda($id_c){
+        $q5 = "SELECT idPedido, Producto_idProducto, estado FROM comandaxpedido WHERE Comanda_idComanda = ".$id_c.";";
+        $r5 = $this->db->query($q5);
+        return $r5->result();
+    }
+
 }
 
 ?>

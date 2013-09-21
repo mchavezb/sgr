@@ -354,7 +354,7 @@ a{
   color: #444;  
   box-shadow: 0 1px 0 #ccc; 
 }
-.codigo-producto{
+.quitar-producto{
   position: relative;
   float: left;
   width: 49px;
@@ -362,7 +362,8 @@ a{
   /*background-color: orange;*/
   text-align: center;
   font-size: 12px;
-  padding-top: 6px;
+  padding-top: 3px;
+  padding-bottom: 3px;
   border-radius: 5px;
   border-bottom: 1px solid white;
   border-left: 1px solid white;

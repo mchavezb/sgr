@@ -19,7 +19,7 @@
         </div>
         <div id="main-content">
             <div id="contenido">
-                <div id="comanda"><?php print_r($info_mesa); $orig = array('Monday','September' ); $new = array('Lunes','Setiembre');?>
+                <div id="comanda"><?php $orig = array('Monday','September' ); $new = array('Lunes','Setiembre');?>
                     <?php if($info_comanda!=FALSE){?>
                     <div class="titulo-comanda">Comanda # <?php echo $idComanda ?></div>
                     <div class="mesa-comanda">Mesa <select><option><?php echo $numMesa?></option></select></div>
@@ -33,17 +33,14 @@
                     <div class="tit-cant-producto">Cant.</div>
                     <div class="tit-precio-u-producto">Precio</div>
                     <div class="tit-importe-producto">Importe</div>
-                    <div class="codigo-producto">12345</div>
-                    <div class="desc-producto">Lomo saltado - término medio</div>
-                    <div class="cant-producto">2</div>
-                    <div class="precio-u-producto">10.00</div>
-                    <div class="importe-producto">14.98</div>
-                    <div class="codigo-producto">12345</div>
-                    <div class="desc-producto">Tallarines a la Alfredo</div>
-                    <div class="cant-producto">2</div>
-                    <div class="precio-u-producto">10.00</div>
-                    <div class="importe-producto">56.98</div>
+                    <?php foreach ($detalle_com as $value) { ?>
+                        <div class="quitar-producto"><input type="button" value="--" /></div>
+                        <div class="desc-producto"><?php echo $value->Producto_idProducto?></div>
+                        <div class="cant-producto">1</div>
+                        <div class="precio-u-producto">10.00</div>
+                        <div class="importe-producto">14.98</div>
                     <?php } ?>
+                <?php } ?>
                 </div>
                 <div id="platillos">
                     <div class="busqueda-platillo"><input type="text"><input type="button" value="BUSCAR" /></div>
