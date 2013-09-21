@@ -1,4 +1,4 @@
-<?php setlocale(LC_TIME,"es_ES", "es_ES.utf8");?>
+<?php setlocale(LC_ALL,"es_ES", "es_ES.utf8");?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
   <head>
@@ -8,24 +8,25 @@
   </head>
   <body>
     <div id="header">
-        <?php $this->load->view('common/header_vw'); ?>
+        <?php $this->load->view('common/header_vw');?>
     </div>
     <div id="separator"></div>
     <div id="container">
         <div id="aside-left">
             <div id="aside">
-                <?php $this->load->view('common/menu_vw'); ?>
+                <?php $this->load->view('common/menu_vw');?>
             </div>
         </div>
         <div id="main-content">
             <div id="contenido">
-                <div id="comanda">
-                    <div class="titulo-comanda">Comanda # 00001</div>
-                    <div class="mesa-comanda">Mesa <select><option>002</option></select></div>
-                    <div class="fecha-comanda">jueves 19 de Setiembre del 2013</div>
-                    <div class="hora-comanda">11:35 pm</div>
-                    <div class="mozo-comanda">Mozo <select width="150px" style="width: 150px"><option>Juan Pérez</option></select></div>
-                    <div class="client-comanda">Clientes <select><option>1</option></select></div>
+                <div id="comanda"><?php print_r($info_mesa); $orig = array('Monday','September' ); $new = array('Lunes','Setiembre');?>
+                    <?php if($info_comanda!=FALSE){?>
+                    <div class="titulo-comanda">Comanda # <?php echo $idComanda ?></div>
+                    <div class="mesa-comanda">Mesa <select><option><?php echo $numMesa?></option></select></div>
+                    <div class="fecha-comanda"><?php echo str_replace($orig, $new, date_format($fecha, 'l j \d\e F \d\e\l Y'));?></div>
+                    <div class="hora-comanda"><?php echo date_format($fecha, 'g:i A');?></div>
+                    <div class="mozo-comanda">Mozo <select width="150px" style="width: 150px"><option><?php echo $nombres.' '.$apellidos;?></option></select></div>
+                    <div class="client-comanda">Clientes <select><option><?php echo $clientes_mesa?></option></select></div>
                     <div class="mozo-comanda" style="width:199px"><!-- div de prueba para separar--></div>
                     <div class="tit-codigo-producto">#</div>
                     <div class="tit-desc-producto">Descripción</div>
@@ -42,8 +43,12 @@
                     <div class="cant-producto">2</div>
                     <div class="precio-u-producto">10.00</div>
                     <div class="importe-producto">56.98</div>
+                    <?php } ?>
                 </div>
-                <div id="platillos">Comanda # 00001</div>
+                <div id="platillos">
+                    <div class="busqueda-platillo"><input type="text"><input type="button" value="BUSCAR" /></div>
+
+                </div>
             </div>
         </div>
     </div>

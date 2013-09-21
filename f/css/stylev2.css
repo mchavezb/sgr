@@ -436,5 +436,22 @@ a{
   width: 250px;
   height: 200px;
   /*background-color: green;*/
-  margin: auto;
+
+}
+.busqueda-platillo{
+  position: relative;
+  float: left;
+  width: 250px;
+  height: 27px;
+  /*background-color: yellow;*/
+  text-align: center;
+  font-size: 12px;
+  padding-top: 3px;
+  padding-left: 3px;
+  border-radius: 5px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  background: #ddd;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
 }
