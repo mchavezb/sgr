@@ -2,7 +2,7 @@
                     <li>
                         <a href="#">Mesas</a>
                         <ul>                
-                            <li><a href="#mesas">Ver Mesas</a></li>                     
+                            <li><a href="<?=$this->config->item('base_url')?>index.php/mesas">Ver Mesas</a></li>                     
                         </ul>        
                     </li>
                     <li>

@@ -21,31 +21,5 @@
             <div id="contenido"></div>
         </div>
     </div>
-
-    <script>
-    function initMenu() {
-      $('#menu ul').hide(); // Hide the submenu
-      if ($('#menu li').has('ul')) $('#menu ul').prev().addClass('expandable'); // Expand/collapse a submenu when it exists  
-      $('.expandable').click(
-        function() {
-            $(this).next().slideToggle();
-            $(this).toggleClass('expanded');
-          }
-        );
-      }
-    
-    // When document ready, call initMenu() function 
-    $(document).ready(function() {initMenu();});    
-    </script>
-    <script>
-    $(function(){
-        $("#menu ul li a").click(function(){
-            var page = this.hash.substr(1);
-            $.get("<?=$this->config->item('base_url')?>index.php/"+page, function(miHtml){
-                $("#contenido").html(miHtml);
-            });
-        });
-    });
-    </script>
   </body>
 </html>

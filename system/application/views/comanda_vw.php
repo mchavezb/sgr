@@ -29,16 +29,15 @@
                     <div class="client-comanda">Clientes <select><option><?php echo $clientes_mesa?></option></select></div>
                     <div class="mozo-comanda" style="width:199px"><!-- div de prueba para separar--></div>
                     <div class="tit-codigo-producto">#</div>
+                    <div class="tit-cant-producto">Est.</div>
                     <div class="tit-desc-producto">Descripción</div>
-                    <div class="tit-cant-producto">Cant.</div>
                     <div class="tit-precio-u-producto">Precio</div>
-                    <div class="tit-importe-producto">Importe</div>
                     <?php foreach ($detalle_com as $value) { ?>
-                        <div class="quitar-producto"><input type="button" value="--" /></div>
-                        <div class="desc-producto"><?php echo $value->Producto_idProducto?></div>
-                        <div class="cant-producto">1</div>
-                        <div class="precio-u-producto">10.00</div>
-                        <div class="importe-producto">14.98</div>
+                        <div class="quitar-producto"><img src='<?=$this->config->item('base_url')?>f/img/delete.png' widht="22px" height="22px"/></div>
+                        <div class="cant-producto"><img src='<?=$this->config->item('base_url')?>f/img/<?php if($value->estado==0){echo 'green.gif';}elseif($value->estado==1){echo 'yellow.gif';}elseif($value->estado==2){echo 'red.gif';}elseif($value->estado==3){echo 'check.png';}?>' widht="20px" height="20px"/>
+                        </div>
+                        <div class="desc-producto"><?php echo $value->p_nombre?></div>
+                        <div class="precio-u-producto"><?php echo $value->p_precio?></div>
                     <?php } ?>
                 <?php } ?>
                 </div>
@@ -49,31 +48,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-    function initMenu() {
-      $('#menu ul').hide(); // Hide the submenu
-      if ($('#menu li').has('ul')) $('#menu ul').prev().addClass('expandable'); // Expand/collapse a submenu when it exists  
-      $('.expandable').click(
-        function() {
-            $(this).next().slideToggle();
-            $(this).toggleClass('expanded');
-          }
-        );
-      }
-    
-    // When document ready, call initMenu() function 
-    $(document).ready(function() {initMenu();});    
-    </script>
-    <script>
-    $(function(){
-        $("#menu ul li a").click(function(){
-            var page = this.hash.substr(1);
-            $.get("<?=$this->config->item('base_url')?>index.php/"+page, function(miHtml){
-                $("#contenido").html(miHtml);
-            });
-        });
-    });
-    </script>
   </body>
 </html>
