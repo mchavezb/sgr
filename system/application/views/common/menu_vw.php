@@ -2,14 +2,14 @@
                     <li>
                         <a href="#">Mesas</a>
                         <ul>                
-                            <li><a href="<?=$this->config->item('base_url')?>index.php/mesas">Ver Mesas</a></li>                     
+                            <li><a href="<?=$this->config->item('base_url')?>mesas">Ver Mesas</a></li>                     
                         </ul>        
                     </li>
                     <li>
                         <a href="#">Ventas</a>
                         <ul>                
-                            <li><a href="#">Pedidos</a></li>
-                            <li><a href="#reservas">Reservas</a></li>                      
+                            <li><a href="<?=$this->config->item('base_url')?>pedidos">Pedidos</a></li>
+                            <li><a href="<?=$this->config->item('base_url')?>reservas">Reservas</a></li>                      
                         </ul>        
                     </li>
                     <li>

@@ -5,16 +5,15 @@ class Pedidos extends CI_Controller {
 	public function __construct()
  	{
   	parent::__construct();
-  		$this->load->model('ventas_mo');
 
  	}
  	
 	public function index()
 	{
-		$this->load->view('pedidos');
+		$this->load->view('ventas/pedidos');
 	}
 
-	
+
 
 
 }
