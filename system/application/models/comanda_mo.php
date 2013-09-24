@@ -25,12 +25,6 @@ class Comanda_mo extends CI_Model {
         $this->db->where('comandaxpedido.Comanda_idComanda',$id_c);
         $q5 = $this->db->get();
         return $q5->result();
-
-
-
-//        $q5 = "SELECT idPedido, Producto_idProducto, estado FROM comandaxpedido WHERE Comanda_idComanda = ".$id_c.";";
-  //      $r5 = $this->db->query($q5);
-    //    return $r5->result();
     }
 
 }

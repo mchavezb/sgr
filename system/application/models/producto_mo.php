@@ -17,7 +17,18 @@ class Producto_mo extends CI_Model {
                 return FALSE;
             }
   	}
+    function get_producto_like_name($term){
+        $this->db->select('*');  
+        $this->db->from('producto');
+        $this->db->like('p_nombre', $term);
+        $q7 = $this->db->get();
+        return $q7->result();
+    }
 
+    function add_prod($com,$prod){
+        $q8 = "INSERT INTO comandaxpedido(`Comanda_idComanda`,`Producto_idProducto`,`estado`) values('".$com."','".$prod."','0')";
+        $i = $this->db->query($q8);
+    }
 }
 
 ?>
