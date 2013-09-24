@@ -276,7 +276,7 @@ a{
 .tit-codigo-producto{
   position: relative;
   float: left;
-  width: 41px;
+  width: 35px;
   height: 23px;
   /*background-color: orange;*/
   text-align: center;
@@ -325,7 +325,7 @@ a{
 .tit-precio-u-producto{
   position: relative;
   float: left;
-  width: 49px;
+  width: 54px;
   height: 23px;
   /*background-color: red;*/
   text-align: center;
@@ -357,7 +357,7 @@ a{
 .quitar-producto{
   position: relative;
   float: left;
-  width: 41px;
+  width: 35px;
   height: 23px;
   /*background-color: orange;*/
   text-align: center;
@@ -404,7 +404,7 @@ a{
 .precio-u-producto{
   position: relative;
   float: left;
-  width: 49px;
+  width: 54px;
   height: 23px;
   /*background-color: red;*/
   text-align: center;
@@ -453,6 +453,91 @@ a{
   border-bottom: 1px solid white;
   border-left: 1px solid white;
   background: #ddd;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+.precio-total{
+  position: relative;
+  float: right;
+  width: 54px;
+  height: 23px;
+  /*background-color: red;*/
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+  padding-top: 6px;
+  border-radius: 5px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  background: #ddd;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+.nombre-total{
+  position: relative;
+  float: right;
+  width: 229px;
+  height: 19px;
+  /*background-color: white;*/
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+  padding-top: 7px;
+  padding-bottom: 3px;
+  border-radius: 5px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  background: #ddd;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+.precio-igv{
+  position: relative;
+  float: right;
+  width: 54px;
+  height: 23px;
+  /*background-color: red;*/
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  padding-top: 6px;
+  border-radius: 5px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+.nombre-igv{
+  position: relative;
+  float: right;
+  width: 229px;
+  height: 19px;
+  /*background-color: white;*/
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+  padding-top: 7px;
+  padding-bottom: 3px;
+  border-radius: 5px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  color: #444;  
+  box-shadow: 0 1px 0 #ccc; 
+}
+.separator{
+  position: relative;
+  float: right;
+  width: 244px;
+  height: 23px;
+  /*background-color: white;*/
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: 5px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
   color: #444;  
   box-shadow: 0 1px 0 #ccc; 
 }

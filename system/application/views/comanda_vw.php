@@ -20,7 +20,7 @@
         </div>
         <div id="main-content">
             <div id="contenido">
-                <div id="comanda"><?php $orig = array('Monday','September' ); $new = array('Lunes','Setiembre');?>
+                <div id="comanda"><?php $orig = array('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday','September','October' ); $new = array('Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo','Setiembre','Octubre');?>
                     <?php if($info_comanda!==FALSE){?>
                     <div class="titulo-comanda">Comanda # <?php echo $idComanda ?></div>
                     <div class="mesa-comanda">Mesa <select><option><?php echo $numMesa?></option></select></div>
@@ -28,13 +28,14 @@
                     <div class="hora-comanda"><?php echo date_format($fecha, 'g:i A');?></div>
                     <div class="mozo-comanda">Mozo <select width="150px" style="width: 150px"><option><?php echo $nombres.' '.$apellidos;?></option></select></div>
                     <div class="client-comanda">Clientes <select><option><?php echo $clientes_mesa?></option></select></div>
-                    <div class="mozo-comanda" style="width:199px"><!-- div de prueba para separar--></div>
+                    <div class="mozo-comanda" style="width:199px"><input type="submit" value="JUNTAR MESAS" id="junt-mesa"/></div>
                     <div class="tit-codigo-producto">#</div>
                     <div class="tit-cant-producto">Nota</div>
                     <div class="tit-cant-producto">Est.</div>
                     <div class="tit-desc-producto">Descripción</div>
                     <div class="tit-precio-u-producto">Precio</div>
-                    <?php foreach ($detalle_com as $value) { ?>
+                    <?php $i=0;
+                         foreach ($detalle_com as $value) { ?>
                         <div class="quitar-producto"><img src='<?=$this->config->item('base_url')?>f/img/delete.png' width="22px" height="22px"/></div>
                         <div class="cant-producto"><img src='<?=$this->config->item('base_url')?>f/img/nota.png' width="20px" height="20px"/>
                         </div>
@@ -42,8 +43,25 @@
                         </div>
                         <div class="desc-producto"><?php echo $value->p_nombre?></div>
                         <div class="precio-u-producto"><?php echo $value->p_precio?></div>
-                    <?php } ?>
-                <?php } ?>
+                        <?php $i = $value->p_precio + $i;
+                          } ?>
+                        <div class="precio-total"><?php echo $i;?></div><div class="nombre-total">SUB-TOTAL</div><div class="separator"></div>
+                        <div class="precio-igv"><?php echo $i*0.19;?></div><div class="nombre-igv">I.G.V.</div><div class="separator"></div>
+                        <div class="precio-total"><?php echo $i*1.19;?></div><div class="nombre-total">TOTAL</div><div class="separator"></div>
+                <?php }else {?>
+                        <div class="titulo-comanda">Comanda # </div>
+                        <div class="mesa-comanda">Mesa <select><option><?php echo $numMesa?></option></select></div>
+                        <div class="fecha-comanda"></div>
+                        <div class="hora-comanda"></div>
+                        <div class="mozo-comanda">Mozo <select width="150px" style="width: 150px"><option></option></select></div>
+                        <div class="client-comanda">Clientes <select><option><?php echo $clientes_mesa?></option></select></div>
+                        <div class="mozo-comanda" style="width:199px"><!-- div de prueba para separar--></div>
+                        <div class="tit-codigo-producto">#</div>
+                        <div class="tit-cant-producto">Nota</div>
+                        <div class="tit-cant-producto">Est.</div>
+                        <div class="tit-desc-producto">Descripción</div>
+                        <div class="tit-precio-u-producto">Precio</div>
+                        <?php } ?>
                 </div>
                 <div id="buscador">
                     <div class="busqueda-platillo">
