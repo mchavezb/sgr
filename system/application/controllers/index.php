@@ -14,10 +14,7 @@ class Index extends CI_Controller
    
     public function index()
     {
- 	if($this->session->userdata['username'] == TRUE)
-        {
-   		redirect('/mesas');
-   		}else{
+ 	
         if(!isset($_POST['usuario']))
         {
         $this->load->view('index_login'); 
@@ -50,17 +47,21 @@ class Index extends CI_Controller
                 $data['username'] = $this->session->userdata['username'];
                 $data['password'] = $this->session->userdata['password'];
                    
-                
+                redirect('/mesas');
                 }
                 else
                 {
+                if($this->session->userdata['username'] == TRUE)
+        		{
+   					redirect('/mesas');
+   				}else{
                 
-                $this->load->view('login_error');
+                	$this->load->view('login_error');
                 }
-            }
+            	}
        
        
-        }
+        	}
    
 
 
@@ -87,8 +88,9 @@ class Index extends CI_Controller
     
     $this->login_model->close();
  
-        echo "Sesión borrada"."<br>";
-       
+        echo "Sesión cerrada"."<br>";
+
+       redirect('/index/');
  
     }
    
