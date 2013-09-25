@@ -48,7 +48,7 @@ class Index extends CI_Controller
                 $data['username'] = $this->session->userdata['username'];
                 $data['password'] = $this->session->userdata['password'];
                    
-                $this->load->view('mesas_vw');
+                redirect('/mesas');
                 }
                 else
                 {
