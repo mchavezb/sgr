@@ -26,7 +26,10 @@ class Comanda_mo extends CI_Model {
         $q5 = $this->db->get();
         return $q5->result();
     }
-
+    function add_new_comanda($idMesa,$idMozo){ //HAY QUE REVISAR LOS DOS PRIMEROS CAMPOS
+        $q9 = "INSERT INTO comanda (`Comprobante_idComprobante`,`TipoComanda_idTipoComanda`,`Usuario_idUsuario`,`Mesa_idMesa`,`estado`) VALUES ('01','01','".$idMozo."','".$idMesa."','0')";
+        $this->db->query($q9);
+    }
 }
 
 ?>

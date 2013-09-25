@@ -18,6 +18,10 @@ class Mesas_mo extends CI_Model {
   	$r3 = $this->db->query($q3);
   		return $r3->result_array();
   }
+  function update_mesa_est($idMesa){
+    $q10 = "UPDATE mesa SET mesa_estado = 1 WHERE idMesa = '".$idMesa."' ;";
+        $this->db->query($q10);
+  }
 }
 
 ?>
