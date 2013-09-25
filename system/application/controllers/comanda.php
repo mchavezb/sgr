@@ -76,4 +76,8 @@ class Comanda extends CI_Controller {
 		}
 //		print_r($data['productos']);
 	}
+	public function exonerar()
+	{
+		$this->load->view('exonerar_pago');
+	}
 }
