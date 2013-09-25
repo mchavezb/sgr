@@ -6,6 +6,17 @@
     <link rel="stylesheet" type="text/css" href="<?=$this->config->item('base_url')?>f/css/stylev2.css">
     <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/jquery-1.10.2.js'></script>
     <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/busc.js'></script>
+    <script>
+function popupwindow(url, title, w, h) {
+    var w = 200;
+    var h = 200;
+    var left = Number((screen.width/2)-(w/2));
+    var tops = Number((screen.height/2)-(h/2));
+
+window.open("pop.htm", '', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+tops+', left='+left);
+}
+
+</script>
   </head>
   <body>
     <div id="header">
@@ -36,7 +47,7 @@
                     <div class="tit-precio-u-producto">Precio</div>
                     <?php $i=0;
                          foreach ($detalle_com as $value) { ?>
-                        <div class="quitar-producto"><img src='<?=$this->config->item('base_url')?>f/img/delete.png' width="22px" height="22px"/></div>
+                        <div class="quitar-producto"><a href="#" onclick='popupwindow()';><img src='<?=$this->config->item('base_url')?>f/img/delete.png' width="22px" height="22px"/></a></div>
                         <div class="cant-producto"><img src='<?=$this->config->item('base_url')?>f/img/nota.png' width="20px" height="20px"/>
                         </div>
                         <div class="cant-producto"><img src='<?=$this->config->item('base_url')?>f/img/<?php if($value->estado==0){echo 'green.gif';}elseif($value->estado==1){echo 'yellow.gif';}elseif($value->estado==2){echo 'red.gif';}elseif($value->estado==3){echo 'check.png';}?>' width="20px" height="20px"/>
