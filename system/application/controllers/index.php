@@ -51,14 +51,14 @@ class Index extends CI_Controller
                 }
                 else
                 {
-                if($this->session->userdata['username'] == TRUE)
+                /*if($this->session->userdata['username'] == TRUE)
         		{
    					redirect('/mesas');
-   				}else{
+   				}else{*/
                 
                 	$this->load->view('login_error');
                 }
-            	}
+            	
        
        
         	}
