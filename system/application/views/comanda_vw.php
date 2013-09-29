@@ -4,7 +4,9 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="<?=$this->config->item('base_url')?>f/css/stylev2.css">
+    <link rel="stylesheet" type="text/css" href="<?=$this->config->item('base_url')?>f/css/jquery-ui-1.10.3.custom.min.css">
     <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/jquery-1.10.2.js'></script>
+    <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/jquery-ui-1.10.3.custom.min.js'></script>
     <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/busc.js'></script>
     <script>
 function popupwindow(url, title, w, h) {
@@ -31,7 +33,10 @@ window.open("pop.htm", '', 'toolbar=no, location=no, directories=no, status=no, 
         </div>
         <div id="main-content">
             <div id="contenido">
-                <div id="comanda"><?php $orig = array('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday','September','October' ); $new = array('Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo','Setiembre','Octubre');?>
+                <div id="comanda">
+                    <input type="submit" value="Cancelar Comanda" style="width:130px;"><input type="submit" value="Enviar Pedido" style="width:130px;"><input type="submit" value="Imprimir Cuenta" style="width:130px;"><form style="display: inline;" method="post" action="<?php echo base_url()?>mesas/desocupar"><input type="submit" value="Desocupar Mesa" style="width:130px;"><input type="hidden" id="comanda_d" name="comanda_d" value='<?php echo $idComanda ?>'><input type="hidden" id="mesa_d" name="mesa_d" value='<?php echo $idmesa?>'></form>
+
+                  <?php $orig = array('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday','September','October' ); $new = array('Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo','Setiembre','Octubre');?>
                     <?php if($info_comanda!==FALSE){?>
                     <div class="titulo-comanda">Comanda # <?php echo $idComanda ?></div>
                     <div class="mesa-comanda">Mesa <select><option><?php echo $numMesa?></option></select></div>
@@ -39,7 +44,7 @@ window.open("pop.htm", '', 'toolbar=no, location=no, directories=no, status=no, 
                     <div class="hora-comanda"><?php echo date_format($fecha, 'g:i A');?></div>
                     <div class="mozo-comanda">Mozo <select width="150px" style="width: 150px"><option><?php echo $nombres.' '.$apellidos;?></option></select></div>
                     <div class="client-comanda">Clientes <select><option><?php echo $clientes_mesa?></option></select></div>
-                    <div class="mozo-comanda" style="width:199px"><input type="submit" value="JUNTAR MESAS" id="junt-mesa"/></div>
+                    <div class="mozo-comanda" style="width:199px"><input type="submit" value="AGREGAR OTRA MESA" id="agr-mesa"/></div>
                     <div class="tit-codigo-producto">#</div>
                     <div class="tit-cant-producto">Nota</div>
                     <div class="tit-cant-producto">Est.</div>
@@ -75,9 +80,14 @@ window.open("pop.htm", '', 'toolbar=no, location=no, directories=no, status=no, 
                         <?php } ?>
                 </div>
                 <div id="buscador">
+                    Tipo de Atención : <br>
+                    <form>
+                      <input type="radio" name="tipoA" value="plato" checked="checked">Plato por plato<br>
+                      <input type="radio" name="tipoA" value="orden">Orden Completa<br>
+                    </form>
                     <div class="busqueda-platillo">
                         <input type="text" id="busc"><input type="submit" value="BUSCAR" id="busc-submit"/>
-                        <input type="hidden" id="comandamesa" name="comandamesa" value='<?php echo $idComanda ?>/<?php echo $numMesa?>'>
+                        <input type="hidden" id="comandamesa" name="comandamesa" value='<?php echo $idComanda ?>/<?php echo $idmesa?>'>
                     </div>  
                     <div id="busc-data"></div> 
                     <?php $this->load->view('common/buscador_vw');?>
@@ -85,5 +95,22 @@ window.open("pop.htm", '', 'toolbar=no, location=no, directories=no, status=no, 
             </div>
         </div>
     </div>
+  <!-- pop-up -->
+<div id="dialog2" title="Agregar mesas :">
+    <?php $this->load->view('pop-up/agregar_mesas_vw');?>
+</div>
+<!-- fin del pop-up-->
+<script>
+    $(document).ready(function() {
+        $("#dialog2").dialog({
+            autoOpen:false,
+            hide: 'fade',
+            modal: true
+        });
+        $("#agr-mesa").on("click",function(){
+            $("#dialog2").dialog("open");
+        });
+    }); 
+</script>
   </body>
 </html>
