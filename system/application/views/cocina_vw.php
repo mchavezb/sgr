@@ -15,18 +15,26 @@
     </div>
     <div id="separator"></div>
     <div id="container">
-        <div id="aside-left">
-            <div id="aside">
-                <?php $this->load->view('common/menu_vw'); ?>
-            </div>
+        <div id="content-encolados">
+          <h2>Platos en cola</h2>
+          <?php $encolados = json_decode(file_get_contents("C://xampp/htdocs/sgr/data/data_pedidos_1.json"));
+                $platos = $encolados->inf_ped1;
+                foreach ($platos as $key => $value) {
+                  echo $value->p_nombre.' - '.$value->nota.' - '.$value->hora.' - Mesa '.$value->mesa_num.'<br>';
+                }
+                ?>
         </div>
-        <div id="main-content2">
-            <div id="contenido">
-            <?php foreach ($inf_mesas as $value){
-    			echo "<div class='mesa'><a href='".$this->config->item('base_url')."index.php/comanda/m/".$value->idMesa."'><div class='bloque-mesa'></div><img src='".$this->config->item('base_url')."f/img/mesa";if($value->mesa_estado==0){echo "Libre";}elseif($value->mesa_estado==1 || $value->mesa_estado==3){echo "Ocupada";}else{echo "Reservada";};echo ".png'><div class='num-mesa'><span># ".$value->mesa_num."</span></div><div class='capac-mesa'><span>Cap ".$value->client_mesa."/".$value->capacidad."</span></div></a></div>";
-					}?>
-            </div>
-        </div>
+        <div id="content-en-atencion"><h2>En preparación</h2></div>
+        <div id="content-terminados"><h2>Terminados</h2></div>
     </div>
+
+
+
+    <div id="container">
+            
+    </div>
+
+
+
   </body>
 </html>

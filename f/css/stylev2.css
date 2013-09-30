@@ -33,6 +33,14 @@ body{
 	/*background-color: white;*/
 	display: inline-block;
 }
+#main-content2{
+  width: 650px;
+  height: 500px;
+  position: relative;
+  float: left;
+  /*background-color: white;*/
+  display: inline-block;
+}
 /*------------------------------ FIN DE LOS BLOQUES ------------------------------*/
 
 /*------------------------------ MENÚ VERTICAL ------------------------------*/
@@ -541,7 +549,33 @@ a{
   color: #444;  
   box-shadow: 0 1px 0 #ccc; 
 }
-
+#content-encolados{
+  width: 295px;
+  height: 500px;
+  position: relative;
+  float: left;
+  background-color: gray;
+  display: inline-block;
+  padding-left: 5px;
+}
+#content-en-atencion{
+  width: 295px;
+  height: 500px;
+  position: relative;
+  float: left;
+  background-color: blue;
+  display: inline-block;
+  padding-left: 5px;
+}
+#content-terminados{
+  width: 295px;
+  height: 500px;
+  position: relative;
+  float: left;
+  background-color: yellow;
+  display: inline-block;
+  padding-left: 5px;
+}
 
 
 
