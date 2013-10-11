@@ -11,8 +11,15 @@ class Main extends CI_Controller {
 
 
 	public function index(){
+		
 		if($this->session->userdata('esta_logueado')){
-			$this->load->view('welcome_vw');
+			if($this->session->userdata('idPerfil')=='02'){
+				$this->load->view('cocina_vw');
+			}
+			else{
+				echo $this->session->userdata('idPerfil');
+				$this->load->view('welcome_vw');
+			}
 		}else{
 			$this->login();
 		}
@@ -52,7 +59,11 @@ class Main extends CI_Controller {
 					}
 			$data = array ('usuario'=>$this->input->post('username'),'esta_logueado'=>1,'nombres'=>$nombres,'apellidos'=>$apellidos,'idUsuario'=>$idUsuario,'idPerfil'=>$idPerfil);
 			$this->session->set_userdata($data);
-			redirect('main/welcome');
+				if($this->session->userdata('idPerfil')=='02'){
+					redirect('cocina');
+				}else{
+					redirect('main/welcome');	
+				}
 		}else{
 			$this->load->view('login_vw');
 		}

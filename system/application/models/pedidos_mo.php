@@ -7,7 +7,7 @@ class Pedidos_mo extends CI_Model {
 	}
 
     function get_pedidos0_by_com($com){
-        $q1 = "SELECT idPedido FROM comandaxpedido WHERE Comanda_idComanda = ".$com.";";
+        $q1 = "SELECT idPedido FROM comandaxpedido WHERE estado = 0 AND Comanda_idComanda = ".$com.";";
         $r1 = $this->db->query($q1);
             if($r1->num_rows()>0){
                 return $r1->result_array();
@@ -22,8 +22,8 @@ class Pedidos_mo extends CI_Model {
         $this->db->query($q2);
     }
 
-    function get_pedidos1(){
-        $q3 = "SELECT comandaxpedido.idPedido, comandaxpedido.nota, comandaxpedido.hora, producto.p_nombre, producto.p_tiempoestimado, comanda.Mesa_idMesa, mesa.mesa_num FROM comandaxpedido INNER JOIN producto ON comandaxpedido.Producto_idProducto = producto.idProducto INNER JOIN comanda ON comandaxpedido.Comanda_idComanda = comanda.idComanda INNER JOIN mesa ON comanda.Mesa_idMesa = mesa.mesa_num WHERE comandaxpedido.estado = 1;";
+    function get_pedidos($n){
+        $q3 = "SELECT comandaxpedido.idPedido, comandaxpedido.nota, comandaxpedido.hora, producto.p_nombre, producto.p_tiempoestimado, comanda.Mesa_idMesa, mesa.mesa_num FROM comandaxpedido INNER JOIN producto ON comandaxpedido.Producto_idProducto = producto.idProducto INNER JOIN comanda ON comandaxpedido.Comanda_idComanda = comanda.idComanda INNER JOIN mesa ON comanda.Mesa_idMesa = mesa.mesa_num WHERE comandaxpedido.estado = '".$n."' ;";
         $r3 = $this->db->query($q3);
             if($r3->num_rows()>0){
                 return $r3->result_array();
@@ -33,6 +33,24 @@ class Pedidos_mo extends CI_Model {
             }
     }
 
+    function preparar_pedido($idped){
+        $q4 = "UPDATE comandaxpedido SET estado = 2 WHERE idPedido = '".$idped."' ;";
+        $this->db->query($q4);
+    }
+
+    function terminar_pedido($idped){
+        $q5 = "UPDATE comandaxpedido SET estado = 3 WHERE idPedido = '".$idped."' ;";
+        $this->db->query($q5);
+    }
+    function servir_pedido($idped){
+        $q6 = "UPDATE comandaxpedido SET estado = 4 WHERE idPedido = '".$idped."' ;";
+        $this->db->query($q6);
+    }
+
+    function agregar_nota($nota, $idped){
+        $q7 = "UPDATE comandaxpedido SET nota = '".$nota."' WHERE idPedido = '".$idped."';";
+        $this->db->query($q7);  
+    }
   /*--- 
     function add_prod($com,$prod){
         $q8 = "INSERT INTO comandaxpedido(`Comanda_idComanda`,`Producto_idProducto`,`estado`) values('".$com."','".$prod."','0')";

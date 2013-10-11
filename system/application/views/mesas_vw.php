@@ -13,7 +13,7 @@
     <div id="header">
         <?php $this->load->view('common/header_vw'); ?>
     </div>
-    <div id="separator"></div>
+    <div id="separator"><img src="<?php echo base_url();?>f/img/mesaLibre.png" width="70px" height="35px"> Mesa Libre <img src="<?php echo base_url();?>f/img/mesaOcupada.png" width="70px" height="35px"> Mesa Ocupada <img src="<?php echo base_url();?>f/img/mesaReservada.png" width="70px" height="35px"> Mesa Reservada</div>
     <div id="container">
         <div id="aside-left">
             <div id="aside">
@@ -27,6 +27,33 @@
 					}?>
             </div>
         </div>
+        <div id="content-terminados-m">
+          <h2>Terminados</h2>
+          <?php $terminados = @json_decode(file_get_contents("C://xampp/htdocs/sgr/data/data_pedidos_3.json"));
+                if(isset($terminados->inf_ped3) && !empty($terminados->inf_ped3)){
+                  foreach ($terminados->inf_ped3 as $key => $value) {
+                    echo '<div class="platos-m"><form style="display: inline;" method="post" action="'.base_url().'pedidos/servir"><div class="platos-carta-m">'.$value->p_nombre.' - '.$value->nota.'</div><div class="platos-cont-m"><div class="platos-cocinero-m">MESA N° '.$value->mesa_num.'</div><div class="platos-mesa-m"><input type="hidden" id="idPedido" name="idPedido" value="'.$value->idPedido.'"><input type="submit" value="SERVIDO"></div></div><div class="platos-tiempo-m"><span class="minuto luzu">'.date('i:s',time() - strtotime($value->hora)).'</span></div></form></div>';
+                  }
+                }
+                ?>
+
+        <!--<div id="data-terminados"></div>-->
+
+        </div>
     </div>
+
+
+
+    <script>
+  $(document).ready(function(){
+    setInterval(function(){
+      var minuto = $(".minuto");
+    if(minuto.hasClass('on')){
+      minuto.removeClass("on");
+    }else{
+      minuto.addClass("luzu on");
+    }},500);
+  });
+  </script>
   </body>
 </html>
