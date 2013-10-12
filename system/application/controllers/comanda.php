@@ -15,6 +15,7 @@ class Comanda extends CI_Controller {
 
 	public function m($id_mesa)
 	{
+		$data['categorias'] = $this->producto_mo->listar_cat();
 		$data['idmesa'] = $id_mesa;
 		$data['info_comanda'] = $this->comanda_mo->get_comanda_by_table($id_mesa);
 			if($data['info_comanda']!=FALSE){
