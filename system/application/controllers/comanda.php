@@ -78,8 +78,11 @@ class Comanda extends CI_Controller {
 		}
 //		print_r($data['productos']);
 	}
-	public function exonerar()
+
+	public function cobrar()
 	{
-		$this->load->view('exonerar_pago');
+		//print_r($this->input->post());
+		$id_c = $this->input->post('comanda_d');
+		$this->comanda_mo->enviar_a_caja($id_c);
 	}
 }

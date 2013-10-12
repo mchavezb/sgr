@@ -32,6 +32,8 @@
                     
                     <form style="display: inline;" method="post" action="<?php echo base_url()?>mesas/desocupar"><input type="submit" value="Desocupar Mesa" style="width:128px;"><input type="hidden" id="comanda_d" name="comanda_d" value='<?php echo $idComanda ?>'><input type="hidden" id="mesa_d" name="mesa_d" value='<?php echo $idmesa?>'></form>
 
+                    <form style="display: inline;" method="post" action="<?php echo base_url()?>comanda/cobrar"><input type="submit" value="Enviar a Caja" style="width:128px;"><input type="hidden" id="comanda_d" name="comanda_d" value='<?php echo $idComanda ?>'></form>
+
                   <?php $orig = array('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday','September','October' ); $new = array('Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo','Setiembre','Octubre');?>
                     <?php if($info_comanda!==FALSE){?>
                     <div class="titulo-comanda">Comanda # <?php echo $idComanda ?></div>
