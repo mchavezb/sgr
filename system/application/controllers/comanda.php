@@ -15,6 +15,7 @@ class Comanda extends CI_Controller {
 
 	public function m($id_mesa)
 	{
+		$data['idmesa'] = $id_mesa;
 		$data['info_comanda'] = $this->comanda_mo->get_comanda_by_table($id_mesa);
 			if($data['info_comanda']!=FALSE){
 				foreach ($data['info_comanda'] as $key=>$value) {
@@ -60,10 +61,10 @@ class Comanda extends CI_Controller {
 		$this->load->view('comanda_vw',$data);
 	}
 
-	public function add_prod($idcom,$numero_mesa,$idProd)
+	public function add_prod($idcom,$id_mesa,$idProd)
 	{
 		$this->producto_mo->add_prod($idcom,$idProd);
-		redirect('/comanda/m/'.$numero_mesa);
+		redirect('/comanda/m/'.$id_mesa);
 	}
 
 	public function busc()
