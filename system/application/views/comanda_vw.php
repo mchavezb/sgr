@@ -9,6 +9,17 @@
    
   </head>
   <body>
+    <script type="text/javascript">
+function cancelar(id,texto) {
+
+if(confirm("¿Deseas cancelar el pedido?")) {
+
+document.location.href= '/sgr/index.php/exonerar/cancelarPedido/'+id;
+
+}
+
+} 
+</script>
     <div id="header">
         <?php $this->load->view('common/header_vw');?>
     </div>
@@ -37,7 +48,7 @@
                     <div class="tit-precio-u-producto">Precio</div>
                     <?php $i=0;
                          foreach ($detalle_com as $value) { ?>
-                        <div class="quitar-producto"><a href="/sgr/comanda/exonerar"><img src='<?=$this->config->item('base_url')?>f/img/delete.png' width="22px" height="22px"/></a></div>
+                        <?php echo '<div class="quitar-producto"><a href="#" onclick="cancelar('.$value->idPedido.');"><img src='.$this->config->item('base_url').'f/img/delete.png width="22px" height="22px"/></a></div>'?>
                         <div class="cant-producto"><img src='<?=$this->config->item('base_url')?>f/img/nota.png' width="20px" height="20px"/>
                         </div>
                         <div class="cant-producto"><img src='<?=$this->config->item('base_url')?>f/img/<?php if($value->estado==0){echo 'green.gif';}elseif($value->estado==1){echo 'yellow.gif';}elseif($value->estado==2){echo 'red.gif';}elseif($value->estado==3){echo 'check.png';}?>' width="20px" height="20px"/>

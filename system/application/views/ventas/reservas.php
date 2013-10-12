@@ -27,30 +27,34 @@
       
           <div class="row-fluid">
             <table class="table table-hover">
-            <thead>
-            <tr>
-            <th>#</th>
-            <th># Mesa</th>
-            <th>Hora</th>
-            <th># Personas</th>
-            <th>Cliente</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-            <td>1</td>
-            <td>3</td>
-            <td>4:10 pm</td>
-            <td>4</td>
-            <td>Maria Lopez</td>
-            <td><a href="modificarReserva.php" class="btn btn-info">Modificar</a><a href="" class="btn btn-danger"><i class="icon-trash icon-white"></i></a></td>
-            </tr>
-            </tbody>
+              
+                <tr>
+                <td>#</td>
+                <td>Mesa</td>
+                <td>Fecha</td>
+                <td>Número Personas</td>
+                <td>Cliente</td>
+                </tr>
+              
+            
+                <?php foreach ($reservas->result() as $row) {
+                echo '<tr>';
+                echo '<td>'.$row->idReserva2.'</td>';
+                echo '<td>'.$row->Mesa_idMesa.'</td>';
+                echo '<td>'.$row->fecha.'</td>';
+                echo '<td>'.$row->numero_personas.'</td>';
+                echo '<td>'.$row->nom_cliente.'</td>';
+                echo '<td><a href="'.base_url().'reservas/modificarReserva/'.$row->idReserva2.'" class="btn btn-info">Modificar</a><a href="" class="btn btn-danger"><i class="icon-trash icon-white"></i></a></td>';
+                echo '<td><a href="'.base_url().'reservas/cancelarReserva/'.$row->idReserva2.'" class="btn btn-info">Cancelar</a><a href=""  class="btn btn-danger"><i class="icon-trash icon-white"></i></a></td>';
+                echo '</tr>';
+            
+               }?>
+              
             </table>
           </div>
         </div>
       </div>
     </div>    
-
+   
   </body>
 </html>
