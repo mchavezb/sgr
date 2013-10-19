@@ -49,16 +49,16 @@
                     <div class="tit-desc-producto">Descripción</div>
                     <div class="tit-precio-u-producto">Precio</div>
                     <?php $i=0;
-                         foreach ($detalle_com as $value) {?>
-                        
-                        <div class="quitar-producto"><a href="#"><img src='<?=$this->config->item('base_url')?>f/img/delete.png' width="22px" height="22px" class="elim-pedido"/></a></div>
+                         foreach ($detalle_com as $value) {
+                                if($value->estado != 5){ ?>
+                        <div class="quitar-producto"><a href="#" class="elim_pedido"><input type="hidden" id="idPedidoel" value="<?php echo $value->idPedido?>"><img src='<?=$this->config->item('base_url')?>f/img/delete.png' width="22px" height="22px"/></a></div>
                         <div class="cant-producto"><a href="#" class="nota-pedido"><input type="hidden" id="idPedido" value="<?php echo $value->idPedido?>"><img src='<?=$this->config->item('base_url')?>f/img/nota.png' width="20px" height="20px"/></a>
                         </div>
                         <div class="cant-producto"><img src='<?=$this->config->item('base_url')?>f/img/<?php if($value->estado==0){echo 'blank.png';}elseif($value->estado==1){echo 'green.gif';}elseif($value->estado==2){echo 'yellow.gif';}elseif($value->estado==3){echo 'red.gif';}elseif($value->estado==4){echo 'check.png';}?>' width="20px" height="20px"/>
                         </div>
                         <div class="desc-producto"><?php echo $value->p_nombre?> - <?php echo $value->nota ?></div>
                         <div class="precio-u-producto"><?php echo $value->p_precio?></div>
-                        <?php $i = $value->p_precio + $i;
+                        <?php $i = $value->p_precio + $i;}
                           } ?>
                         <div class="precio-total"><?php echo $i;?></div><div class="nombre-total">SUB-TOTAL</div><div class="separator"></div>
                         <div class="precio-igv"><?php echo $i*0.19;?></div><div class="nombre-igv">I.G.V.</div><div class="separator"></div>
@@ -130,8 +130,10 @@
             hide: 'fade',
             modal: true
         });
-        $(".elim-pedido").on("click",function(){
+        $(".elim_pedido").on("click",function(){
+            var valor2 = $(this).children('input').val();
             $("#dialog3").dialog("open");
+            $("#elim_pedido").val(valor2);
         });
         $("#dialog4").dialog({
             autoOpen:false,

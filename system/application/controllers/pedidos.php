@@ -65,4 +65,14 @@ class Pedidos extends CI_Controller {
 		$this->pedidos_mo->agregar_nota($nota,$idped);
 		redirect('/comanda/m/'.$id_mesa);
 	}
+
+	public function eliminar(){ // FALTA QUE SOLAMENTE SE ELIMINEN LOS PEDIDOS QUE ESTAN EN ESTADO 0!!!!!
+		print_r($this->input->post());
+		$id_ped = $this->input->post('elim_pedido');
+		$id_mesa = $this->input->post('id_mesa');
+		$this->pedidos_mo->eliminar_pedido($id_ped);
+		$dato1['inf_ped1'] = $this->pedidos_mo->get_pedidos(1);
+		$data_json = file_put_contents("C://xampp/htdocs/sgr/data/data_pedidos_1.json",json_encode($dato1));
+		redirect('/comanda/m/'.$id_mesa);
+	}
 }
