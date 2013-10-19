@@ -17,7 +17,7 @@ class Main extends CI_Controller {
 				$this->load->view('cocina_vw');
 			}
 			else{
-				echo $this->session->userdata('idPerfil');
+				//echo $this->session->userdata('idPerfil');
 				$this->load->view('welcome_vw');
 			}
 		}else{
