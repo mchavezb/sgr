@@ -6,13 +6,67 @@ class Pedidos extends CI_Controller {
  	{
   	parent::__construct();
   	$this->load->model('pedidos_mo');
+  	$this->load->model('comanda_mo');
+  	$this->load->model('producto_mo');
+  	$this->load->model('usuarios_mo');
+  	$this->load->model('mesas_mo');
  	}
 
  	public function index()
 	{
+		$data['lista_comandas'] = $this->comanda_mo->listar_comandas();
 		//$data['inf_mesas'] = $this->mesas_mo->get_mesas();
 		//$data_json = file_put_contents("C://xampp/htdocs/sgr/data/data_tables.json",json_encode($data));
-		$this->load->view('pedidos_vw'/*,$data*/);
+		$this->load->view('pedidos_vw',$data);
+	}
+
+	public function p($id_mesa)
+	{
+		$data['categorias'] = $this->producto_mo->listar_cat();
+		$data['idmesa'] = $id_mesa;
+		$data['info_comanda'] = $this->comanda_mo->get_comanda_by_table($id_mesa);
+			if($data['info_comanda']!=FALSE){
+				foreach ($data['info_comanda'] as $key=>$value) {
+					$data['idComanda'] = $value['idComanda'];
+					$data['fecha'] = date_create($value['fecha']);
+					$id_mozo = $value['Usuario_idUsuario'];
+				}
+				$data['info_usuario'] = $this->usuarios_mo->get_usuario_by_idusuario($id_mozo);
+					foreach($data['info_usuario'] as $key => $v){
+						$data['nombres'] = $v['nombres'];
+						$data['apellidos'] = $v['apellidos'];
+					}
+				$data['detalle_com'] = $this->comanda_mo->get_detalle_comanda($data['idComanda']);
+			}
+			else{
+				// OBTENER ID DEL MOZO QUE HA INICIADO SESIÓN PARA INGRESARLO A LA COMANDA
+				$idMozo = '0002';//MOMENTÁNEAMENTE
+				$this->comanda_mo->add_new_comanda($id_mesa,$idMozo);
+				$this->mesas_mo->update_mesa_est($id_mesa);
+				
+				$data['info_comanda'] = $this->comanda_mo->get_comanda_by_table($id_mesa);
+					if($data['info_comanda']!=FALSE){
+						foreach ($data['info_comanda'] as $key=>$value) {
+							$data['idComanda'] = $value['idComanda'];
+							$data['fecha'] = date_create($value['fecha']);
+							$id_mozo = $value['Usuario_idUsuario'];
+						}
+						$data['info_usuario'] = $this->usuarios_mo->get_usuario_by_idusuario($id_mozo);
+							foreach($data['info_usuario'] as $key => $v){
+								$data['nombres'] = $v['nombres'];
+								$data['apellidos'] = $v['apellidos'];
+							}
+						$data['detalle_com'] = $this->comanda_mo->get_detalle_comanda($data['idComanda']);
+					}
+			}
+		$data['info_mesa'] = $this->mesas_mo->get_mesa_by_id($id_mesa);
+			foreach ($data['info_mesa'] as $key => $val) {
+				$data['numMesa'] = $val['mesa_num'];
+				//$data['estMesa'] = $val['mesa_estado'];
+				$data['clientes_mesa'] = $val['client_mesa'];
+			}
+		
+		$this->load->view('det_pedido_vw',$data);
 	}
 
 	public function enviar(){
@@ -74,5 +128,10 @@ class Pedidos extends CI_Controller {
 		$dato1['inf_ped1'] = $this->pedidos_mo->get_pedidos(1);
 		$data_json = file_put_contents("C://xampp/htdocs/sgr/data/data_pedidos_1.json",json_encode($dato1));
 		redirect('/comanda/m/'.$id_mesa);
+	}
+
+	public function cobrar(){ 
+		print_r($this->input->post());
+		
 	}
 }

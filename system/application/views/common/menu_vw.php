@@ -11,7 +11,7 @@
     echo '  <li>
                 <a href="#">Ventas</a>
                     <ul>                
-                        <li><a href="'.base_url().'pedidos">Pedidos</a></li>
+                        <li><a href="'.base_url().'pedidos">Cobrar Pedidos</a></li>
                         <li><a href="'.base_url().'reservas">Reservas</a></li>                  
                     </ul>        
             </li>

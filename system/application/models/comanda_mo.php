@@ -38,6 +38,11 @@ class Comanda_mo extends CI_Model {
         $q5 = "UPDATE comanda SET estado = 3 WHERE idComanda = '".$idcom."' ;";
         $this->db->query($q5);
     }
+    function listar_comandas(){
+        $q6 = "SELECT * FROM comanda WHERE estado = 3;";
+        $r6 = $this->db->query($q6);
+        return $r6->result();
+    }
 }
 
 ?>

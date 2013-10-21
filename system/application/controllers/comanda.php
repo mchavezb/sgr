@@ -84,5 +84,6 @@ class Comanda extends CI_Controller {
 		//print_r($this->input->post());
 		$id_c = $this->input->post('comanda_d');
 		$this->comanda_mo->enviar_a_caja($id_c);
+		redirect('/pedidos');
 	}
 }

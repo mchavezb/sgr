@@ -22,7 +22,31 @@
         </div>
         <div id="main-content">
           
-            {gl dpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}} {gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}} {gld pfgldg{dflgl {dflfg{ldf lg{dl{ñl}} }}}} {gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}} {gldpfgldg{dflgl{dflfg{ld flg{dl{ñ l}}}}}} {gldpfgldg{dflgl{dflfg{ld flg{dl{ñl}}}}}} {gldpfgldg{dflgl{dflfg{ld flg{dl{ñl}}}}}} {gldpfgldg{dflgl{dflfg{ldflg{dl{ñ l}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}} {gldpfgldg{dflgl{dflfg{ldflg{dl{ñ l}}}}}} {gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}} {gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}} {gldpfgldpfgldg{dflgl{dflfg{ldflg {dl{ñl}}}}}} {gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}} {gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dfl{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl {dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflf g{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{ dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ld flg{dl{ñl}}}}}}{gldpfgldg{dflgl{d flfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg { d l{ñl}}}}}}{gldpfgldg{dflgl{ dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñ l}}}}}}{gldpfgldg{dflgl{d flfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}} }}}}{gldpfgldg{dflgl{df lfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}} }{gldpfgldg{dflgl{dfl fg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{g ldpfgldg{dflgl{dflf g{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}dfglñl gdflgñdlg dñlgdñflgdlfgdlg dlg d{f g{dñlgf ld gdlfg {dñlg {dl g{dl gdlfgñldñflgflñgñf ñflgñdflñglñfl gñfglñflgñflg ñflg ñfglñ flgñlfñg ñflg fgñlfñlñlñl ll l l l ll l l l l l l l l l l ll l l l l ll l l l l l l ll lllll  r d d d d d e er r tr t t t t t t t t t t t t t t t t t t t t t t  t t t t t t t tt t }}}}}
+            <table align="center">
+                <thead>
+                    <tr><?php// print_r($lista_comandas)?>
+                        <th width="100px">ID COMANDA</th>
+                        <th width="100px">N° MESA</th>
+                        <th width="100px">ID MOZO</th>
+                        <th width="100px">IMPORTE</th>
+                        <th width="100px">ATENCIÓN</th>
+                        <th width="100px"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($lista_comandas as $key => $value) {?>
+                    <tr align="center">
+                        <td width="100px"><?php echo $value->idComanda?></td>
+                        <td width="100px"><?php echo $value->Mesa_idMesa?></td>
+                        <td width="100px"><?php echo $value->Usuario_idUsuario?></td>
+                        <td width="100px">32.50</td>
+                        <td width="100px"><?php if($value->TipoComanda_idTipoComanda=='01'){echo 'EN MESA';}elseif ($value->TipoComanda_idTipoComanda=='02'){echo 'PARA LLEVAR';}?>
+                        </td>
+                        <td width="100px"><form style="display: inline;" method="post" action="<?php echo base_url()?>pedidos/p/<?php echo $value->Mesa_idMesa ?>"><input type="hidden" name="id_com" id="id_com" value="<?php echo $value->idComanda ?>"><input type="submit" value="DETALLE"></form></td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
            
         </div>
 
