@@ -88,9 +88,9 @@
                         <input type="radio" id="boleta" name="comprobante" value="boleta">Boleta<br>
                         <input type="radio" id="factura" name="comprobante" value="factura">Factura<br>
                         <h2>Medio de pago</h2>
-                        <input type="radio" id="efectivo" name="medio_pago" value="boleta">Efectivo<br>
-                        <input type="radio" id="tarjeta" name="medio_pago" value="factura">Tarjeta de Crédito<br>
-                        <input type="radio" id="ambos" name="medio_pago" value="factura">Ambos<br>
+                        <input type="radio" id="efectivo" name="medio_pago" value="efectivo">Efectivo<br>
+                        <input type="radio" id="tarjeta" name="medio_pago" value="tarjeta">Tarjeta de Crédito<br>
+                        <input type="radio" id="ambos" name="medio_pago" value="ambos">Ambos<br>
                         <span id="input_efectivo">
                             <h3>Efectivo :</h3>
                             Soles :<br><input type="text" name="ef_soles"><br>

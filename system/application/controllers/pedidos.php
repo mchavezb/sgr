@@ -10,6 +10,7 @@ class Pedidos extends CI_Controller {
   	$this->load->model('producto_mo');
   	$this->load->model('usuarios_mo');
   	$this->load->model('mesas_mo');
+  	$this->load->model('ventas_mo');
  	}
 
  	public function index()
@@ -131,7 +132,22 @@ class Pedidos extends CI_Controller {
 	}
 
 	public function cobrar(){ 
-		print_r($this->input->post());
+		//print_r($this->input->post());
 		
+		if($this->input->post('comprobante')=='boleta'){
+			$tipo_pago = 1;
+		}elseif ($this->input->post('comprobante')=='factura') {
+			$tipo_pago = 2;
+		}
+		$medio_pago = $this->input->post('medio_pago'); 
+		$ef_soles = $this->input->post('ef_soles'); 
+		$ef_dolares = $this->input->post('ef_dolares'); 
+		$tarj_soles = $this->input->post('tarj_soles');
+		$tarj_dolares = $this->input->post('tarj_dolares');
+		$comanda_id = $this->input->post('comanda_id');
+		$total = $this->input->post('total'); 
+		$mesaid = $this->input->post('mesaid');
+		$this->ventas_mo->ingresar_venta($total,$comanda_id,$tipo_pago, $ef_soles, $tarj_soles, $ef_dolares, $tarj_dolares);
+		$this->comanda_mo->cobrar_comanda($comanda_id);
 	}
 }
