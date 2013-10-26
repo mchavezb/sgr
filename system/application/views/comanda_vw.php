@@ -54,7 +54,7 @@
                         <div class="quitar-producto"><a href="#" class="elim_pedido"><input type="hidden" id="idPedidoel" value="<?php echo $value->idPedido?>"><img src='<?=$this->config->item('base_url')?>f/img/delete.png' width="22px" height="22px"/></a></div>
                         <div class="cant-producto"><a href="#" class="nota-pedido"><input type="hidden" id="idPedido" value="<?php echo $value->idPedido?>"><img src='<?=$this->config->item('base_url')?>f/img/nota.png' width="20px" height="20px"/></a>
                         </div>
-                        <div class="cant-producto"><img src='<?=$this->config->item('base_url')?>f/img/<?php if($value->estado==0){echo 'blank.png';}elseif($value->estado==1){echo 'green.gif';}elseif($value->estado==2){echo 'yellow.gif';}elseif($value->estado==3){echo 'red.gif';}elseif($value->estado==4){echo 'check.png';}?>' width="20px" height="20px"/>
+                        <div class="cant-producto"><img src='<?=$this->config->item('base_url')?>f/img/<?php if($value->estado==0){echo 'blank.png';}elseif($value->estado==1){echo 'green.gif';}elseif($value->estado==2){echo 'yellow.gif';}elseif($value->estado==3){echo 'red.gif';}elseif($value->estado==4 || $value->estado==6){echo 'check.png';}?>' width="20px" height="20px"/>
                         </div>
                         <div class="desc-producto"><?php echo $value->p_nombre?> - <?php echo $value->nota ?></div>
                         <div class="precio-u-producto"><?php echo $value->p_precio?></div>

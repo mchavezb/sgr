@@ -37,16 +37,26 @@ class Comanda_mo extends CI_Model {
     function enviar_a_caja($idcom){
         $q5 = "UPDATE comanda SET estado = 3 WHERE idComanda = '".$idcom."' ;";
         $this->db->query($q5);
+        $q6 = "UPDATE comandaxpedido SET estado = 6 WHERE Comanda_idComanda = '".$idcom."' ;";
+        $this->db->query($q6);
     }
     function listar_comandas(){
-        $q6 = "SELECT * FROM comanda WHERE estado = 3;";
-        $r6 = $this->db->query($q6);
-        return $r6->result();
+        $q7 = "SELECT * FROM comanda WHERE estado = 3;";
+        $r7 = $this->db->query($q7);
+        return $r7->result();
     }
 
     function cobrar_comanda($idcomanda){
-        $q7 = "UPDATE comanda SET estado = 4 WHERE idComanda = '".$idcomanda."' ;";
-        $this->db->query($q7);
+        /*$q7 = "UPDATE comanda SET estado = 4 WHERE idComanda = '".$idcomanda."' ;";query original
+        $this->db->query($q7);*/
+        $q8 = "UPDATE comanda SET estado = 4 WHERE idComanda = '".$idcomanda."' ;";
+        $this->db->query($q8);
+    }
+
+    function list_comxped_e6(){
+        $q9 = "SELECT comandaxpedido.idPedido, comandaxpedido.Comanda_idComanda, comandaxpedido.Producto_idProducto, producto.p_precio FROM comandaxpedido INNER JOIN producto ON comandaxpedido.Producto_idProducto = producto.idProducto WHERE estado = 6;";
+        $r9 = $this->db->query($q9);
+        return $r9->result();
     }
 }
 

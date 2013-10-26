@@ -16,6 +16,7 @@ class Pedidos extends CI_Controller {
  	public function index()
 	{
 		$data['lista_comandas'] = $this->comanda_mo->listar_comandas();
+		$data['list_comxped'] = $this->comanda_mo->list_comxped_e6();
 		//$data['inf_mesas'] = $this->mesas_mo->get_mesas();
 		//$data_json = file_put_contents("C://xampp/htdocs/sgr/data/data_tables.json",json_encode($data));
 		$this->load->view('pedidos_vw',$data);
@@ -132,7 +133,7 @@ class Pedidos extends CI_Controller {
 	}
 
 	public function cobrar(){ 
-		//print_r($this->input->post());
+		print_r($this->input->post());
 		
 		if($this->input->post('comprobante')=='boleta'){
 			$tipo_pago = 1;
@@ -149,5 +150,7 @@ class Pedidos extends CI_Controller {
 		$mesaid = $this->input->post('mesaid');
 		$this->ventas_mo->ingresar_venta($total,$comanda_id,$tipo_pago, $ef_soles, $tarj_soles, $ef_dolares, $tarj_dolares);
 		$this->comanda_mo->cobrar_comanda($comanda_id);
+		//$this->mesas_mo->update_mesa_est0($mesaid); Aún no se desocupa mesa xq podrían haber pagado pero no haberse retirado de la mesa
+		redirect('/pedidos');
 	}
 }
