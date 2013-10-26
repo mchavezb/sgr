@@ -27,9 +27,9 @@
     echo '  <li>
                 <a href="#">Administración</a>
                     <ul>
-                        <li><a href="#AdmMesas">Mesas</a></li>
-                        <li><a href="#AdmPlatos">Platos</a></li>
-                        <li><a href="#AdmUsuarios">Usuarios</a></li>              
+                        <li><a href="'.base_url().'adm_mesas">Mesas</a></li>
+                        <li><a href="'.base_url().'adm_platos">Platos</a></li>
+                        <li><a href="'.base_url().'adm_usuarios">Usuarios</a></li>              
                     </ul>        
             </li>';}?>
 </ul>

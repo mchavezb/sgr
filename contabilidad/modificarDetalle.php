@@ -1,3 +1,14 @@
+<?php
+	session_start();
+	
+	include_once('DB/DB.php');
+
+	
+	$detalle = findDetalleRegistroMonetarioById( $_GET['id']);
+
+	$denominacion = findDenominacion();
+	$tipos = findTipos();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -45,29 +56,28 @@
     </div>
 
     <div class="container">
-		
-		
-		<h1>Elegir Operacion</h1>
-		<form align="right" method="POST" action="buscar.php">
-			<input type="date" name="fecha">
-			<button>Buscar</button>
-		</form>
+		<h2>Detalle (Modificar)</h2>
 		<hr>
-		<form method="POST" action="OP/registroInsert.php">
-			<p>Turno:</p>
-			<select name="turno">
-				<option value="1">Mañana</option>
-				<option value="2">Tarde</option>
-			</select></br></br>
-			<p>Operacion:</p>
-			<select name="operacion">
-				<option value="1">Abrir Caja</option>
-				<option value="2">Cerrar Caja</option>
-			</select></br><br/>
-			<button>Registrar</button>
+		</br>
+		<form action="OP/updateDetalle.php?id=<?php echo $_GET['id']; ?>" method="POST">
+		<p>Cantidad:</p>
+		<input type="text" name="cantidad" value="<?php echo $detalle['cantidad']; ?>"></br></br>
+		<p>Valor:</p>
+		<select name="denominacion">
+			<option value="<?php echo $detalle['idDenominacion'];?>"><?php echo $detalle['denominacion'] ?></option>
+			<?php foreach( $denominacion as $item ){ ?>
+				<option value="<?php echo $item['denominacion'];?>"><?php echo $item['valor']; ?></option>
+			<?php } ?>
+		</select></br></br>
+		<p>Tipo</p>
+		<select name="tipo">
+			<option value="<?php echo $detalle['idTipomoneda'];?>"><?php echo $detalle['moneda'] ?></option>
+			<?php foreach( $tipos as $item ){ ?>
+				<option value="<?php echo $item['tipo'];?>"><?php echo $item['descripcion'] ?></option>
+			<?php } ?>
+		</select></br></br>
+		<button type="submit">Guardar</button>
 		</form>
-		
-
     </div><!-- /.container -->
 
 

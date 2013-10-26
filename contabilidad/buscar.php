@@ -1,3 +1,22 @@
+<?php
+	session_start();
+	include_once('DB/DB.php');
+	
+	if($_POST['fecha'] != null){
+		$detalles = findDetalleRegistroMonetario( $_POST['fecha']);
+		$_SESSION['fecha'] = $_POST['fecha'];
+	}
+	
+	if(isset($_SESSION['fecha'])){
+		$detalles = findDetalleRegistroMonetario( $_SESSION['fecha']);
+	}
+	else{
+		$detalles = findDetalleRegistroMonetario( $_POST['fecha']);
+		$_SESSION['fecha'] = $_POST['fecha'];
+		echo $_POST['fecha'];
+	}
+	
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -45,27 +64,45 @@
     </div>
 
     <div class="container">
-		
-		
-		<h1>Elegir Operacion</h1>
-		<form align="right" method="POST" action="buscar.php">
-			<input type="date" name="fecha">
-			<button>Buscar</button>
-		</form>
+		<h2>Detalle Registro Diario</h2>
 		<hr>
-		<form method="POST" action="OP/registroInsert.php">
-			<p>Turno:</p>
-			<select name="turno">
-				<option value="1">Mañana</option>
-				<option value="2">Tarde</option>
-			</select></br></br>
-			<p>Operacion:</p>
-			<select name="operacion">
-				<option value="1">Abrir Caja</option>
-				<option value="2">Cerrar Caja</option>
-			</select></br><br/>
-			<button>Registrar</button>
-		</form>
+		</br>
+		<?php
+			if ( count( $detalles) > 0 ){ 
+				$i = 1;
+		?>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Cantidad</th>
+					<th>Denominacion</th>
+					<th>Total</th>
+					<th>Moneda</th>
+					<th>Tipo Registro</th>
+					<th>Turno</th>
+					<th colspan="2">Acción</th>
+				</tr>
+			</thead>
+			<tbody>
+			<?php foreach( $detalles as $item ){ ?>
+				<tr>
+					<td><?php echo $i++  ?></td>
+					<td><?php echo $item['cantidad'] ?></td>
+					<td><?php echo $item['denominacion'] ?></td>
+					<td><?php echo $item['total'] ?></td>
+					<td><?php echo $item['moneda'] ?></td>
+					<td><?php echo $item['tiporegistro'] ?></td>
+					<td><?php echo $item['turno'] ?></td>
+					<td><a type="button" href="modificarDetalle.php?id=<?php echo $item['id'] ?>">Modificar</a></td>
+					<td><a type="button" href="OP/deleteDetalle.php?id=<?php echo $item['id'] ?>">Eliminar</a></td>
+				</tr>
+			<?php } ?>
+			</tbody>
+		</table>
+		<?php } ?>
+		
+		
 		
 
     </div><!-- /.container -->
