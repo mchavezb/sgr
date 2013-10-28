@@ -4,9 +4,11 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="<?=$this->config->item('base_url')?>f/css/stylev2.css">
+    <link rel="stylesheet" type="text/css" href="<?=$this->config->item('base_url')?>f/css/jquery-ui-1.10.3.custom.min.css">
     <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/jquery-1.10.2.js'></script>
+    <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/jquery-ui-1.10.3.custom.min.js'></script>
+    <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/busc.js'></script>
   </head>
-  <body>
 
     <div id="header">
         <?php $this->load->view('common/header_vw'); ?>
@@ -20,25 +22,47 @@
         </div>
         <div id="main-content">
             <div id="contenido">
-              <h1>Reservas</h1>
+              <h1 style="background-color: #FACC2E; border-radius: 10px; height:46px;text-align: center;margin: auto; padding-top:10px; ">Reservas</h1>
               <hr>
-              <form>
+              <div class="row-fluid">
+                <form method='post'>
                 <fieldset>
                 <legend>Modificar Reserva</legend>
-                <label># Mesa</label>
-                <input type="text" value="3"></br>
-                <label>Hora</label>
-                <input type="text" value="4:10 pm"></br>
-                <label># Personas</label>
-                <input type="text" value="4"></br>
-                <label>Cliente</label>
-                <input type="text" value="María Lopez"></br>
+                <?php if(isset($mensaje)):?>
+                <p style="color:blue"><?php echo $mensaje; ?></p>
+                <?php endif?>
+                <table>
+                <tr>
+                <td><label>Num. Mesa</label></td>
+                <td><input type="text" value="<?=$id_mesa?>" name="id_mesa"></td>
+                </tr>
+                <tr>
+                <td><label>Hora</label></td>
+                <td><input type="text" value="<?=$fecha?>" name="fecha"></td>
+                </tr>
+                <tr>
+                <td><label>Num. Personas</label></td>
+                <td><input type="text" value="<?=$num_personas?>" name="num_personas"></td>
+                </tr>
+                <tr>
+                <td><label>Cliente</label></td>
+                <td><input type="text" value="<?=$nombre_cliente?>" name="cliente"></td>
+                </tr>
+            </table>
                 </br>
-                <a href="" class="btn btn-primary">Guardar</a><a href="reservas.php" class="btn btn-danger">Cancelar</a>
+                <input type="submit" value="Modificar" name="modificar"></br>
+                
                 </fieldset>
-              </form>
+                </form>
+              </div><!--/row-->
             </div>
         </div>
-    </div>          
+    </div>
+
+   
+          
+         
+        
+
   </body>
 </html>

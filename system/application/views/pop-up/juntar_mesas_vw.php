@@ -1,3 +1,8 @@
+<style>
+.ui-widget-header{
+	background: url("<?php echo base_url();?>f/img/ui-bg_gloss-wave_35_f6a828_500x100.png");
+}
+</style>
 <?php $mesas_libres = json_decode(file_get_contents("C://xampp/htdocs/sgr/data/data_tables.json"));
 	$libres = $mesas_libres->inf_mesas;?>
 	<form method="post" action="<?php echo base_url()?>mesas/juntar">

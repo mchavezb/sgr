@@ -14,7 +14,7 @@ class Mesas extends CI_Controller {
 	public function index()
 	{
 		$data['inf_mesas'] = $this->mesas_mo->get_mesas();
-		$data_jason = file_put_contents("C://xampp/htdocs/sgr/data/data_tables.json",json_encode($data));
+		$data_json = file_put_contents("C://xampp/htdocs/sgr/data/data_tables.json",json_encode($data));
 		$this->load->view('mesas_vw',$data);
 	}
 

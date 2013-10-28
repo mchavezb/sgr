@@ -15,6 +15,7 @@ class Comanda extends CI_Controller {
 
 	public function m($id_mesa)
 	{
+		$data['categorias'] = $this->producto_mo->listar_cat();
 		$data['idmesa'] = $id_mesa;
 		$data['info_comanda'] = $this->comanda_mo->get_comanda_by_table($id_mesa);
 			if($data['info_comanda']!=FALSE){
@@ -77,8 +78,12 @@ class Comanda extends CI_Controller {
 		}
 //		print_r($data['productos']);
 	}
-	public function exonerar()
+
+	public function cobrar()
 	{
-		$this->load->view('exonerar_pago');
+		//print_r($this->input->post());
+		$id_c = $this->input->post('comanda_d');
+		$this->comanda_mo->enviar_a_caja($id_c);
+		redirect('/pedidos');
 	}
 }

@@ -26,7 +26,7 @@ $config['base_url']	= 'http://localhost/sgr/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -224,7 +224,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = 'MySql';
+$config['encryption_key'] = 'CbllYNP230W0jhksK614m7s1n5WPk41j';
 /*
 |--------------------------------------------------------------------------
 | Session Variables
