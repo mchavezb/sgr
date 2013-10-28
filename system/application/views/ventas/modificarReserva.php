@@ -31,6 +31,7 @@
                 <?php if(isset($mensaje)):?>
                 <p style="color:blue"><?php echo $mensaje; ?></p>
                 <?php endif?>
+<<<<<<< HEAD
                 <table>
                 <tr>
                 <td><label>Num. Mesa</label></td>
@@ -49,6 +50,17 @@
                 <td><input type="text" value="<?=$nombre_cliente?>" name="cliente"></td>
                 </tr>
             </table>
+=======
+        
+                <label># Mesa</label>
+                <input type="text" value="<?=$id_mesa?>" name="id_mesa"></br>
+                <label>Hora</label>
+                <input type="text" value="<?=$fecha?>" name="fecha"></br>
+                <label># Personas</label>
+                <input type="text" value="<?=$num_personas?>" name="num_personas"></br>
+                <label>Cliente</label>
+                <input type="text" value="<?=$nom_cliente?>" name="cliente"></br>
+>>>>>>> 9b38beca98ee6c1d4230643bb4fe1d6db26b32d0
                 </br>
                 <input type="submit" value="Modificar" name="modificar"></br>
                 

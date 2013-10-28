@@ -31,8 +31,11 @@
                     <form style="display: inline;" method="post" action="<?php echo base_url()?>comanda/imprimir"><input type="submit" value="Imprimir Cuenta" style="width:128px;" onclick="window.print()"></form>
                     
                     <form style="display: inline;" method="post" action="<?php echo base_url()?>mesas/desocupar"><input type="submit" value="Desocupar Mesa" style="width:128px;"><input type="hidden" id="comanda_d" name="comanda_d" value='<?php echo $idComanda ?>'><input type="hidden" id="mesa_d" name="mesa_d" value='<?php echo $idmesa?>'></form>
+<<<<<<< HEAD
 
                     <form style="display: inline;" method="post" action="<?php echo base_url()?>comanda/cobrar"><input type="submit" value="Enviar a Caja" style="width:128px;"><input type="hidden" id="comanda_d" name="comanda_d" value='<?php echo $idComanda ?>'></form>
+=======
+>>>>>>> 9b38beca98ee6c1d4230643bb4fe1d6db26b32d0
 
                   <?php $orig = array('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday','September','October' ); $new = array('Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo','Setiembre','Octubre');?>
                     <?php if($info_comanda!==FALSE){?>
@@ -49,12 +52,21 @@
                     <div class="tit-desc-producto">Descripción</div>
                     <div class="tit-precio-u-producto">Precio</div>
                     <?php $i=0;
+<<<<<<< HEAD
                          foreach ($detalle_com as $value) {
                                 if($value->estado != 5){ ?>
                         <div class="quitar-producto"><a href="#" class="elim_pedido"><input type="hidden" id="idPedidoel" value="<?php echo $value->idPedido?>"><img src='<?=$this->config->item('base_url')?>f/img/delete.png' width="22px" height="22px"/></a></div>
                         <div class="cant-producto"><a href="#" class="nota-pedido"><input type="hidden" id="idPedido" value="<?php echo $value->idPedido?>"><img src='<?=$this->config->item('base_url')?>f/img/nota.png' width="20px" height="20px"/></a>
                         </div>
                         <div class="cant-producto"><img src='<?=$this->config->item('base_url')?>f/img/<?php if($value->estado==0){echo 'blank.png';}elseif($value->estado==1){echo 'green.gif';}elseif($value->estado==2){echo 'yellow.gif';}elseif($value->estado==3){echo 'red.gif';}elseif($value->estado==4 || $value->estado==6){echo 'check.png';}?>' width="20px" height="20px"/>
+=======
+                         foreach ($detalle_com as $value) {?>
+                        
+                        <div class="quitar-producto"><a href="#"><img src='<?=$this->config->item('base_url')?>f/img/delete.png' width="22px" height="22px" class="elim-pedido"/></a></div>
+                        <div class="cant-producto"><a href="#" class="nota-pedido"><input type="hidden" id="idPedido" value="<?php echo $value->idPedido?>"><img src='<?=$this->config->item('base_url')?>f/img/nota.png' width="20px" height="20px"/></a>
+                        </div>
+                        <div class="cant-producto"><img src='<?=$this->config->item('base_url')?>f/img/<?php if($value->estado==0){echo 'blank.png';}elseif($value->estado==1){echo 'green.gif';}elseif($value->estado==2){echo 'yellow.gif';}elseif($value->estado==3){echo 'red.gif';}elseif($value->estado==4){echo 'check.png';}?>' width="20px" height="20px"/>
+>>>>>>> 9b38beca98ee6c1d4230643bb4fe1d6db26b32d0
                         </div>
                         <div class="desc-producto"><?php echo $value->p_nombre?> - <?php echo $value->nota ?></div>
                         <div class="precio-u-producto"><?php echo $value->p_precio?></div>
@@ -130,10 +142,15 @@
             hide: 'fade',
             modal: true
         });
+<<<<<<< HEAD
         $(".elim_pedido").on("click",function(){
             var valor2 = $(this).children('input').val();
             $("#dialog3").dialog("open");
             $("#elim_pedido").val(valor2);
+=======
+        $(".elim-pedido").on("click",function(){
+            $("#dialog3").dialog("open");
+>>>>>>> 9b38beca98ee6c1d4230643bb4fe1d6db26b32d0
         });
         $("#dialog4").dialog({
             autoOpen:false,

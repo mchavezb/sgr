@@ -1,46 +1,24 @@
-<?php
-class Login_model extends CI_Model
-{
- 
-    public function __construct()
-    {
-    $this->load->library('session');
-    $this->load->database();
-    }
-   
-   
-    public function getLogin($username,$password)
-    {
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+
+class Login_model extends CI_Model {
     
-    $data = array(
-    'usuario' => $username,
-    'password' => $password
-    );
-   
-    $query = $this->db->get_where('usuario',$data);
-    return $query->result_array();
+    public function __construct() {
+        parent::__construct();
     }
-   
-   
-    public function isLogged()
-    {
     
-   
-        if(isset($this->session->userdata['username']))
-        {
-        return TRUE;
-        }
-        else
-        {
-        return FALSE;
-        }
-       
-    }
-   
-   
-   
-    public function close()
+    public function login_user($username,$password)
     {
-    return $this->session->sess_destroy();
+        $this->db->where('usuario',$username);
+        $this->db->where('password',md5($password));
+        $query = $this->db->get('usuario');
+        if($query->num_rows() == 1 )
+        {
+            return $query->row();
+
+        }else{
+            $this->session->set_flashdata('usuario_incorrecto','Los datos introducidos son incorrectos');
+            redirect(base_url().'login','refresh');
+        }
     }
 }
