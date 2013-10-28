@@ -25,7 +25,6 @@
                 <h1>Welcome !</h1>
                 ¡ Bienvenido al Sistema de Gestión de restaurantes !
                 <?php echo '<pre>';
-
                 print_r($this->session->all_userdata());
                 echo $this->session->userdata('nombres');
                 echo '</pre>'; ?>

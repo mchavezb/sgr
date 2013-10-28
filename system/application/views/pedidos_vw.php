@@ -22,7 +22,6 @@
         </div>
         <div id="main-content">
           
-<<<<<<< HEAD
             <table align="center">
                 <thead>
                     <tr><?php// print_r($lista_comandas)?>
@@ -54,9 +53,6 @@
                     <?php } ?>
                 </tbody>
             </table>
-=======
-            {gl dpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}} {gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}} {gld pfgldg{dflgl {dflfg{ldf lg{dl{ñl}} }}}} {gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}} {gldpfgldg{dflgl{dflfg{ld flg{dl{ñ l}}}}}} {gldpfgldg{dflgl{dflfg{ld flg{dl{ñl}}}}}} {gldpfgldg{dflgl{dflfg{ld flg{dl{ñl}}}}}} {gldpfgldg{dflgl{dflfg{ldflg{dl{ñ l}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}} {gldpfgldg{dflgl{dflfg{ldflg{dl{ñ l}}}}}} {gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}} {gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}} {gldpfgldpfgldg{dflgl{dflfg{ldflg {dl{ñl}}}}}} {gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}} {gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dfl{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl {dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflf g{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{ dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ld flg{dl{ñl}}}}}}{gldpfgldg{dflgl{d flfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg { d l{ñl}}}}}}{gldpfgldg{dflgl{ dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñ l}}}}}}{gldpfgldg{dflgl{d flfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}} }}}}{gldpfgldg{dflgl{df lfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}} }{gldpfgldg{dflgl{dfl fg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{g ldpfgldg{dflgl{dflf g{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}{gldpfgldg{dflgl{dflfg{ldflg{dl{ñl}}}}}}dfglñl gdflgñdlg dñlgdñflgdlfgdlg dlg d{f g{dñlgf ld gdlfg {dñlg {dl g{dl gdlfgñldñflgflñgñf ñflgñdflñglñfl gñfglñflgñflg ñflg ñfglñ flgñlfñg ñflg fgñlfñlñlñl ll l l l ll l l l l l l l l l l ll l l l l ll l l l l l l ll lllll  r d d d d d e er r tr t t t t t t t t t t t t t t t t t t t t t t  t t t t t t t tt t }}}}}
->>>>>>> 9b38beca98ee6c1d4230643bb4fe1d6db26b32d0
            
         </div>
 
