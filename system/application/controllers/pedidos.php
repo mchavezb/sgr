@@ -11,6 +11,7 @@ class Pedidos extends CI_Controller {
   	$this->load->model('usuarios_mo');
   	$this->load->model('mesas_mo');
   	$this->load->model('ventas_mo');
+  	$this->load->model('caja_mo');
  	}
 
  	public function index()
@@ -132,9 +133,7 @@ class Pedidos extends CI_Controller {
 		redirect('/comanda/m/'.$id_mesa);
 	}
 
-	public function cobrar(){ 
-		print_r($this->input->post());
-		
+	public function cobrar(){
 		if($this->input->post('comprobante')=='boleta'){
 			$tipo_pago = 1;
 		}elseif ($this->input->post('comprobante')=='factura') {
@@ -148,7 +147,12 @@ class Pedidos extends CI_Controller {
 		$comanda_id = $this->input->post('comanda_id');
 		$total = $this->input->post('total'); 
 		$mesaid = $this->input->post('mesaid');
-		$id_apert = $this->session->userdata('id_apertura');
+		$id_caja = $this->input->post('idcaja');
+		//obtener id de operacion a partir del id de la caja
+		$operacion = $this->caja_mo->get_op_caja($id_caja);
+			foreach ($operacion->result() as $row) {
+				$id_apert=$row->id_operacion;
+			}
 		$this->ventas_mo->ingresar_venta($total,$comanda_id,$tipo_pago, $ef_soles, $tarj_soles, $ef_dolares, $tarj_dolares,$id_apert);
 		$this->comanda_mo->cobrar_comanda($comanda_id);
 		$this->mesas_mo->update_mesa_est0($mesaid);
