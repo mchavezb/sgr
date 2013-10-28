@@ -148,9 +148,10 @@ class Pedidos extends CI_Controller {
 		$comanda_id = $this->input->post('comanda_id');
 		$total = $this->input->post('total'); 
 		$mesaid = $this->input->post('mesaid');
-		$this->ventas_mo->ingresar_venta($total,$comanda_id,$tipo_pago, $ef_soles, $tarj_soles, $ef_dolares, $tarj_dolares);
+		$id_apert = $this->session->userdata('id_apertura');
+		$this->ventas_mo->ingresar_venta($total,$comanda_id,$tipo_pago, $ef_soles, $tarj_soles, $ef_dolares, $tarj_dolares,$id_apert);
 		$this->comanda_mo->cobrar_comanda($comanda_id);
-		//$this->mesas_mo->update_mesa_est0($mesaid); Aún no se desocupa mesa xq podrían haber pagado pero no haberse retirado de la mesa
+		$this->mesas_mo->update_mesa_est0($mesaid);
 		redirect('/pedidos');
 	}
 }

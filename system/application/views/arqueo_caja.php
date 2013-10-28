@@ -4,12 +4,11 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="<?=$this->config->item('base_url')?>f/css/stylev2.css">
-    <link rel="stylesheet" type="text/css" href="<?=$this->config->item('base_url')?>f/css/jquery-ui-1.10.3.custom.min.css">
     <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/jquery-1.10.2.js'></script>
     <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/jquery-ui-1.10.3.custom.min.js'></script>
     <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/busc.js'></script>
   </head>
-  <body>
+
     <div id="header">
         <?php $this->load->view('common/header_vw'); ?>
     </div>
@@ -20,27 +19,31 @@
                 <?php $this->load->view('common/menu_vw'); ?>
             </div>
         </div>
-        <div id="main-content2">
+        <div id="main-content">
             <div id="contenido">
-                <h1>Welcome !</h1>
-                ¡ Bienvenido al Sistema de Gestión de restaurantes !
-                <?php echo '<pre>';
-                print_r($this->session->all_userdata());
-                echo $this->session->userdata('nombres');
-                echo '</pre>'; ?>
-                <?//php echo date('Y-m-d H:i:s',time());?>
+              <h1 style="background-color: #9C9C9C; border-radius: 10px; height:46px;text-align: center;margin: auto; padding-top:10px; ">Caja</h1>
+              <br/>
+              <br/>
+              <hr>
+              <div class="row-fluid">
+                <fieldset>
+                <legend>Arqueo de Caja</legend>
+                <?php if(isset($mensaje)):?>
+                <p style="color:blue"><?php echo $mensaje; ?></p>
+                <?php endif?>
+                <table>
                 
+              </table>
+                
+                </br>
+                </fieldset>
+         
+              </div><!--/row-->
             </div>
         </div>
-    </div>
-
-
-
-    <div id="container">
-            
-    </div>
-
-
+    </div>    
+         
+        
 
   </body>
 </html>

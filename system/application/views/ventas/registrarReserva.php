@@ -38,7 +38,7 @@
                 </tr>
                 <tr>
                 <td><label>Fecha y Hora</label></td>
-                <td><input type="text" placeholder="..." name="fecha"></td>
+                <td><input type="text" placeholder="AAAA:MM:DD hh:mm:ss" name="fecha"></td>
                 </tr>
                 <tr>
                 <td><label>Num. Personas</label></td>
