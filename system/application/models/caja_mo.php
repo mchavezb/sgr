@@ -18,8 +18,8 @@ class Caja_mo extends CI_Model {
         return $r2;
   }
 
-  function ing_cierre($id, $id_usuario, $id_caja, $soles_final, $dolares_final){
-    $q3 = "INSERT INTO operaciones_caja (`id_caja`,`id_tipo_reg`,`soles`,`dolares`,`Usuario_idUsuario`,`estado_caja`,`id_apert`) VALUES ('".$id_caja."','2','".$soles_final."','".$dolares_final."','".$id_usuario."','1','".$id."')";
+  function ing_cierre($id, $id_usuario, $id_caja, $soles_final, $dolares_final, $tarj_soles_final, $tarj_dolares_final){
+    $q3 = "INSERT INTO operaciones_caja (`id_caja`,`id_tipo_reg`,`soles`,`dolares`,`tarj_soles`,`tarj_dolares`,`Usuario_idUsuario`,`estado_caja`,`id_apert`) VALUES ('".$id_caja."','2','".$soles_final."','".$dolares_final."','".$tarj_soles_final."','".$tarj_dolares_final."','".$id_usuario."','1','".$id."')";
         $this->db->query($q3);
   }
 
@@ -38,8 +38,8 @@ class Caja_mo extends CI_Model {
         $this->db->query($q6);
   }
 
-  function get_idcierre_by_idapert($id){
-    $q7 = "SELECT id_operacion FROM operaciones_caja WHERE id_apert = '".$id."' ;";
+  function get_cierre_by_idapert($id){
+    $q7 = "SELECT * FROM operaciones_caja WHERE id_apert = '".$id."' ;";
     $r7 = $this->db->query($q7);
         return $r7;
   }

@@ -56,6 +56,14 @@
                 <td><input class="resumido" type="text" placeholder="..." name="dolares_final"></td>
                 </tr>
                 <tr>
+                <td><label>Tarjeta Soles :</label></td>
+                <td><input type="text" placeholder="..." name="tarj_soles_final"></td>
+                </tr>
+                <tr>
+                <td><label>Tarjeta Dólares :</label></td>
+                <td><input type="text" placeholder="..." name="tarj_dolares_final"></td>
+                </tr>
+                <tr>
                 <td><label class="detallado">MONEDA 0.10 :</label></td>
                 <td><input class="detallado" type="text" placeholder="0" name="mon_010f"></td>
                 </tr>

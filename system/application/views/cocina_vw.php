@@ -47,7 +47,7 @@
                 }
                 ?>
           
-          <!--<div id="data-encolados"></div>-->
+          <!--<div id="data-encolados"></div>se descomenta para q empiece a funcionar-->
         </div>
         <div id="content-en-atencion">
           <h2>En preparación</h2>
@@ -78,7 +78,7 @@
 
         </div>
     </div>
-  <!--<script>
+  <script>
     $(document).ready(function(){
       $('#data-encolados').load('encolados.php');
       refresh();
@@ -90,7 +90,7 @@
       },1000);
     }
   </script>
-   <script>
+   <!--<script>
     $(document).ready(function(){
       $('#data-preparacion').load('preparación.php');
       refresh();
