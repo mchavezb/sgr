@@ -69,14 +69,18 @@ class Pedidos extends CI_Controller {
 				$data['clientes_mesa'] = $val['client_mesa'];
 			}
 		
-		$this->load->view('det_pedido_vw',$data);
+		$this->load->view('det_pedido_vwx2',$data);
 	}
 
 	public function enviar(){
+
+		//print_r($this->input->post());
+		
 		$id_com = $this->input->post('comanda_id');
+		$tipo_at = $this->input->post('tipoA');
 		$data['pedidos'] = $this->pedidos_mo->get_pedidos0_by_com($id_com);
 		foreach ($data['pedidos'] as $key => $value) {
-			$this->pedidos_mo->env_ped_cocina($value['idPedido']);
+			$this->pedidos_mo->env_ped_cocina($value['idPedido'],$tipo_at);
 		}
 		$datos['inf_ped1'] = $this->pedidos_mo->get_pedidos(1);
 		$data_json = file_put_contents("C://xampp/htdocs/sgr/data/data_pedidos_1.json",json_encode($datos));

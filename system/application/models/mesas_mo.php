@@ -54,5 +54,17 @@ class Mesas_mo extends CI_Model {
         return $r13->result_array();
   }
 
+  function get_capacidad_mesa($idmesa){
+    $q14 = "SELECT capacidad, client_mesa FROM mesa WHERE idMesa = ".$idmesa.";";
+    $r14 = $this->db->query($q14);
+      return $r14->result();
+  }
+
+  function act_cant_clientes($cantclientes , $idmesa){
+    $q15 = "UPDATE mesa SET client_mesa = '".$cantclientes."' WHERE idMesa = '".$idmesa."' ;";
+        $this->db->query($q15);
+
+    }
+
 }
 ?>

@@ -22,16 +22,22 @@ class Caja extends CI_Controller {
 
 	public function aperturar()
 	{
-		$this->load->view('apert_caja');
+		$data['lista_cajeros'] = $this->usuarios_mo->get_usuario_by_idperfil('04');
+		$data['lista_cajas'] = $this->caja_mo->get_lista_cajas();
+		$this->load->view('apert_caja',$data);
 	}
 
 	public function cerrar()
 	{
-		$this->load->view('cierre_caja');
+		$data['lista_cajeros'] = $this->usuarios_mo->get_usuario_by_idperfil('04');
+		$data['lista_cajas'] = $this->caja_mo->get_lista_cajas();
+		$this->load->view('cierre_caja',$data);
 	}
 
 	public function apert_caja(){
 		$data = array();
+		$data['lista_cajeros'] = $this->usuarios_mo->get_usuario_by_idperfil('04');
+		$data['lista_cajas'] = $this->caja_mo->get_lista_cajas();
 		if($this->input->post()){
 			$id_usuario=$this->input->post('id_usuario');
 			$id_caja=$this->input->post('id_caja');
@@ -78,6 +84,8 @@ class Caja extends CI_Controller {
 	
 	public function cerrar_caja(){
 		$data = array();
+		$data['lista_cajeros'] = $this->usuarios_mo->get_usuario_by_idperfil('04');
+		$data['lista_cajas'] = $this->caja_mo->get_lista_cajas();
 		if($this->input->post()){
 			$id_usuario=$this->input->post('id_usuario');
 			$id_caja=$this->input->post('id_caja');
@@ -130,6 +138,11 @@ class Caja extends CI_Controller {
 						$horafecha = $row->hora ;
 						$usuariocaja = $row->Usuario_idUsuario;
 					}
+			$datos3 = $this->caja_mo->get_apert_by_idapert($id);
+				foreach($datos3 as $key => $v){
+						$data['sol_apert'] = $v['soles'];
+						$data['dol_apert'] = $v['dolares'];
+					}
 			$data['tar_soles'] = $tar_soles;
 			$data['tar_dol'] = $tar_dol;
 			$data['horafecha'] = $horafecha;
@@ -144,5 +157,10 @@ class Caja extends CI_Controller {
 		}
 
 		
+	}
+	function cotizar(){
+		$cambio = $this->input->post('cambio_dia');
+		$this->caja_mo->ingresar_cambio($cambio);
+		$this->load->view('welcome_vw');
 	}
 }

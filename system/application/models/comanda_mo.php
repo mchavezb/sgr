@@ -58,6 +58,12 @@ class Comanda_mo extends CI_Model {
         $r9 = $this->db->query($q9);
         return $r9->result();
     }
+
+    function act_mozo_com($idmozo , $idcomanda){
+        $q10 = "UPDATE comanda SET Usuario_idUsuario = '".$idmozo."' WHERE idComanda = '".$idcomanda."' ;";
+        $this->db->query($q10);
+
+    }
 }
 
 ?>

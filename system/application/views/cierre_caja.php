@@ -41,11 +41,22 @@
                 </tr>
                 <tr>
                 <td><label>Usuario :</label></td>
-                <td><input type="text" placeholder="0001" name="id_usuario"></td>
+                <td><select name="id_usuario" width="150px" style="width: 160px">
+                            <option value="<?php echo $this->session->userdata['idUsuario'];?>"><?php echo $this->session->userdata['nombres'].' '.$this->session->userdata['apellidos'];?></option>
+                                <?php foreach ($lista_cajeros as $v) {
+                                    if($v['idUsuario']!=$this->session->userdata['idUsuario']){?>
+                                        <option value="<?php echo $v['idUsuario']?>"><?php echo $v['nombres'].' '.$v['apellidos'];?></option>
+                                <?php } }?>              
+                        </select>
                 </tr>
                 <tr>
                 <td><label>Caja :</label></td>
-                <td><input type="text" placeholder="01" name="id_caja"></td>
+                <td><select name="id_caja" style="width: 80px">
+                    <?php foreach ($lista_cajas as $v) {?>
+                        <option value="<?php echo $v['idCaja']?>"><?php echo $v['caja_numero'];?></option>
+                    <?php }?>
+
+                </select>
                 </tr>
                 <tr>
                 <td><label class="resumido">Monto Soles :</label></td>
@@ -126,7 +137,7 @@
               </table>
                 
                 </br>
-                <input type="submit" name="cierre_caja" value ="Registrar" ><a href="<?php echo base_url() ;?>mesas" class="btn btn-danger">Cancelar</a>
+                <input type="submit" name="cierre_caja" value ="Registrar" >
                 </fieldset>
                 </form>
               </div><!--/row-->

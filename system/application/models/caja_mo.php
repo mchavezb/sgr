@@ -43,6 +43,23 @@ class Caja_mo extends CI_Model {
     $r7 = $this->db->query($q7);
         return $r7;
   }
+
+  function get_lista_cajas(){
+    $q8 = "SELECT * FROM caja ;";
+    $r8 = $this->db->query($q8);
+        return $r8->result_array();
+  }
+
+  function ingresar_cambio($cambio){
+    $q9 = "INSERT INTO cotiz_dolar (`valor_s`) VALUES ('".$cambio."')";
+        $this->db->query($q9);
+  }
+
+  function get_apert_by_idapert($id){
+    $q10 = "SELECT * FROM operaciones_caja WHERE id_operacion = '".$id."' ;";
+    $r10 = $this->db->query($q10);
+        return $r10->result_array();
+  }
 }
 
 ?>

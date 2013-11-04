@@ -24,25 +24,56 @@
         <div id="main-content">
             <div id="contenido">
                 <div id="comanda">
+                    <form style="display: inline;" method="post" action="<?php echo base_url()?>pedidos/enviar">
+                        Tipo de Atención :
+                      <input type="radio" name="tipoA" value="00" checked="checked">Plato por plato
+                      <input type="radio" name="tipoA" value="01">Orden Completa
+                      <input type="hidden" id="comanda_id" name="comanda_id" value='<?php echo $idComanda?>'><input type="hidden" id="mesaid" name="mesaid" value='<?php echo $idmesa?>'><input type="submit" value="Enviar Pedido" style="width:128px;"></form>
+
+                      <!-- falta su formulario-->
                     <input type="submit" value="Cancelar Comanda" style="width:128px;">
-                    
-                    <form style="display: inline;" method="post" action="<?php echo base_url()?>pedidos/enviar"><input type="hidden" id="comanda_id" name="comanda_id" value='<?php echo $idComanda?>'><input type="hidden" id="mesaid" name="mesaid" value='<?php echo $idmesa?>'><input type="submit" value="Enviar Pedido" style="width:128px;"></form>
-                    
+                    <!-- falta su formulario-->
                     <form style="display: inline;" method="post" action="<?php echo base_url()?>comanda/imprimir"><input type="submit" value="Imprimir Cuenta" style="width:128px;" onclick="window.print()"></form>
                     
                     <form style="display: inline;" method="post" action="<?php echo base_url()?>mesas/desocupar"><input type="submit" value="Desocupar Mesa" style="width:128px;"><input type="hidden" id="comanda_d" name="comanda_d" value='<?php echo $idComanda ?>'><input type="hidden" id="mesa_d" name="mesa_d" value='<?php echo $idmesa?>'></form>
 
                     <form style="display: inline;" method="post" action="<?php echo base_url()?>comanda/cobrar"><input type="submit" value="Enviar a Caja" style="width:128px;"><input type="hidden" id="comanda_d" name="comanda_d" value='<?php echo $idComanda ?>'></form>
 
-                  <?php $orig = array('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday','September','October' ); $new = array('Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo','Setiembre','Octubre');?>
+                    <input type="submit" value="Agregar Mesa" id="agr-mesa" style="width:128px;"/>
+
+                  <?php $orig = array('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday','September','October','November','December' ); $new = array('Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo','Setiembre','Octubre','Noviembre','Diciembre');?>
                     <?php if($info_comanda!==FALSE){?>
                     <div class="titulo-comanda">Comanda # <?php echo $idComanda ?></div>
                     <div class="mesa-comanda">Mesa <?php echo $numMesa?></div>
                     <div class="fecha-comanda"><?php echo str_replace($orig, $new, date_format($fecha, 'l j \d\e F \d\e\l Y'));?></div>
                     <div class="hora-comanda"><?php echo date_format($fecha, 'g:i A');?></div>
-                    <div class="mozo-comanda">Mozo <select width="150px" style="width: 150px"><option><?php echo $nombres.' '.$apellidos;?></option></select></div>
-                    <div class="client-comanda">Clientes <select><option><?php echo $clientes_mesa?></option></select></div>
-                    <div class="mozo-comanda" style="width:199px"><input type="submit" value="AGREGAR OTRA MESA" id="agr-mesa"/></div>
+                <form method="post" action="<?php echo base_url()?>comanda/actualizar">
+                    <div class="mozo-comanda">Mozo 
+                        <select name="mozo" width="150px" style="width: 160px">
+                            <option value="<?php echo $idMozo_c?>"><?php echo $nombres.' '.$apellidos;?></option>
+                                <?php foreach ($lista_mozos as $v) {
+                                    if($v['idUsuario']!==$idMozo_c){?>
+                                        <option value="<?php echo $v['idUsuario']?>"><?php echo $v['nombres'].' '.$v['apellidos'];?></option>
+                                <?php } }?>              
+                        </select>
+                    </div>
+                    <div class="client-comanda">Clientes 
+                        <select name="cant_clientes">
+                            <option><?php echo $clientes_mesa?></option>
+                                <?php for($i=1;$i<$capacidad_mesa+1;$i++){
+                                    if($i != $clientes_mesa){?>
+                                    <option><?php echo $i?></option>
+                                <?php } }?>
+                            
+                        </select>
+                    </div>
+                    
+                    <div class="mozo-comanda" style="width:199px">
+                        <input type="hidden" name="identComanda" value="<?php echo $idComanda ;?>">
+                        <input type="hidden" name="identMesa" value="<?php echo $idmesa ;?>">
+                        <input type="submit" value="Actualizar">
+                </form>
+                    </div>
                     <div class="tit-codigo-producto">#</div>
                     <div class="tit-cant-producto">Nota</div>
                     <div class="tit-cant-producto">Est.</div>
@@ -79,11 +110,7 @@
                         <?php } ?>
                 </div>
                 <div id="buscador">
-                    Tipo de Atención : <br>
-                    <form>
-                      <input type="radio" name="tipoA" value="plato" checked="checked">Plato por plato<br>
-                      <input type="radio" name="tipoA" value="orden">Orden Completa<br>
-                    </form>
+                    
                     <div class="busqueda-platillo">
                         <input type="text" id="busc"><input type="submit" value="BUSCAR" id="busc-submit"/>
                         <input type="hidden" id="comandamesa" name="comandamesa" value='<?php echo $idComanda ?>/<?php echo $idmesa?>'>

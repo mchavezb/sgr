@@ -17,13 +17,13 @@ class Pedidos_mo extends CI_Model {
             }
     }
 
-    function env_ped_cocina($idped){
-        $q2 = "UPDATE comandaxpedido SET estado = 1 WHERE idPedido = '".$idped."' ;";
+    function env_ped_cocina($idped,$tipo_at){
+        $q2 = "UPDATE comandaxpedido SET estado = 1, TipoAtencion_idTipoAtencion = '".$tipo_at."' WHERE idPedido = '".$idped."' ;";
         $this->db->query($q2);
     }
 
     function get_pedidos($n){
-        $q3 = "SELECT comandaxpedido.idPedido, comandaxpedido.nota, comandaxpedido.hora, producto.p_nombre, producto.p_tiempoestimado, comanda.Mesa_idMesa, mesa.mesa_num FROM comandaxpedido INNER JOIN producto ON comandaxpedido.Producto_idProducto = producto.idProducto INNER JOIN comanda ON comandaxpedido.Comanda_idComanda = comanda.idComanda INNER JOIN mesa ON comanda.Mesa_idMesa = mesa.mesa_num WHERE comandaxpedido.estado = '".$n."' ;";
+        $q3 = "SELECT comandaxpedido.idPedido, comandaxpedido.nota, comandaxpedido.TipoAtencion_idTipoAtencion, comandaxpedido.hora, producto.p_nombre, producto.p_tiempoestimado, comanda.Mesa_idMesa, mesa.mesa_num FROM comandaxpedido INNER JOIN producto ON comandaxpedido.Producto_idProducto = producto.idProducto INNER JOIN comanda ON comandaxpedido.Comanda_idComanda = comanda.idComanda INNER JOIN mesa ON comanda.Mesa_idMesa = mesa.mesa_num WHERE comandaxpedido.estado = '".$n."' ;";
         $r3 = $this->db->query($q3);
             if($r3->num_rows()>0){
                 return $r3->result_array();

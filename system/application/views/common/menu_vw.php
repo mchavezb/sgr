@@ -20,10 +20,10 @@
                     <ul>                
                         <li><a href="'.base_url().'caja/aperturar">Apertura de Caja</a></li>
                         <li><a href="'.base_url().'caja/cerrar">Cierre de Caja</a></li>
-                        <li><a href="#">Flujo de Caja</a></li>                      
+                        <li><a href="'.base_url().'reporte">Reportes</a></li>  
                     </ul>        
             </li>';}?>
-<?php if($this->session->userdata('idPerfil')=='01' || $this->session->userdata('idPerfil')=='04' ){
+<?php if($this->session->userdata('idPerfil')=='01'){
     echo '  <li>
                 <a href="#">Administración</a>
                     <ul>
