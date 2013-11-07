@@ -50,17 +50,18 @@
                                 <th colspan="2" class="pull-right">Mozo</th>
                                 <th colspan="2" class="pull-left"><?php echo $nombres.' '.$apellidos;?></th>
                             </tr>
+                            <form style="display: inline;" method="post" action="<?php echo base_url()?>pedidos/cobrar">
                             <tr>
                                 <th colspan="2" class="pull-right">DNI/RUC</th>
-                                <th colspan="2" class="pull-left"><input type="text"></th>
+                                <th colspan="2" class="pull-left"><input type="text" name="dniruc"></th>
                             </tr>
                             <tr>
                                 <th colspan="2"class="pull-right">Nombre/Razón Social</th>
-                                <th colspan="2" class="pull-left"><input type="text"></th>
+                                <th colspan="2" class="pull-left"><input type="text" name="razonsocial"></th>
                             </tr>
                             <tr>
                                 <th colspan="2"class="pull-right">Dirección</th>
-                                <th colspan="2" class="pull-left"><input type="text"></th>
+                                <th colspan="2" class="pull-left"><input type="text" name="direccion"></th>
                             </tr>
                             <tr>
                                 <th width="70px">#</th>
@@ -98,13 +99,14 @@
                             </tr>
                         </tfoot>
                     </table>
-                        <?php }?>
+                        <?php   $total = $i*1.19;
+                    }?>
 
 
            
                 </div>
                 <div id="buscador">
-                    <form style="display: inline;" method="post" action="<?php echo base_url()?>pedidos/cobrar">
+                    
 
                         <table class="pagos-table">
                             <thead>
@@ -127,7 +129,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="radio" id="boleta" name="comprobante" value="boleta">Boleta
+                                        <input type="radio" id="boleta" name="comprobante" value="boleta" checked="checked">Boleta
                                     </td>
                                     <td>
                                         <input type="radio" id="factura" name="comprobante" value="factura">Factura
@@ -137,7 +139,7 @@
                                     <td colspan="2">Forma de Pago</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><input type="radio" id="efectivo" name="medio_pago" value="efectivo">Efectivo</td>
+                                    <td colspan="2"><input type="radio" id="efectivo" name="medio_pago" value="efectivo" checked="checked">Efectivo</td>
                                 </tr>
                                 <tr>   
                                     <td colspan="2"><input type="radio" id="tarjeta" name="medio_pago" value="tarjeta">Tarjeta de Crédito</td>
@@ -145,23 +147,39 @@
                                 <tr>    
                                     <td colspan="2"><input type="radio" id="ambos" name="medio_pago" value="ambos">Ambos</td>
                                 </tr>
-                        
+                                <tr class="input_efectivo">    
+                                    <td colspan="2">Efectivo</td>
+                                </tr>
+                                <tr class="input_efectivo">
+                                    <td><input style="width:100px" type="text" name="ef_soles" placeholder="Soles"></td>
+                                    <td><input style="width:100px" type="text" name="ef_dolares" placeholder="Dólares"></td>
+                                </tr>
+                                <tr class="input_tarjeta">    
+                                    <td>Tarjeta de Crédito</td>
+                                    <td>
+                                        <select name="nomb_tarj">
+                                            <option value="1">Visa</option>
+                                            <option value="2">MasterCard</option>
+                                            <option value="3">Am. Express</option>
+                                            <option value="4">Diners</option>
+                                            <option value="5">Otra</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="input_tarjeta">
+                                    <td><input style="width:100px" type="text" name="tarj_soles" placeholder="Soles"></td>
+                                    <td><input style="width:100px" type="text" name="tarj_dolares" placeholder="Dólares"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><input type="submit" value="COBRAR" style="width:100px;"></td>
+                                </tr>
                             </tbody>
                         </table>
-                        <span id="input_efectivo">
-                            <h3>Efectivo :</h3>
-                            Soles :<br><input type="text" name="ef_soles"><br>
-                            Dólares :<br><input type="text" name="ef_dolares"><br>
-                        </span>
-                        <span id="input_tarjeta">
-                            <h3>Tarjeta :</h3>
-                            Soles :<br><input type="text" name="tarj_soles"><br>
-                            Dólares :<br><input type="text" name="tarj_dolares"><br>
-                        </span>  
+                        
                         <input type="hidden" id="comanda_id" name="comanda_id" value='<?php echo $idComanda?>'>
                         <input type="hidden" id="total" name="total" value='<?php echo $total?>'>
                         <input type="hidden" id="mesaid" name="mesaid" value='<?php echo $idmesa?>'>
-                        <input type="submit" value="COBRAR" style="width:128px;"></form>
+                        </form>
                     <!-- Tipo de Atención : <br>
                     <form>
                       <input type="radio" name="tipoA" value="plato" checked="checked">Plato por plato<br>
@@ -239,34 +257,34 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#input_efectivo").hide();
-        $("#input_tarjeta").hide();
+        $(".input_efectivo").hide();
+        $(".input_tarjeta").hide();
         if($('#efectivo').is(':checked')==true){
-            $("#input_efectivo").show();
-            $("#input_tarjeta").hide();
+            $(".input_efectivo").show();
+            $(".input_tarjeta").hide();
         }
         if($('#tarjeta').is(':checked')==true){
-            $("#input_tarjeta").show();
-            $("#input_efectivo").hide();
+            $(".input_tarjeta").show();
+            $(".input_efectivo").hide();
         }
         if($('#ambos').is(':checked')==true){
-            $("#input_tarjeta").show();
-            $("#input_efectivo").show();
+            $(".input_tarjeta").show();
+            $(".input_efectivo").show();
         }
     });
 </script>
 <script>
     $('#efectivo').click(function(){
-            $("#input_efectivo").show();
-            $("#input_tarjeta").hide();
+            $(".input_efectivo").show();
+            $(".input_tarjeta").hide();
         });
     $('#tarjeta').click(function(){
-            $("#input_efectivo").hide();
-            $("#input_tarjeta").show();
+            $(".input_efectivo").hide();
+            $(".input_tarjeta").show();
         });
     $('#ambos').click(function(){
-            $("#input_efectivo").show();
-            $("#input_tarjeta").show();
+            $(".input_efectivo").show();
+            $(".input_tarjeta").show();
         });
 </script>
   </body>

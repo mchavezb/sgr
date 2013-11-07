@@ -128,7 +128,7 @@ class Pedidos extends CI_Controller {
 	}
 
 	public function eliminar(){ // FALTA QUE SOLAMENTE SE ELIMINEN LOS PEDIDOS QUE ESTAN EN ESTADO 0!!!!!
-		print_r($this->input->post());
+		//print_r($this->input->post());
 		$id_ped = $this->input->post('elim_pedido');
 		$id_mesa = $this->input->post('id_mesa');
 		$this->pedidos_mo->eliminar_pedido($id_ped);
@@ -143,7 +143,11 @@ class Pedidos extends CI_Controller {
 		}elseif ($this->input->post('comprobante')=='factura') {
 			$tipo_pago = 2;
 		}
-		$medio_pago = $this->input->post('medio_pago'); 
+		$dniruc = $this->input->post('dniruc');
+		$razonsocial = $this->input->post('razonsocial');
+		$direccion = $this->input->post('direccion');
+		$medio_pago = $this->input->post('medio_pago');
+		$nomb_tarj = $this->input->post('nomb_tarj');
 		$ef_soles = $this->input->post('ef_soles'); 
 		$ef_dolares = $this->input->post('ef_dolares'); 
 		$tarj_soles = $this->input->post('tarj_soles');
@@ -152,14 +156,24 @@ class Pedidos extends CI_Controller {
 		$total = $this->input->post('total'); 
 		$mesaid = $this->input->post('mesaid');
 		$id_caja = $this->input->post('idcaja');
+		if($this->input->post('medio_pago')=='tarjeta'){
+			$ef_soles = 0.00; 
+			$ef_dolares = 0.00;
+		}
+		elseif ($this->input->post('medio_pago')=='efectivo') {
+			$nomb_tarj = 0;
+			$tarj_soles = 0.00;
+			$tarj_dolares = 0.00;
+		}
 		//obtener id de operacion a partir del id de la caja
 		$operacion = $this->caja_mo->get_op_caja($id_caja);
 			foreach ($operacion->result() as $row) {
 				$id_apert=$row->id_operacion;
 			}
-		$this->ventas_mo->ingresar_venta($total,$comanda_id,$tipo_pago, $ef_soles, $tarj_soles, $ef_dolares, $tarj_dolares,$id_apert);
+		$this->ventas_mo->ingresar_venta($total, $comanda_id, $tipo_pago, $ef_soles, $tarj_soles, $ef_dolares, $tarj_dolares,$id_apert, $dniruc, $razonsocial, $direccion, $nomb_tarj);
 		$this->comanda_mo->cobrar_comanda($comanda_id);
-		$this->mesas_mo->update_mesa_est0($mesaid);
+		//$this->mesas_mo->update_mesa_est0($mesaid);
 		redirect('/pedidos');
+
 	}
 }
