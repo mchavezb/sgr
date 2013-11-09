@@ -35,7 +35,7 @@
                   <form style="display: inline;" method="post" action="<?php echo base_url()?>reportes/ver_egresos">
                     <input type="submit" value="Egresos" style="width:128px;">
                   </form>
-                  <form style="display: inline;" method="post" action="<?php echo base_url()?>reportes/diario">
+                  <form style="display: inline;" method="post" action="<?php echo base_url()?>reportes/flujo">
                     <input type="submit" value="Flujo de Dinero" style="width:128px;">
                   </form>
                 </th>
@@ -64,7 +64,7 @@
                   <td><?php echo $value['egr_efe_sol'];?></td>
                   <td><?php echo $value['egr_efe_dol'];?></td>
                   <td><?php echo $value['egr_tar_sol'];?></td>
-                  <td><?php echo $value['egr_tar_sol'];?></td>
+                  <td><?php echo $value['egr_tar_dol'];?></td>
                   <td><?php echo $value['comentario'];?></td>
                 </tr>
                 <?php } ?>

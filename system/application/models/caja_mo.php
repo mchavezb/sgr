@@ -86,6 +86,13 @@ class Caja_mo extends CI_Model {
     $r15 = $this->db->query($q15);
         return $r15->result_array();
   }
+
+  public function get_ing_egr(){
+    $q16 = "SELECT * FROM ingresos_egresos;" ;
+    $r16 = $this->db->query($q16);
+        return $r16->result_array();
+  }
+  
 }
 
 ?>

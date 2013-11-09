@@ -40,4 +40,9 @@ class Reportes extends CI_Controller {
     $data['egresos']  = $this->caja_mo->get_egresos();
     $this->load->view('reportes_egr_vw',$data);
   }
+
+  public function flujo(){
+    $data['flujo']  = $this->caja_mo->get_ing_egr();
+    $this->load->view('reportes_flujo_vw',$data);
+  }
 }
