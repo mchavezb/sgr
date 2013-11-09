@@ -60,6 +60,32 @@ class Caja_mo extends CI_Model {
     $r10 = $this->db->query($q10);
         return $r10->result_array();
   }
+
+  public function ing_venta_caja($ef_soles, $ef_dolares, $tarj_soles, $tarj_dolares,$id_usuario_){
+    $q11 = "INSERT INTO ingresos_egresos (`tipo_mov`, `ing_efe_sol`, `ing_efe_dol`, `ing_tar_sol`, `ing_tar_dol`,`comentario`,`idusuario`) VALUES ('1','".$ef_soles."','".$ef_dolares."','".$tarj_soles."','".$tarj_dolares."','Ventas','".$id_usuario_."')";
+    $this->db->query($q11);
+    }
+  public function ingresos($ing_efe_sol, $ing_efe_dol, $ing_tar_sol, $ing_tar_dol, $comentario, $id_usuario_){
+    $q12 = "INSERT INTO ingresos_egresos (`tipo_mov`, `ing_efe_sol`, `ing_efe_dol`, `ing_tar_sol`, `ing_tar_dol`,`comentario`,`idusuario`) VALUES ('1','".$ing_efe_sol."','".$ing_efe_dol."','".$ing_tar_sol."','".$ing_tar_dol."','".$comentario."','".$id_usuario_."')";
+    $this->db->query($q12);
+  }
+
+  public function egresos($egr_efe_sol, $egr_efe_dol, $egr_tar_sol, $egr_tar_dol, $comentario, $id_usuario_){
+    $q13 = "INSERT INTO ingresos_egresos (`tipo_mov`, `egr_efe_sol`, `egr_efe_dol`, `egr_tar_sol`, `egr_tar_dol`,`comentario`,`idusuario`) VALUES ('2','".$egr_efe_sol."','".$egr_efe_dol."','".$egr_tar_sol."','".$egr_tar_dol."','".$comentario."','".$id_usuario_."')";
+    $this->db->query($q13);
+  }
+
+  public function get_ingresos(){
+    $q14 = "SELECT * FROM ingresos_egresos WHERE tipo_mov = '1' ORDER BY fecha DESC;" ;
+    $r14 = $this->db->query($q14);
+        return $r14->result_array();
+  }
+
+  public function get_egresos(){
+    $q15 = "SELECT * FROM ingresos_egresos WHERE tipo_mov = '2' ORDER BY fecha DESC;" ;
+    $r15 = $this->db->query($q15);
+        return $r15->result_array();
+  }
 }
 
 ?>

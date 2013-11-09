@@ -743,3 +743,20 @@ table.pagos-table tbody td{
   border-bottom: 1pt solid white;
   border-right: 1pt solid white;
 }
+
+table.ventas-table{
+  text-align: center;
+  padding-left: 5px;
+  width: 750px;
+}
+table.ventas-table thead tr{
+  background-color: #ddd;
+  height: 30px;
+
+}
+table.ventas-table tbody td{
+  /*background-color: #ddd;*/
+  height: 30px;
+  border-bottom: 1pt solid white;
+  border-right: 1pt solid white;
+}

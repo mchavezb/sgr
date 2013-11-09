@@ -4,7 +4,7 @@
                 <a href="#">Mesas</a>
                     <ul>                
                         <li><a href="'.base_url().'mesas">Ver Mesas</a></li>
-                        <li id="junt-mesa"><a href="#">Juntar Mesas</a></li>                   
+                                       
                     </ul>        
             </li>';}?>
 <?php if($this->session->userdata('idPerfil')=='01' || $this->session->userdata('idPerfil')=='04' ){
@@ -20,7 +20,8 @@
                     <ul>                
                         <li><a href="'.base_url().'caja/aperturar">Apertura de Caja</a></li>
                         <li><a href="'.base_url().'caja/cerrar">Cierre de Caja</a></li>
-                        <li><a href="'.base_url().'reporte">Reportes</a></li>  
+                        <li><a href="'.base_url().'caja/operaciones">Operaciones</a></li>
+                        <li><a href="'.base_url().'reportes">Reportes</a></li>  
                     </ul>        
             </li>';}?>
 <?php if($this->session->userdata('idPerfil')=='01'){
@@ -33,20 +34,3 @@
                     </ul>        
             </li>';}?>
 </ul>
-<!-- pop-up -->
-<div id="dialog" title="Juntar mesas :">
-    <?php $this->load->view('pop-up/juntar_mesas_vw');?>
-</div>
-<!-- fin del pop-up-->
-<script>
-    $(document).ready(function() {
-        $("#dialog").dialog({
-            autoOpen:false,
-            hide: 'fade',
-            modal: true
-        });
-        $("#junt-mesa").on("click",function(){
-            $("#dialog").dialog("open");
-        });
-    }); 
-</script>

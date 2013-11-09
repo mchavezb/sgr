@@ -43,6 +43,8 @@ class Comanda extends CI_Controller {
 
 				$this->comanda_mo->add_new_comanda($id_mesa,$idMozo);
 				$this->mesas_mo->update_mesa_est($id_mesa);
+
+				//aca deberia ir la grabada de mesas!!!
 				
 				$data['info_comanda'] = $this->comanda_mo->get_comanda_by_table($id_mesa);
 					if($data['info_comanda']!=FALSE){

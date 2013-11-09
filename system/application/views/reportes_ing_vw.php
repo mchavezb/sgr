@@ -46,31 +46,26 @@
             <table class="ventas-table">
               <thead>
                 <tr>
-                  <th colspan="6">Ventas</th> 
+                  <th colspan="6">Ingresos</th> 
                 </tr> 
                 <tr>
                   <th>Hora/Fecha</th>
-                  <th>N° Caja</th>
-                  <th>Comprobante</th>
-                  <th>Tipo de Pago</th>
-                  <th>Total (S/.)</th>
-                  <th>Detalle</th> 
+                  <th>Efectivo (S/.)</th>
+                  <th>Efectivo ($.)</th>
+                  <th>Crédito (S/.)</th>
+                  <th>Crédito ($.)</th>
+                  <th>Comentario</th> 
                 </tr>
               </thead>
               <tbody>
-                <?php foreach ($ventas as $key => $value) {?>                  
+                <?php foreach ($ingresos as $key => $value) {?>                  
                 <tr>
-                  <td><?php echo date_format(date_create($value->hora),'g:i a d/m/y');?></td>
-                  <td><?php echo $value->cajaid;?></td>
-                  <td><?php if($value->tipo_comprobante==0){echo 'NO APLICA';}elseif($value->tipo_comprobante==1){echo 'BOLETA';}elseif($value->tipo_comprobante==2){echo 'FACTURA';}?></td>
-                  <td><?php if($value->TipoPago_idTipoPago==0){echo 'NO APLICA';}elseif($value->TipoPago_idTipoPago==1){echo 'EFECTIVO';}elseif($value->TipoPago_idTipoPago==2){echo 'TARJETA';}elseif($value->TipoPago_idTipoPago==3){echo 'AMBOS';}?></td>
-                  <td><?php echo $value->total;?></td>
-                  <td>
-                    <form style="display: inline;" method="post" action="<?php echo base_url()?>reportes/ver_reporte">
-                      <input type="hidden" id="" name="idVenta" value='<?php echo $value->idVenta?>'>
-                      <input type="submit" value="Ver Detalle" style="width:128px;">
-                    </form>
-                  </td>
+                  <td><?php echo date_format(date_create($value['fecha']),'g:i a d/m/y');?></td>
+                  <td><?php echo $value['ing_efe_sol'];?></td>
+                  <td><?php echo $value['ing_efe_dol'];?></td>
+                  <td><?php echo $value['ing_tar_sol'];?></td>
+                  <td><?php echo $value['ing_tar_sol'];?></td>
+                  <td><?php echo $value['comentario'];?></td>
                 </tr>
                 <?php } ?>
               </tbody>

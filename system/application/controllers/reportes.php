@@ -17,7 +17,27 @@ class Reportes extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('reportes_vw');
+		$this->ventas();
 	}
 
+  public function ventas(){
+    $data['ventas']  = $this->ventas_mo->get_ventas();
+    $this->load->view('reportes_vw',$data);
+  }
+
+  public function ver_reporte(){
+    $id = $this->input->post('idVenta');
+    $data['detalle_venta']  = $this->ventas_mo->get_venta_by_idventa($id);
+    $this->load->view('det_venta_vw',$data);
+  }
+
+  public function ver_ingresos(){
+    $data['ingresos']  = $this->caja_mo->get_ingresos();
+    $this->load->view('reportes_ing_vw',$data);
+  }
+
+  public function ver_egresos(){
+    $data['egresos']  = $this->caja_mo->get_egresos();
+    $this->load->view('reportes_egr_vw',$data);
+  }
 }

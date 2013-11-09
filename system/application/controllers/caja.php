@@ -75,7 +75,7 @@ class Caja extends CI_Controller {
 					}
 				$this->caja_mo->ing_apert_det($id, $m010, $m020, $m050, $m1, $m2, $m5, $b10, $b20, $b50, $b100, $b200, $b10d, $b20d, $b50d, $b100d);
 			}
-			$data['mensaje']='Caja aperturada correctamente';
+			$data['mensaje']='La apertura de caja se realizó correctamente';
 			//$this->session->set_userdata('id_apertura', $id);
 			$this->load->view('apert_caja',$data);
 		}
@@ -150,7 +150,7 @@ class Caja extends CI_Controller {
 			$data['soles_final'] = $soles_final ;
 			$data['idcaja'] = $id_caja;
 			$data['dolares_final'] = $dolares_final ;
-			$data['mensaje']='Caja cerrada correctamente';
+			$data['mensaje']='El cierre de caja se realizó correctamente';
 			$data['info_ventas'] = $this->ventas_mo->get_ventas_by_idapert($id);
 
 			$this->load->view('arqueo_caja',$data);
@@ -162,5 +162,33 @@ class Caja extends CI_Controller {
 		$cambio = $this->input->post('cambio_dia');
 		$this->caja_mo->ingresar_cambio($cambio);
 		$this->load->view('welcome_vw');
+	}
+	function operaciones()
+	{
+		$this->load->view('operaciones_vw');
+	}
+	function ingresos()
+	{
+		$ing_efe_sol = $this->input->post('ing_efe_sol');
+		$ing_efe_dol = $this->input->post('ing_efe_dol');
+		$ing_tar_sol = $this->input->post('ing_tar_sol');
+		$ing_tar_dol = $this->input->post('ing_tar_dol');
+		$comentario = $this->input->post('comentario');
+		$id_usuario_ = $this->session->userdata('idUsuario');
+		$this->caja_mo->ingresos($ing_efe_sol, $ing_efe_dol, $ing_tar_sol, $ing_tar_dol, $comentario, $id_usuario_);
+		$this->load->view('operaciones_vw');
+		//print_r($this->input->post());
+	}
+	function egresos()
+	{
+		$egr_efe_sol = $this->input->post('egr_efe_sol');
+		$egr_efe_dol = $this->input->post('egr_efe_dol');
+		$egr_tar_sol = $this->input->post('egr_tar_sol');
+		$egr_tar_dol = $this->input->post('egr_tar_dol');
+		$comentario = $this->input->post('comentario');
+		$id_usuario_ = $this->session->userdata('idUsuario');
+		$this->caja_mo->egresos($egr_efe_sol, $egr_efe_dol, $egr_tar_sol, $egr_tar_dol, $comentario, $id_usuario_);
+		$this->load->view('operaciones_vw');
+		//print_r($this->input->post());
 	}
 }

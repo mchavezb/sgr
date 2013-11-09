@@ -139,9 +139,9 @@ class Pedidos extends CI_Controller {
 
 	public function cobrar(){
 		if($this->input->post('comprobante')=='boleta'){
-			$tipo_pago = 1;
+			$tipo_comprobante = 1;
 		}elseif ($this->input->post('comprobante')=='factura') {
-			$tipo_pago = 2;
+			$tipo_comprobante = 2;
 		}
 		$dniruc = $this->input->post('dniruc');
 		$razonsocial = $this->input->post('razonsocial');
@@ -159,18 +159,25 @@ class Pedidos extends CI_Controller {
 		if($this->input->post('medio_pago')=='tarjeta'){
 			$ef_soles = 0.00; 
 			$ef_dolares = 0.00;
+			$tipo_pago = 2;
 		}
 		elseif ($this->input->post('medio_pago')=='efectivo') {
 			$nomb_tarj = 0;
 			$tarj_soles = 0.00;
 			$tarj_dolares = 0.00;
+			$tipo_pago = 1;
+		}elseif($this->input->post('medio_pago')=='ambos'){
+			$tipo_pago = 3;
 		}
 		//obtener id de operacion a partir del id de la caja
 		$operacion = $this->caja_mo->get_op_caja($id_caja);
 			foreach ($operacion->result() as $row) {
 				$id_apert=$row->id_operacion;
 			}
-		$this->ventas_mo->ingresar_venta($total, $comanda_id, $tipo_pago, $ef_soles, $tarj_soles, $ef_dolares, $tarj_dolares,$id_apert, $dniruc, $razonsocial, $direccion, $nomb_tarj);
+		$this->ventas_mo->ingresar_venta($total, $comanda_id, $tipo_pago, $tipo_comprobante, $ef_soles, $tarj_soles, $ef_dolares, $tarj_dolares,$id_apert, $dniruc, $razonsocial, $direccion, $nomb_tarj,$id_caja);
+		$id_usuario_ = $this->session->userdata('idUsuario');
+		//ingresar información de la venta a la tabla ingresos/egresos
+		$this->caja_mo->ing_venta_caja($ef_soles, $ef_dolares, $tarj_soles, $tarj_dolares,$id_usuario_);
 		$this->comanda_mo->cobrar_comanda($comanda_id);
 		//$this->mesas_mo->update_mesa_est0($mesaid);
 		redirect('/pedidos');
