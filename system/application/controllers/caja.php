@@ -77,6 +77,7 @@ class Caja extends CI_Controller {
 			}
 			$data['mensaje']='La apertura de caja se realizó correctamente';
 			//$this->session->set_userdata('id_apertura', $id);
+			$this->caja_mo->activar_caja($id_caja);
 			$this->load->view('apert_caja',$data);
 		}
 
@@ -152,7 +153,7 @@ class Caja extends CI_Controller {
 			$data['dolares_final'] = $dolares_final ;
 			$data['mensaje']='El cierre de caja se realizó correctamente';
 			$data['info_ventas'] = $this->ventas_mo->get_ventas_by_idapert($id);
-
+			$this->caja_mo->desactivar_caja($id_caja);
 			$this->load->view('arqueo_caja',$data);
 		}
 
@@ -190,5 +191,16 @@ class Caja extends CI_Controller {
 		$this->caja_mo->egresos($egr_efe_sol, $egr_efe_dol, $egr_tar_sol, $egr_tar_dol, $comentario, $id_usuario_);
 		$this->load->view('operaciones_vw');
 		//print_r($this->input->post());
+	}
+
+	function cortesia(){
+		$idcomanda = $this->input->post('id_com_');
+		$this->comanda_mo->exonerar_pago($idcomanda);
+		redirect('/pedidos');
+		//print_r($this->input->post());
+	}
+
+	function descuento(){
+		print_r($this->input->post());
 	}
 }

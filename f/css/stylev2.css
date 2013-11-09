@@ -780,3 +780,19 @@ table.balance-table tbody td{
   border-bottom: 1pt solid white;
   border-right: 1pt solid white;
 }
+
+table.prepagos-table{
+  padding-left: 5px;
+  width: 240px;
+}
+table.prepagos-table thead tr{
+  background-color: #ddd;
+  height: 30px;
+
+}
+table.prepagos-table tbody td{
+  /*background-color: #ddd;*/
+  height: 30px;
+  border-bottom: 1pt solid white;
+  border-right: 1pt solid white;
+}

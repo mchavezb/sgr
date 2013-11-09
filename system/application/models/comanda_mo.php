@@ -8,7 +8,7 @@ class Comanda_mo extends CI_Model {
 
   /*--- OBTIENE LA COMANDA DE ACUERDO AL ID DE LA MESA SI ESTÁ EN PROCESO DE ATENCIÓN ---*/
     function get_comanda_by_table($id_mesa){
-    	$q1 = "SELECT idComanda, fecha, Usuario_idUsuario, Mesa_idMesa, estado FROM comanda WHERE Mesa_idMesa = ".$id_mesa." AND ( estado = '0' OR estado = '3') ;";
+    	$q1 = "SELECT idComanda, fecha, Usuario_idUsuario, Mesa_idMesa, estado FROM comanda WHERE Mesa_idMesa = ".$id_mesa." AND ( estado = '0' OR estado = '3' OR estado = '4') ;";
     	$r1 = $this->db->query($q1);
             if($r1->num_rows()>0){
                 return $r1->result_array();
@@ -39,6 +39,7 @@ class Comanda_mo extends CI_Model {
         $this->db->query($q5);
         $q6 = "UPDATE comandaxpedido SET estado = 6 WHERE Comanda_idComanda = '".$idcom."' ;";
         $this->db->query($q6);
+        
     }
     function listar_comandas(){
         $q7 = "SELECT * FROM comanda WHERE estado = 3;";
@@ -63,6 +64,13 @@ class Comanda_mo extends CI_Model {
         $q10 = "UPDATE comanda SET Usuario_idUsuario = '".$idmozo."' WHERE idComanda = '".$idcomanda."' ;";
         $this->db->query($q10);
 
+    }
+
+    function exonerar_pago($idcomanda){
+        $q11 = "UPDATE comanda SET estado = 7 WHERE idComanda = '".$idcomanda."' ;";
+        $this->db->query($q11);
+        $q12 = "UPDATE comandaxpedido SET estado = 7 WHERE Comanda_idComanda = '".$idcomanda."' ;";
+        $this->db->query($q12);
     }
 }
 

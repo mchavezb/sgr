@@ -55,6 +55,10 @@ class Pedidos_mo extends CI_Model {
         $q8 = "UPDATE comandaxpedido SET estado = 5 WHERE idPedido = '".$idped."' ;";
         $this->db->query($q8);
     }
+    function exonerar_pedido($idped){
+        $q9 = "UPDATE comandaxpedido SET estado = 7 WHERE idPedido = '".$idped."' ;";
+        $this->db->query($q9);
+    }
   /*--- 
     function add_prod($com,$prod){
         $q8 = "INSERT INTO comandaxpedido(`Comanda_idComanda`,`Producto_idProducto`,`estado`) values('".$com."','".$prod."','0')";

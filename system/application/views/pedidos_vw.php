@@ -48,7 +48,12 @@
                         <td width="100px"><?php echo $sum*1.19;?></td>
                         <td width="100px"><?php if($value->TipoComanda_idTipoComanda=='01'){echo 'EN MESA';}elseif ($value->TipoComanda_idTipoComanda=='02'){echo 'PARA LLEVAR';}?>
                         </td>
-                        <td width="100px"><form style="display: inline;" method="post" action="<?php echo base_url()?>pedidos/p/<?php echo $value->Mesa_idMesa ?>"><input type="hidden" name="id_com" id="id_com" value="<?php echo $value->idComanda ?>"><input type="submit" value="DETALLE"></form></td>
+                        <td width="100px">
+                            <form style="display: inline;" method="post" action="<?php echo base_url()?>pedidos/p/<?php echo $value->Mesa_idMesa ?>">
+                                <input type="hidden" name="id_com" id="id_com" value="<?php echo $value->idComanda ?>">
+                                <input type="submit" value="DETALLE">
+                            </form>
+                        </td>
                     </tr>
                     <?php } ?>
                 </tbody>

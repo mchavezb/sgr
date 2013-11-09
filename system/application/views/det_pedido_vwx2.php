@@ -8,6 +8,17 @@
     <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/jquery-1.10.2.js'></script>
     <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/jquery-ui-1.10.3.custom.min.js'></script>
     <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/busc.js'></script>
+    <script src="<?=$this->config->item('base_url')?>f/js/validar.js"></script>
+       <script type="text/javascript">
+            $(function(){
+                //Para escribir solo letras
+                $('.letras').validM(' abcdefghijklmnñopqrstuvwxyzáéiou');
+
+                //Para escribir solo numeros    
+                $('.numeros').validM('0123456789'); 
+                $('.numerosp').validM('.0123456789');   
+            });
+        </script>
    
   </head>
   <body>
@@ -37,6 +48,26 @@
                   <?php $orig = array('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday','September','October','November' ); $new = array('Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo','Setiembre','Octubre','Noviembre');?>
                     <?php if($info_comanda!==FALSE){?>
                     <table class="comprobante-table">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Beneficios</th>
+                                    <th>
+                                        <form style="display: inline;" method="post" action="<?php echo base_url()?>caja/cortesia">
+                                            <input type="hidden" name="id_com_" value="<?php echo $idComanda ?>">
+                                            <input type="submit" style="width:128px;" value="CORTESÍA">
+                                        </form>
+                                    </th>
+                                    <th>
+                                        <form style="display: inline;" method="post" action="<?php echo base_url()?>pedidos/p/<?php echo $idmesa ?>">
+                                            <input type="hidden" name="id_com_" value="<?php echo $idComanda ?>">
+                                            <input type="text" name="desc" style="width:18px;" maxlength="2" class="numeros">%
+                                            <input type="submit" style="width:128px;" value="DESCUENTO">
+                                        </form>
+                                    </th>
+                                </tr>
+                            </thead>
+                    </table>
+                    <table class="comprobante-table">
                         <thead>
                             <tr>
                                 <th colspan="4">Comanda # <?php echo $idComanda ?></th>
@@ -50,10 +81,10 @@
                                 <th colspan="2" class="pull-right">Mozo</th>
                                 <th colspan="2" class="pull-left"><?php echo $nombres.' '.$apellidos;?></th>
                             </tr>
-                            <form style="display: inline;" method="post" action="<?php echo base_url()?>pedidos/cobrar">
+                        <form style="display: inline;" method="post" action="<?php echo base_url()?>pedidos/cobrar">
                             <tr>
                                 <th colspan="2" class="pull-right">DNI/RUC</th>
-                                <th colspan="2" class="pull-left"><input type="text" name="dniruc"></th>
+                                <th colspan="2" class="pull-left"><input type="text" name="dniruc" maxlength="11" class="numeros"></th>
                             </tr>
                             <tr>
                                 <th colspan="2"class="pull-right">Nombre/Razón Social</th>
@@ -74,14 +105,15 @@
                          foreach ($detalle_com as $value) {
                                 if($value->estado != 5){ ?>
                             <tr>
-                                <td class="pull-center"><a href="#" class="elim_pedido"><input type="hidden" id="idPedidoel" value="<?php echo $value->idPedido?>"><img src='<?=$this->config->item('base_url')?>f/img/delete.png' width="22px" height="22px"/></a>
+                                <td class="pull-center"><a href="#" class="exon_pedido"><input type="hidden" id="idPedidoel" value="<?php echo $value->idPedido?>"><img src='<?=$this->config->item('base_url')?>f/img/delete.png' width="22px" height="22px"/></a>
                                     
                                 </td>
                                 
-                                <td colspan="2" class="pull-left"><?php echo $value->p_nombre?></td>
-                                <td class="pull-right"><?php echo $value->p_precio?></td>
+                                <td colspan="2" class="pull-left" <?php if($value->estado == 7){echo 'style="text-decoration:line-through;"';}?>><?php echo $value->p_nombre?></td>
+                                <td class="pull-right" <?php if($value->estado == 7){echo 'style="text-decoration:line-through;"';}?>><?php echo $value->p_precio?></td>
                             </tr>
-                        <?php $i = $value->p_precio + $i;}
+                        <?php if($value->estado != 7){
+                                $i = $value->p_precio + $i;}}
                           } ?>
                         </tbody>
                         <tfoot>
@@ -97,10 +129,23 @@
                                 <td colspan="3" class="pull-right">TOTAL</td>
                                 <td class="pull-right"><?php echo $i*1.19;?></td>
                             </tr>
+                                <?php if(isset($descuento)){?>
+                            <tr>
+                                <td colspan="3" class="pull-right">DESCUENTO (<?php echo $descuento;?>%)</td>
+                                <td class="pull-right">- <?php echo round($i*1.19*$descuento/100,2);?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="pull-right">NUEVO TOTAL</td>
+                                <td class="pull-right"><?php echo round($i*1.19*(1-$descuento/100),2);?></td>
+                            </tr>
+                                <?php } ?>
                         </tfoot>
                     </table>
-                        <?php   $total = $i*1.19;
-                    }?>
+                        <?php if(isset($descuento)){
+                            $total = round($i*1.19*(1-$descuento/100),2);
+                                }else{
+                            $total = $i*1.19;
+                        }} ?>
 
 
            
@@ -108,6 +153,7 @@
                 <div id="buscador">
                     
 
+                        
                         <table class="pagos-table">
                             <thead>
                                 <tr>
@@ -151,8 +197,8 @@
                                     <td colspan="2">Efectivo</td>
                                 </tr>
                                 <tr class="input_efectivo">
-                                    <td><input style="width:100px" type="text" name="ef_soles" placeholder="Soles"></td>
-                                    <td><input style="width:100px" type="text" name="ef_dolares" placeholder="Dólares"></td>
+                                    <td><input class="numerosp" style="width:100px" type="text" name="ef_soles" placeholder="Soles"></td>
+                                    <td><input class="numerosp" style="width:100px" type="text" name="ef_dolares" placeholder="Dólares"></td>
                                 </tr>
                                 <tr class="input_tarjeta">    
                                     <td>Tarjeta de Crédito</td>
@@ -167,8 +213,8 @@
                                     </td>
                                 </tr>
                                 <tr class="input_tarjeta">
-                                    <td><input style="width:100px" type="text" name="tarj_soles" placeholder="Soles"></td>
-                                    <td><input style="width:100px" type="text" name="tarj_dolares" placeholder="Dólares"></td>
+                                    <td><input class="numerosp" style="width:100px" type="text" name="tarj_soles" placeholder="Soles"></td>
+                                    <td><input class="numerosp" style="width:100px" type="text" name="tarj_dolares" placeholder="Dólares"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><input type="submit" value="COBRAR" style="width:100px;"></td>
@@ -206,52 +252,22 @@
         </div>
     </div>
   <!-- pop-up -->
-<div id="dialog2" title="Agregar mesas :">
-    <?php $this->load->view('pop-up/agregar_mesas_vw');?>
-</div>
-<div id="dialog3" title="Eliminar pedido">
-    <?php $this->load->view('pop-up/elim_pedido_vw');?>
-</div>
-<div id="dialog4" title="Agregar nota :">
-    <?php $this->load->view('pop-up/anotar_pedido_vw',$idmesa);?>
+<div id="dialog3" title="Exonerar de pago">
+    <?php $this->load->view('pop-up/exon_pedido_vw');?>
 </div>
 <!-- fin del pop-up-->
 <script>
     $(document).ready(function() {
-        $("#dialog2").dialog({
-            autoOpen:false,
-            hide: 'fade',
-            modal: true
-        });
-        $("#agr-mesa").on("click",function(){
-            $("#dialog2").dialog("open");
-        });
         $("#dialog3").dialog({
             autoOpen:false,
             hide: 'fade',
             modal: true
         });
-        $(".elim_pedido").on("click",function(){
+        $(".exon_pedido").on("click",function(){
             var valor2 = $(this).children('input').val();
             $("#dialog3").dialog("open");
-            $("#elim_pedido").val(valor2);
+            $("#exon_pedido").val(valor2);
         });
-        $("#dialog4").dialog({
-            autoOpen:false,
-            hide: 'fade',
-            modal: true
-        });
-        $(".nota-pedido").on("click",function(){
-            var valor = $(this).children('input').val();
-            $("#dialog4").dialog("open");
-            $("#id_pedido").val(valor);
-        });
-        // $(".close").on("click",function(){
-        //     $("#dialog4").dialog({
-        //         hide: 'fade',
-        //         modal: false
-        //     });
-        // });
     }); 
 
 </script>

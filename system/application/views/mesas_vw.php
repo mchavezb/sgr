@@ -13,7 +13,7 @@
     <div id="header">
         <?php $this->load->view('common/header_vw'); ?>
     </div>
-    <div id="separator"><img src="<?php echo base_url();?>f/img/mesaLibre.png" width="70px" height="35px"> Mesa Libre <img src="<?php echo base_url();?>f/img/mesaOcupada.png" width="70px" height="35px"> Mesa Ocupada <img src="<?php echo base_url();?>f/img/mesaReservada.png" width="70px" height="35px"> Mesa Reservada</div>
+    <div id="separator"><img src="<?php echo base_url();?>f/img/mesaLibre.png" width="70px" height="35px"> Mesa Libre <img src="<?php echo base_url();?>f/img/mesaOcupada.png" width="70px" height="35px"> Mesa Ocupada <img src="<?php echo base_url();?>f/img/mesaReservada.png" width="70px" height="35px"> Mesa por terminar</div>
     <div id="container">
         <div id="aside-left">
             <div id="aside">

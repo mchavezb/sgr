@@ -25,6 +25,7 @@ class Pedidos extends CI_Controller {
 
 	public function p($id_mesa)
 	{
+		$data['descuento'] = $this->input->post('desc');
 		$data['categorias'] = $this->producto_mo->listar_cat();
 		$data['idmesa'] = $id_mesa;
 		$data['info_comanda'] = $this->comanda_mo->get_comanda_by_table($id_mesa);
@@ -135,6 +136,14 @@ class Pedidos extends CI_Controller {
 		$dato1['inf_ped1'] = $this->pedidos_mo->get_pedidos(1);
 		$data_json = file_put_contents("C://xampp/htdocs/sgr/data/data_pedidos_1.json",json_encode($dato1));
 		redirect('/comanda/m/'.$id_mesa);
+	}
+
+	public function exonerar(){ // FALTA QUE SOLAMENTE SE ELIMINEN LOS PEDIDOS QUE ESTAN EN ESTADO 0!!!!!
+		//print_r($this->input->post());
+		$id_ped = $this->input->post('exon_pedido');
+		$id_mesa = $this->input->post('id_mesa');
+		$this->pedidos_mo->exonerar_pedido($id_ped);
+		redirect('/pedidos/p/'.$id_mesa);
 	}
 
 	public function cobrar(){

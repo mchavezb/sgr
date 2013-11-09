@@ -92,9 +92,11 @@ class Comanda extends CI_Controller {
 
 	public function cobrar()
 	{
-		//print_r($this->input->post());
+		 //print_r($this->input->post());
 		$id_c = $this->input->post('comanda_d');
+		$mesaid = $this->input->post('mesaid');
 		$this->comanda_mo->enviar_a_caja($id_c);
+		$this->mesas_mo->update_mesa_est2($mesaid);
 		redirect('/mesas');
 	}
 

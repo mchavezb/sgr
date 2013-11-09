@@ -30,14 +30,19 @@
                       <input type="radio" name="tipoA" value="01">Orden Completa
                       <input type="hidden" id="comanda_id" name="comanda_id" value='<?php echo $idComanda?>'><input type="hidden" id="mesaid" name="mesaid" value='<?php echo $idmesa?>'><input type="submit" value="Enviar Pedido" style="width:128px;"></form>
 
-                      <!-- falta su formulario-->
-                    <input type="submit" value="Cancelar Comanda" style="width:128px;">
-                    <!-- falta su formulario-->
-                    <form style="display: inline;" method="post" action="<?php echo base_url()?>comanda/imprimir"><input type="submit" value="Imprimir Cuenta" style="width:128px;" onclick="window.print()"></form>
+                      
+                    <form style="display: inline;" method="post" action="<?php echo base_url()?>comanda/m/<?php echo $idmesa;?>">
+                        <input type="submit" value="Imprimir Cuenta" style="width:128px;">
+                        <input type="hidden" id="mesa_d" name="mesa_d" value='<?php echo $idmesa?>'>
+                    </form>
                     
                     <form style="display: inline;" method="post" action="<?php echo base_url()?>mesas/desocupar"><input type="submit" value="Desocupar Mesa" style="width:128px;"><input type="hidden" id="comanda_d" name="comanda_d" value='<?php echo $idComanda ?>'><input type="hidden" id="mesa_d" name="mesa_d" value='<?php echo $idmesa?>'></form>
 
-                    <form style="display: inline;" method="post" action="<?php echo base_url()?>comanda/cobrar"><input type="submit" value="Enviar a Caja" style="width:128px;"><input type="hidden" id="comanda_d" name="comanda_d" value='<?php echo $idComanda ?>'></form>
+                    <form style="display: inline;" method="post" action="<?php echo base_url()?>comanda/cobrar">
+                        <input type="submit" value="Enviar a Caja" style="width:128px;">
+                        <input type="hidden" id="comanda_d" name="comanda_d" value='<?php echo $idComanda ?>'>
+                        <input type="hidden" id="mesaid" name="mesaid" value='<?php echo $idmesa?>'>
+                    </form>
 
                     <input type="submit" value="Agregar Mesa" id="agr-mesa" style="width:128px;"/>
 
@@ -85,7 +90,7 @@
                         <div class="quitar-producto"><a href="#" class="elim_pedido"><input type="hidden" id="idPedidoel" value="<?php echo $value->idPedido?>"><img src='<?=$this->config->item('base_url')?>f/img/delete.png' width="22px" height="22px"/></a></div>
                         <div class="cant-producto"><a href="#" class="nota-pedido"><input type="hidden" id="idPedido" value="<?php echo $value->idPedido?>"><img src='<?=$this->config->item('base_url')?>f/img/nota.png' width="20px" height="20px"/></a>
                         </div>
-                        <div class="cant-producto"><img src='<?=$this->config->item('base_url')?>f/img/<?php if($value->estado==0){echo 'blank.png';}elseif($value->estado==1){echo 'green.gif';}elseif($value->estado==2){echo 'yellow.gif';}elseif($value->estado==3){echo 'red.gif';}elseif($value->estado==4 || $value->estado==6){echo 'check.png';}?>' width="20px" height="20px"/>
+                        <div class="cant-producto"><img src='<?=$this->config->item('base_url')?>f/img/<?php if($value->estado==0){echo 'blank.png';}elseif($value->estado==1){echo 'green.gif';}elseif($value->estado==2){echo 'yellow.gif';}elseif($value->estado==3){echo 'red.gif';}elseif($value->estado==4 || $value->estado==6){echo 'check.png';}elseif($value->estado==4 || $value->estado==7){echo 'equis.png';}?>' width="20px" height="20px"/>
                         </div>
                         <div class="desc-producto"><?php echo $value->p_nombre?> - <?php echo $value->nota ?></div>
                         <div class="precio-u-producto"><?php echo $value->p_precio?></div>

@@ -92,7 +92,15 @@ class Caja_mo extends CI_Model {
     $r16 = $this->db->query($q16);
         return $r16->result_array();
   }
-  
+  public function activar_caja($id_caja){
+    $q17 = "UPDATE caja SET estadoCaja = '1' WHERE idCaja = '".$id_caja."' ;";
+        $this->db->query($q17);
+  }
+
+  public function desactivar_caja($id_caja){
+    $q18 = "UPDATE caja SET estadoCaja = '0' WHERE idCaja = '".$id_caja."' ;";
+        $this->db->query($q18);
+  }
 }
 
 ?>

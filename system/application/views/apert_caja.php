@@ -7,6 +7,17 @@
     <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/jquery-1.10.2.js'></script>
     <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/jquery-ui-1.10.3.custom.min.js'></script>
     <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/busc.js'></script>
+    <script src="<?=$this->config->item('base_url')?>f/js/validar.js"></script>
+       <script type="text/javascript">
+            $(function(){
+                //Para escribir solo letras
+                $('.letras').validM(' abcdefghijklmnñopqrstuvwxyzáéiou');
+
+                //Para escribir solo numeros    
+                $('.numeros').validM('0123456789'); 
+                $('.numerosp').validM('.0123456789');   
+            });
+        </script>
   </head>
 
     <div id="header">
@@ -62,71 +73,71 @@
                 </tr>
                 <tr>
                 <td><label class="resumido">Monto Soles :</label></td>
-                <td><input class="resumido" type="text" placeholder="..." name="soles_inicio"></td>
+                <td><input class="resumido numerosp" type="text" placeholder="..." name="soles_inicio"></td>
                 </tr>
                 <tr>
                 <td><label class="resumido">Monto Dólares :</label></td>
-                <td><input class="resumido" type="text" placeholder="..." name="dolares_inicio"></td>
+                <td><input class="resumido numerosp" type="text" placeholder="..." name="dolares_inicio"></td>
                 </tr>
                 <tr>
                 <td><label class="detallado">MONEDA 0.10 :</label></td>
-                <td><input class="detallado" type="text" placeholder="0" name="mon_010i"></td>
+                <td><input class="detallado numeros" type="text" placeholder="0" name="mon_010i"></td>
                 </tr>
                 <tr>
                 <td><label class="detallado">MONEDA 0.20 :</label></td>
-                <td><input class="detallado" type="text" placeholder="0" name="mon_020i"></td>
+                <td><input class="detallado numeros" type="text" placeholder="0" name="mon_020i"></td>
                 </tr>
                 <tr>
                 <td><label class="detallado">MONEDA 0.50 :</label></td>
-                <td><input class="detallado" type="text" placeholder="0" name="mon_050i"></td>
+                <td><input class="detallado numeros" type="text" placeholder="0" name="mon_050i"></td>
                 </tr>
                 <tr>
                 <td><label class="detallado">MONEDA 1 :</label></td>
-                <td><input class="detallado" type="text" placeholder="0" name="mon_1i"></td>
+                <td><input class="detallado numeros" type="text" placeholder="0" name="mon_1i"></td>
                 </tr>
                 <tr>
                 <td><label class="detallado">MONEDA 2 :</label></td>
-                <td><input class="detallado" type="text" placeholder="0" name="mon_2i"></td>
+                <td><input class="detallado numeros" type="text" placeholder="0" name="mon_2i"></td>
                 </tr>
                 <tr>
                 <td><label class="detallado">MONEDA 5 :</label></td>
-                <td><input class="detallado" type="text" placeholder="0" name="mon_5i"></td>
+                <td><input class="detallado numeros" type="text" placeholder="0" name="mon_5i"></td>
                 </tr>
                 <tr>
                 <td><label class="detallado">BILLETE 10 :</label></td>
-                <td><input class="detallado" type="text" placeholder="0" name="bill_10i"></td>
+                <td><input class="detallado numeros" type="text" placeholder="0" name="bill_10i"></td>
                 </tr>
                 <tr>
                 <td><label class="detallado">BILLETE 20 :</label></td>
-                <td><input class="detallado" type="text" placeholder="0" name="bill_20i"></td>
+                <td><input class="detallado numeros" type="text" placeholder="0" name="bill_20i"></td>
                 </tr>
                 <tr>
                 <td><label class="detallado">BILLETE 50 :</label></td>
-                <td><input class="detallado" type="text" placeholder="0" name="bill_50i"></td>
+                <td><input class="detallado numeros" type="text" placeholder="0" name="bill_50i"></td>
                 </tr>
                 <tr>
                 <td><label class="detallado">BILLETE 100 :</label></td>
-                <td><input class="detallado" type="text" placeholder="0" name="bill_100i"></td>
+                <td><input class="detallado numeros" type="text" placeholder="0" name="bill_100i"></td>
                 </tr>
                 <tr>
                 <td><label class="detallado">BILLETE 200 :</label></td>
-                <td><input class="detallado" type="text" placeholder="0" name="bill_200i"></td>
+                <td><input class="detallado numeros" type="text" placeholder="0" name="bill_200i"></td>
                 </tr>
                 <tr>
                 <td><label class="detallado">BILLETE 10 DÓLARES :</label></td>
-                <td><input class="detallado" type="text" placeholder="0" name="bill_10di"></td>
+                <td><input class="detallado numeros" type="text" placeholder="0" name="bill_10di"></td>
                 </tr>
                 <tr>
                 <td><label class="detallado">BILLETE 20 DÓLARES :</label></td>
-                <td><input class="detallado" type="text" placeholder="0" name="bill_20di"></td>
+                <td><input class="detallado numeros" type="text" placeholder="0" name="bill_20di"></td>
                 </tr>
                 <tr>
                 <td><label class="detallado">BILLETE 50 DÓLARES :</label></td>
-                <td><input class="detallado" type="text" placeholder="0" name="bill_50di"></td>
+                <td><input class="detallado numeros" type="text" placeholder="0" name="bill_50di"></td>
                 </tr>
                 <tr>
                 <td><label class="detallado">BILLETE 100 DÓLARES :</label></td>
-                <td><input class="detallado" type="text" placeholder="0" name="bill_100di"></td>
+                <td><input class="detallado numeros" type="text" placeholder="0" name="bill_100di"></td>
                 </tr>
               </table>
                 
