@@ -39,6 +39,14 @@ class Usuarios_mo extends CI_Model {
       return FALSE;
     }
   }
+  function activar_us($idUsuario){
+    $q5 = "UPDATE usuario SET activo = '1' WHERE idUsuario = '".$idUsuario."' ;";
+        $this->db->query($q5);
+  }
+  function desactivar_us($idUsuario){
+    $q5 = "UPDATE usuario SET activo = '0' WHERE idUsuario = '".$idUsuario."' ;";
+        $this->db->query($q5);
+  }
 
 }
 ?>

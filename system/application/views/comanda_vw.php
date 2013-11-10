@@ -37,13 +37,13 @@
                     </form>
                     
                     <form style="display: inline;" method="post" action="<?php echo base_url()?>mesas/desocupar"><input type="submit" value="Desocupar Mesa" style="width:128px;"><input type="hidden" id="comanda_d" name="comanda_d" value='<?php echo $idComanda ?>'><input type="hidden" id="mesa_d" name="mesa_d" value='<?php echo $idmesa?>'></form>
-
+                    <!-- ENVIAR A CAJA -->
                     <form style="display: inline;" method="post" action="<?php echo base_url()?>comanda/cobrar">
                         <input type="submit" value="Enviar a Caja" style="width:128px;">
                         <input type="hidden" id="comanda_d" name="comanda_d" value='<?php echo $idComanda ?>'>
                         <input type="hidden" id="mesaid" name="mesaid" value='<?php echo $idmesa?>'>
                     </form>
-
+                    <!-- FIN DE ENVIAR A CAJA-->
                     <input type="submit" value="Agregar Mesa" id="agr-mesa" style="width:128px;"/>
 
                   <?php $orig = array('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday','September','October','November','December' ); $new = array('Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo','Setiembre','Octubre','Noviembre','Diciembre');?>
