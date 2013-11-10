@@ -56,14 +56,16 @@ class Mesas extends CI_Controller {
 		redirect('/comanda/m/'.$idm);
 	}
 	function desocupar(){
+		
 		$mesa_datos = $this->input->post();
 		$idcom_f = $mesa_datos['comanda_d'];
 		$mesa_des = $mesa_datos['mesa_d'];
 		/* UPDATE ESTADO DE LA COMANDA A FINALIZADA = 1 **/
-		$this->comanda_mo->finalizar_comanda($idcom_f);
+		//$this->comanda_mo->finalizar_comanda($idcom_f);
 		/* UPDATE ESTADO DE LAS MESAS A LIBRES = 0 Y SE QUITA REF EN DONDE EXISTA **/
 		$this->mesas_mo->update_mesa_est0($mesa_des);
 		$this->mesas_mo->update_mesa_est0_ref($idcom_f);
+		$this->mesas_mo->update_mesa_cantclientes($mesa_des);
 		redirect('/mesas');
 	}
 }

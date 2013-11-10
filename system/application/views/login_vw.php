@@ -15,7 +15,9 @@
     </div>
     <div id="separator"></div>
     <div id="container">
-            <h1>Login page !</h1>
+        <div id="login-main">
+            <img src="<?=$this->config->item('base_url')?>f/img/logo.png">
+
             <?php echo form_open('main/validation');
             echo validation_errors();
             echo '<p>Usuario :'.form_input('username').'</p>';
@@ -23,6 +25,7 @@
             echo '<p>'.form_submit('login_submit','Ingresar').'</p>';
             echo form_close();
             ?>
+        </div>
     </div>
   </body>
 </html>

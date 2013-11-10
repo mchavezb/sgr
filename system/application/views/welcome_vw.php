@@ -22,12 +22,18 @@
         </div>
         <div id="main-content2">
             <div id="contenido">
-                <h1>Welcome !</h1>
+                <h1>Bienvenido !</h1>
                 ¡ Bienvenido al Sistema de Gestión de restaurantes !
                 <?php echo '<pre>';
-                print_r($this->session->all_userdata());
+                //print_r($this->session->all_userdata());
                 echo $this->session->userdata('nombres');
                 echo '</pre>'; ?>
+                <?php if($this->session->userdata('idPerfil')=='01'){?>
+                <form method='post' action="<?php echo base_url()?>caja/cotizar">
+                    &nbsp&nbsp&nbsp&nbsp&nbsp     Ingresar cotización del día: <input type="text" name="cambio_dia">
+                    <input type="submit" value="Ingresar">
+                </form>
+                <?php }?>
                 <?//php echo date('Y-m-d H:i:s',time());?>
                 
             </div>

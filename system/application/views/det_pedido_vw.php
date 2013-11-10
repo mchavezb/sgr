@@ -84,6 +84,11 @@
                 <div id="buscador">
                     <form style="display: inline;" method="post" action="<?php echo base_url()?>pedidos/cobrar">
                         <h1>Pago </h1>
+                        <h2>Caja</h2>
+                        <select name="idcaja">
+                            <option value="01">Caja 1</option><!-- Cambiar para que lea automaticamente -->
+                            <option value="02">Caja 2</option>
+                        </select>
                         <h2>Comprobante</h2>
                         <input type="radio" id="boleta" name="comprobante" value="boleta">Boleta<br>
                         <input type="radio" id="factura" name="comprobante" value="factura">Factura<br>
@@ -103,7 +108,8 @@
                         </span>  
                         <input type="hidden" id="comanda_id" name="comanda_id" value='<?php echo $idComanda?>'>
                         <input type="hidden" id="total" name="total" value='<?php echo $total?>'>
-                        <input type="hidden" id="mesaid" name="mesaid" value='<?php echo $idmesa?>'><input type="submit" value="COBRAR" style="width:128px;"></form>
+                        <input type="hidden" id="mesaid" name="mesaid" value='<?php echo $idmesa?>'>
+                        <input type="submit" value="COBRAR" style="width:128px;"></form>
                     <!-- Tipo de Atención : <br>
                     <form>
                       <input type="radio" name="tipoA" value="plato" checked="checked">Plato por plato<br>

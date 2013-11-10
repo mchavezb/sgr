@@ -14,7 +14,8 @@ class Main extends CI_Controller {
 		
 		if($this->session->userdata('esta_logueado')){
 			if($this->session->userdata('idPerfil')=='02'){
-				$this->load->view('cocina_vw');
+				//$this->load->view('cocina_vw');
+				redirect("http://localhost/cocina/index.php");
 			}
 			else{
 				//echo $this->session->userdata('idPerfil');
@@ -41,6 +42,8 @@ class Main extends CI_Controller {
 		$this->load->view('login_vw');
 	}
 	public function logout(){
+		$idUsuario = $this->session->userdata('idUsuario');
+		$this->usuarios_mo->desactivar_us($idUsuario);
 		$this->session->sess_destroy();
 		redirect('main/login');
 	}
@@ -59,8 +62,10 @@ class Main extends CI_Controller {
 					}
 			$data = array ('usuario'=>$this->input->post('username'),'esta_logueado'=>1,'nombres'=>$nombres,'apellidos'=>$apellidos,'idUsuario'=>$idUsuario,'idPerfil'=>$idPerfil);
 			$this->session->set_userdata($data);
+			$this->usuarios_mo->activar_us($idUsuario);
 				if($this->session->userdata('idPerfil')=='02'){
-					redirect('cocina');
+					//redirect('cocina');
+					redirect("http://localhost/cocina/index.php");
 				}else{
 					redirect('main/welcome');	
 				}

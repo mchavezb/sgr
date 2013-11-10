@@ -18,6 +18,7 @@ class Comanda extends CI_Controller {
 		$data['categorias'] = $this->producto_mo->listar_cat();
 		$data['idmesa'] = $id_mesa;
 		$data['info_comanda'] = $this->comanda_mo->get_comanda_by_table($id_mesa);
+		$data['lista_mozos'] = $this->usuarios_mo->get_usuario_by_idperfil('03');
 			if($data['info_comanda']!=FALSE){
 				foreach ($data['info_comanda'] as $key=>$value) {
 					$data['idComanda'] = $value['idComanda'];
@@ -26,6 +27,7 @@ class Comanda extends CI_Controller {
 				}
 				$data['info_usuario'] = $this->usuarios_mo->get_usuario_by_idusuario($id_mozo);
 					foreach($data['info_usuario'] as $key => $v){
+						$data['idMozo_c'] = $v['idUsuario'];
 						$data['nombres'] = $v['nombres'];
 						$data['apellidos'] = $v['apellidos'];
 					}
@@ -33,9 +35,16 @@ class Comanda extends CI_Controller {
 			}
 			else{
 				// OBTENER ID DEL MOZO QUE HA INICIADO SESIÓN PARA INGRESARLO A LA COMANDA
-				$idMozo = '0002';//MOMENTÁNEAMENTE
+				if($this->session->userdata('idPerfil')=='03'){
+					$idMozo = $this->session->userdata('idUsuario');
+				}else{
+					$idMozo = '0001';
+				}
+
 				$this->comanda_mo->add_new_comanda($id_mesa,$idMozo);
 				$this->mesas_mo->update_mesa_est($id_mesa);
+
+				//aca deberia ir la grabada de mesas!!!
 				
 				$data['info_comanda'] = $this->comanda_mo->get_comanda_by_table($id_mesa);
 					if($data['info_comanda']!=FALSE){
@@ -46,6 +55,7 @@ class Comanda extends CI_Controller {
 						}
 						$data['info_usuario'] = $this->usuarios_mo->get_usuario_by_idusuario($id_mozo);
 							foreach($data['info_usuario'] as $key => $v){
+								$data['idMozo_c'] = $v['idUsuario'];
 								$data['nombres'] = $v['nombres'];
 								$data['apellidos'] = $v['apellidos'];
 							}
@@ -56,6 +66,7 @@ class Comanda extends CI_Controller {
 			foreach ($data['info_mesa'] as $key => $val) {
 				$data['numMesa'] = $val['mesa_num'];
 				//$data['estMesa'] = $val['mesa_estado'];
+				$data['capacidad_mesa'] = $val['capacidad'];
 				$data['clientes_mesa'] = $val['client_mesa'];
 			}
 		
@@ -81,9 +92,23 @@ class Comanda extends CI_Controller {
 
 	public function cobrar()
 	{
-		//print_r($this->input->post());
+		 //print_r($this->input->post());
 		$id_c = $this->input->post('comanda_d');
+		$mesaid = $this->input->post('mesaid');
 		$this->comanda_mo->enviar_a_caja($id_c);
-		redirect('/pedidos');
+		$this->mesas_mo->update_mesa_est2($mesaid);
+		redirect('/mesas');
+	}
+
+	public function actualizar()
+	{
+		//print_r($this->input->post());
+		$idmozo = $this->input->post('mozo');
+		$cantclientes = $this->input->post('cant_clientes');
+		$idcomanda = $this->input->post('identComanda');
+		$idmesa = $this->input->post('identMesa');
+		$this->comanda_mo->act_mozo_com($idmozo , $idcomanda);
+		$this->mesas_mo->act_cant_clientes($cantclientes , $idmesa);
+		redirect('/comanda/m/'.$idmesa);
 	}
 }

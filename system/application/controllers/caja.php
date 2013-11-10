@@ -7,6 +7,7 @@ class Caja extends CI_Controller {
   	parent::__construct();
   	$this->load->database();
   	$this->load->model('comanda_mo');
+  	$this->load->model('ventas_mo');
   	$this->load->model('mesas_mo');
   	$this->load->model('usuarios_mo');
   	$this->load->model('producto_mo');
@@ -21,16 +22,22 @@ class Caja extends CI_Controller {
 
 	public function aperturar()
 	{
-		$this->load->view('apert_caja');
+		$data['lista_cajeros'] = $this->usuarios_mo->get_usuario_by_idperfil('04');
+		$data['lista_cajas'] = $this->caja_mo->get_lista_cajas();
+		$this->load->view('apert_caja',$data);
 	}
 
 	public function cerrar()
 	{
-		$this->load->view('cierre_caja');
+		$data['lista_cajeros'] = $this->usuarios_mo->get_usuario_by_idperfil('04');
+		$data['lista_cajas'] = $this->caja_mo->get_lista_cajas();
+		$this->load->view('cierre_caja',$data);
 	}
 
 	public function apert_caja(){
 		$data = array();
+		$data['lista_cajeros'] = $this->usuarios_mo->get_usuario_by_idperfil('04');
+		$data['lista_cajas'] = $this->caja_mo->get_lista_cajas();
 		if($this->input->post()){
 			$id_usuario=$this->input->post('id_usuario');
 			$id_caja=$this->input->post('id_caja');
@@ -68,8 +75,9 @@ class Caja extends CI_Controller {
 					}
 				$this->caja_mo->ing_apert_det($id, $m010, $m020, $m050, $m1, $m2, $m5, $b10, $b20, $b50, $b100, $b200, $b10d, $b20d, $b50d, $b100d);
 			}
-			$data['mensaje']='Caja aperturada correctamente';
-			$this->session->set_userdata('id_apertura', $id);
+			$data['mensaje']='La apertura de caja se realizó correctamente';
+			//$this->session->set_userdata('id_apertura', $id);
+			$this->caja_mo->activar_caja($id_caja);
 			$this->load->view('apert_caja',$data);
 		}
 
@@ -77,9 +85,13 @@ class Caja extends CI_Controller {
 	
 	public function cerrar_caja(){
 		$data = array();
+		$data['lista_cajeros'] = $this->usuarios_mo->get_usuario_by_idperfil('04');
+		$data['lista_cajas'] = $this->caja_mo->get_lista_cajas();
 		if($this->input->post()){
 			$id_usuario=$this->input->post('id_usuario');
 			$id_caja=$this->input->post('id_caja');
+			$tarj_soles_final = $this->input->post('tarj_soles_final');
+			$tarj_dolares_final = $this->input->post('tarj_dolares_final');
 			if($this->input->post('tipo_cierre')=='resumida'){
 				$soles_final = $this->input->post('soles_final');
 				$dolares_final=$this->input->post('dolares_final');
@@ -87,7 +99,7 @@ class Caja extends CI_Controller {
 					foreach ($operacion->result() as $row) {
 						$id=$row->id_operacion;
 					}
-				$this->caja_mo->ing_cierre($id, $id_usuario, $id_caja, $soles_final, $dolares_final);
+				$this->caja_mo->ing_cierre($id, $id_usuario, $id_caja, $soles_final, $dolares_final, $tarj_soles_final, $tarj_dolares_final);
 				$this->caja_mo->fin_apert($id);
 			}
 			if($this->input->post('tipo_cierre')=='detallada'){
@@ -112,33 +124,83 @@ class Caja extends CI_Controller {
 					foreach ($operacion->result() as $row) {
 						$id=$row->id_operacion;
 					}
-				$this->caja_mo->ing_cierre($id, $id_usuario, $id_caja, $soles_final, $dolares_final);
-				$datos = $this->caja_mo->get_idcierre_by_idapert($id);
+				$this->caja_mo->ing_cierre($id, $id_usuario, $id_caja, $soles_final, $dolares_final, $tarj_soles_final, $tarj_dolares_final);
+				$datos = $this->caja_mo->get_cierre_by_idapert($id);
 					foreach ($datos->result() as $row) {
 						$id_cierre=$row->id_operacion;
 					}
 				$this->caja_mo->ing_cierre_det($id_cierre, $m010f, $m020f, $m050f, $m1f, $m2f, $m5f, $b10f, $b20f, $b50f, $b100f, $b200f, $b10df, $b20df, $b50df, $b100df);
 				$this->caja_mo->fin_apert($id);
 			}
-			$data['mensaje']='Caja cerrada correctamente';
+			$datos2 = $this->caja_mo->get_cierre_by_idapert($id);
+					foreach ($datos2->result() as $row) {
+						$tar_soles=$row->tarj_soles;
+						$tar_dol=$row->tarj_dolares;
+						$horafecha = $row->hora ;
+						$usuariocaja = $row->Usuario_idUsuario;
+					}
+			$datos3 = $this->caja_mo->get_apert_by_idapert($id);
+				foreach($datos3 as $key => $v){
+						$data['sol_apert'] = $v['soles'];
+						$data['dol_apert'] = $v['dolares'];
+					}
+			$data['tar_soles'] = $tar_soles;
+			$data['tar_dol'] = $tar_dol;
+			$data['horafecha'] = $horafecha;
+			$data['usuariocaja'] = $usuariocaja;
+			$data['soles_final'] = $soles_final ;
+			$data['idcaja'] = $id_caja;
+			$data['dolares_final'] = $dolares_final ;
+			$data['mensaje']='El cierre de caja se realizó correctamente';
+			$data['info_ventas'] = $this->ventas_mo->get_ventas_by_idapert($id);
+			$this->caja_mo->desactivar_caja($id_caja);
 			$this->load->view('arqueo_caja',$data);
 		}
 
-		/*
-		if($this->input->post()){
-			$soles_final = $this->input->post('soles_final');
-			$dolares_final=$this->input->post('dolares_final');
-			$id_usuario=$this->input->post('id_usuario');
-			$id_caja=$this->input->post('id_caja');
-		$operacion = $this->caja_mo->get_op_caja($id_caja);
-		foreach ($operacion->result() as $row) {
-			$id=$row->id_operacion;
-		}
+		
+	}
+	function cotizar(){
+		$cambio = $this->input->post('cambio_dia');
+		$this->caja_mo->ingresar_cambio($cambio);
+		$this->load->view('welcome_vw');
+	}
+	function operaciones()
+	{
+		$this->load->view('operaciones_vw');
+	}
+	function ingresos()
+	{
+		$ing_efe_sol = $this->input->post('ing_efe_sol');
+		$ing_efe_dol = $this->input->post('ing_efe_dol');
+		$ing_tar_sol = $this->input->post('ing_tar_sol');
+		$ing_tar_dol = $this->input->post('ing_tar_dol');
+		$comentario = $this->input->post('comentario');
+		$id_usuario_ = $this->session->userdata('idUsuario');
+		$this->caja_mo->ingresos($ing_efe_sol, $ing_efe_dol, $ing_tar_sol, $ing_tar_dol, $comentario, $id_usuario_);
+		$this->load->view('operaciones_vw');
+		//print_r($this->input->post());
+	}
+	function egresos()
+	{
+		$egr_efe_sol = $this->input->post('egr_efe_sol');
+		$egr_efe_dol = $this->input->post('egr_efe_dol');
+		$egr_tar_sol = $this->input->post('egr_tar_sol');
+		$egr_tar_dol = $this->input->post('egr_tar_dol');
+		$comentario = $this->input->post('comentario');
+		$id_usuario_ = $this->session->userdata('idUsuario');
+		$this->caja_mo->egresos($egr_efe_sol, $egr_efe_dol, $egr_tar_sol, $egr_tar_dol, $comentario, $id_usuario_);
+		$this->load->view('operaciones_vw');
+		//print_r($this->input->post());
+	}
 
-		$this->caja_mo->ing_cierre($id, $id_usuario, $id_caja, $soles_final, $dolares_final);
-		$this->caja_mo->fin_apert($id);
-		$data['mensaje']='Caja cerrada correctamente';
-		$this->load->view('cierre_caja',$data);
-		}*/
+	function cortesia(){
+		$idcomanda = $this->input->post('id_com_');
+		$this->comanda_mo->exonerar_pago($idcomanda);
+		redirect('/pedidos');
+		//print_r($this->input->post());
+	}
+
+	function descuento(){
+		print_r($this->input->post());
 	}
 }

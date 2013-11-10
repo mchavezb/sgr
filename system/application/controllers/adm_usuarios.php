@@ -24,7 +24,7 @@ class Adm_usuarios extends CI_Controller {
 		if($this->input->post()){
 			$id_usuario=$this->input->post('id_usuario');
 			$usuario=$this->input->post('usuario');
-			$password=$this->input->post('password');
+			$password=md5($this->input->post('password'));
 			$nombres=$this->input->post('nombres');
 			$apellidos=$this->input->post('apellidos');
 			$perfil=$this->input->post('Perfil_idPerfil');
@@ -82,7 +82,7 @@ class Adm_usuarios extends CI_Controller {
 		$data=array(
 				//'idMesa'=>$this->input->post('id_mesa', true),
 				'usuario'=>$this->input->post('usuario', true),
-				'password'=>$this->input->post('password',true),
+				'password'=>md5($this->input->post('password',true)),
 				'nombres'=>$this->input->post('nombres',true),
 				'apellidos'=>$this->input->post('apellidos',true),
 				'Perfil_idPerfil'=>$this->input->post('Perfil_idPerfil',true),

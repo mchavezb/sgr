@@ -17,44 +17,16 @@
     <div id="container">
         <div id="content-encolados">
           <h2>Platos en cola</h2>
-          <?php $encolados = @json_decode(file_get_contents("C://xampp/htdocs/sgr/data/data_pedidos_1.json"));
-                if(isset($encolados->inf_ped1) && !empty($encolados->inf_ped1)){
-                  
-                  //print_r($encolados); echo '<br><br><br>';
-                  //$lista = array();
-                
-
-                  foreach ($encolados->inf_ped1 as $key => $value) {
-
-
-                      //array_push($lista, $value->p_nombre);
-                      //$lista_unica = array_unique($lista);
-                
-
-
-
-
-                    echo '<div class="platos"><form style="display: inline;" method="post" action="'.base_url().'pedidos/preparar"><div class="platos-carta">'.$value->p_nombre.' - '.$value->nota.' - p/p</div><div class="platos-cont"><div class="platos-cocinero"><select><option value="cocinero1">cocinero 1</option><option>cocinero 2</option></select></div><div class="platos-mesa">MESA N°'.$value->mesa_num.'<input type="hidden" id="idPedido" name="idPedido" value="'.$value->idPedido.'"><input type="submit" value="ACEPTAR"></div></div><div class="platos-tiempo"><span class="minuto luzu">'.date('i:s',time() - strtotime($value->hora)).'</span></div></form></div>';
-
-
-
-                  }
-
-                  
-                  //print_r($lista);
-                  //print_r($lista_unica);
-                  //print_r(array_count_values($lista));
-                }
-                ?>
           
-          <!--<div id="data-encolados"></div>-->
+          <div id="data-encolados"></div>
         </div>
+        
         <div id="content-en-atencion">
           <h2>En preparación</h2>
           <?php $enprep = @json_decode(file_get_contents("C://xampp/htdocs/sgr/data/data_pedidos_2.json"));
                 if(isset($enprep->inf_ped2) && !empty($enprep->inf_ped2)){
                   foreach ($enprep->inf_ped2 as $key => $value) {
-                    echo '<div class="platos"><form style="display: inline;" method="post" action="'.base_url().'pedidos/terminar"><div class="platos-carta">'.$value->p_nombre.' - '.$value->nota.' - p/p</div><div class="platos-cont"><div class="platos-cocinero">cocinero 1 </div><div class="platos-mesa">MESA N°'.$value->mesa_num.'<input type="hidden" id="idPedido" name="idPedido" value="'.$value->idPedido.'"><input type="submit" value="TERMINAR"></div></div><div class="platos-tiempo"><span class="minuto luzu">'.date('i:s',time() - strtotime($value->hora)).'</span></div></form></div>';
+                    echo '<div class="platos"><form style="display: inline;" method="post" action="'.base_url().'pedidos/terminar"><div class="platos-carta">'.$value->p_nombre.' - '.$value->nota.' - '; if($value->TipoAtencion_idTipoAtencion=='00'){echo 'p/p';}else{echo 'o/c';}echo ' </div><div class="platos-cont"><div class="platos-cocinero">cocinero 1 </div><div class="platos-mesa">MESA N°'.$value->mesa_num.'<input type="hidden" id="idPedido" name="idPedido" value="'.$value->idPedido.'"><input type="submit" value="TERMINAR"></div></div><div class="platos-tiempo"><span class="minuto luzu">'.date('i:s',time() - strtotime($value->hora)).'</span></div></form></div>';
                   }
                 }
                 ?>
@@ -69,7 +41,7 @@
           <?php $terminados = @json_decode(file_get_contents("C://xampp/htdocs/sgr/data/data_pedidos_3.json"));
                 if(isset($terminados->inf_ped3) && !empty($terminados->inf_ped3)){
                   foreach ($terminados->inf_ped3 as $key => $value) {
-                    echo '<div class="platos"><div class="platos-carta">'.$value->p_nombre.' - '.$value->nota.' - p/p</div><div class="platos-cont"><div class="platos-cocinero">cocinero 1</div><div class="platos-mesa">MESA N°'.$value->mesa_num.'</div></div><div class="platos-tiempo"><span class="minuto luzu">'.date('i:s',time() - strtotime($value->hora)).'</span></div></div>';
+                    echo '<div class="platos"><div class="platos-carta">'.$value->p_nombre.' - '.$value->nota.' - '; if($value->TipoAtencion_idTipoAtencion=='00'){echo 'p/p';}else{echo 'o/c';}echo ' </div><div class="platos-cont"><div class="platos-cocinero">cocinero 1</div><div class="platos-mesa">MESA N°'.$value->mesa_num.'</div></div><div class="platos-tiempo"><span class="minuto luzu">'.date('i:s',time() - strtotime($value->hora)).'</span></div></div>';
                   }
                 }
                 ?>
@@ -78,7 +50,7 @@
 
         </div>
     </div>
-  <!--<script>
+  <script>
     $(document).ready(function(){
       $('#data-encolados').load('encolados.php');
       refresh();
@@ -90,7 +62,7 @@
       },1000);
     }
   </script>
-   <script>
+   <!--<script>
     $(document).ready(function(){
       $('#data-preparacion').load('preparación.php');
       refresh();
