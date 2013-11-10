@@ -686,3 +686,113 @@ a{
 .luzu{ 
   color: #FFF; 
 }
+
+#login-main{
+  position: relative;
+  margin-top: 20px;
+  text-align: center;
+}
+
+table.comprobante-table{
+  padding-left: 5px;
+  width: 520px;
+}
+table.comprobante-table thead tr{
+  background-color: #ddd;
+  height: 30px;
+
+}
+table.comprobante-table tbody td{
+  /*background-color: #ddd;*/
+  height: 30px;
+  border-bottom: 1pt solid white;
+  border-right: 1pt solid white;
+}
+table.comprobante-table tfoot td{
+  height: 30px;
+  font-weight: bold;
+  font-size: 12px;
+  border-bottom: 1pt solid white;
+  border-right: 1pt solid white;
+}
+.pull-right {
+  text-align: right;
+  padding-right: 10px;
+}
+
+.pull-left {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.pull-center {
+  text-align: center;
+}
+table.pagos-table{
+  padding-left: 5px;
+  width: 240px;
+}
+table.pagos-table thead tr{
+  background-color: #ddd;
+  height: 30px;
+
+}
+table.pagos-table tbody td{
+  /*background-color: #ddd;*/
+  height: 30px;
+  border-bottom: 1pt solid white;
+  border-right: 1pt solid white;
+}
+
+table.ventas-table{
+  text-align: center;
+  padding-left: 5px;
+  width: 750px;
+}
+table.ventas-table thead tr{
+  background-color: #ddd;
+  height: 30px;
+
+}
+table.ventas-table tbody td{
+  /*background-color: #ddd;*/
+  height: 30px;
+  border-bottom: 1pt solid white;
+  border-right: 1pt solid white;
+}
+
+table.balance-table{
+  text-align: center;
+  padding-top: 20px;
+  padding-left: 5px;
+  width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+table.balance-table thead tr{
+  background-color: #ddd;
+  height: 30px;
+
+}
+table.balance-table tbody td{
+  /*background-color: #ddd;*/
+  height: 30px;
+  border-bottom: 1pt solid white;
+  border-right: 1pt solid white;
+}
+
+table.prepagos-table{
+  padding-left: 5px;
+  width: 240px;
+}
+table.prepagos-table thead tr{
+  background-color: #ddd;
+  height: 30px;
+
+}
+table.prepagos-table tbody td{
+  /*background-color: #ddd;*/
+  height: 30px;
+  border-bottom: 1pt solid white;
+  border-right: 1pt solid white;
+}
