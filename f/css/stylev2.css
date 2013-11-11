@@ -796,3 +796,35 @@ table.prepagos-table tbody td{
   border-bottom: 1pt solid white;
   border-right: 1pt solid white;
 }
+
+.form-error{
+  font-size: 90%;
+  color: red;
+  font-weight: bold;
+  font-family: Verdana, Arial;
+}
+.form-valid{
+  font-size: 90%;
+  color: blue;
+  font-weight: bold;
+  font-family: Verdana, Arial;
+}
+
+.form-message{
+  font-size: 150%;
+  font-weight: bold;
+  font-family: Verdana, Arial;
+}
+
+.form-labels{
+  font-size: 120%;
+  font-weight: bold;
+  font-family: Verdana, Arial;
+}
+.subtitulo{
+  font-size: 120%;
+  font-family: Verdana, Arial;
+}
+.sangria{
+  padding-left: 20px;
+}

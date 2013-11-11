@@ -20,7 +20,7 @@ class Caja extends CI_Controller {
 		$this->load->view('apert_caja');
 	}
 
-	public function aperturar()
+	public function apert()
 	{
 		$data['lista_cajeros'] = $this->usuarios_mo->get_usuario_by_idperfil('04');
 		$data['lista_cajas'] = $this->caja_mo->get_lista_cajas();
@@ -38,10 +38,18 @@ class Caja extends CI_Controller {
 		$data = array();
 		$data['lista_cajeros'] = $this->usuarios_mo->get_usuario_by_idperfil('04');
 		$data['lista_cajas'] = $this->caja_mo->get_lista_cajas();
-		if($this->input->post()){
+		if($this->input->post()){				
 			$id_usuario=$this->input->post('id_usuario');
 			$id_caja=$this->input->post('id_caja');
-			if($this->input->post('tipo_apertura')=='resumida'){
+
+			if($this->caja_mo->check_caja($id_caja)){
+				$data['mensaje']='<p class="form-error">La apertura de caja no se pudo realizar porque dicha caja ya se encuentra abierta.</p>';
+			}
+			elseif($this->usuarios_mo->check_user_caja($id_usuario)){
+				$data['mensaje']='<p class="form-error">La apertura de caja no se pudo realizar porque el usuario ya tiene una caja abierta.</p>';
+			}
+			else{
+				if($this->input->post('tipo_apertura')=='resumida'){
 				$soles_inicio = $this->input->post('soles_inicio');
 				$dolares_inicio=$this->input->post('dolares_inicio');
 				$this->caja_mo->ing_apert($id_usuario, $id_caja, $soles_inicio, $dolares_inicio);
@@ -49,35 +57,37 @@ class Caja extends CI_Controller {
 					foreach ($operacion->result() as $row) {
 						$id=$row->id_operacion;
 					}
+				}
+				elseif($this->input->post('tipo_apertura')=='detallada'){
+					$m010 = ($this->input->post('mon_010i')!='')?$this->input->post('mon_010i'):0;
+					$m020 = ($this->input->post('mon_020i')!='')?$this->input->post('mon_020i'):0;
+					$m050 = ($this->input->post('mon_050i')!='')?$this->input->post('mon_050i'):0;
+					$m1 = ($this->input->post('mon_1i')!='')?$this->input->post('mon_1i'):0;
+					$m2 = ($this->input->post('mon_2i')!='')?$this->input->post('mon_2i'):0;
+					$m5 = ($this->input->post('mon_5i')!='')?$this->input->post('mon_5i'):0;
+					$b10 = ($this->input->post('bill_10i')!='')?$this->input->post('bill_10i'):0;
+					$b20 = ($this->input->post('bill_20i')!='')?$this->input->post('bill_20i'):0;
+					$b50 = ($this->input->post('bill_50i')!='')?$this->input->post('bill_50i'):0;
+					$b100 = ($this->input->post('bill_100i')!='')?$this->input->post('bill_100i'):0;
+					$b200 = ($this->input->post('bill_200i')!='')?$this->input->post('bill_200i'):0;
+					$b10d = ($this->input->post('bill_10di')!='')?$this->input->post('bill_10di'):0;
+					$b20d = ($this->input->post('bill_20di')!='')?$this->input->post('bill_20di'):0;
+					$b50d = ($this->input->post('bill_50di')!='')?$this->input->post('bill_50di'):0;
+					$b100d = ($this->input->post('bill_100di')!='')?$this->input->post('bill_100di'):0;
+					$soles_inicio = $m010*0.1+$m020*0.2+$m050*0.5+$m1+$m2*2+$m5*5+$b10*10+$b20*20+$b50*50+$b100*100+$b200*200;
+					$dolares_inicio = $b10d*10+$b20d*20+$b50d*50+$b100d*100;
+					$this->caja_mo->ing_apert($id_usuario, $id_caja, $soles_inicio, $dolares_inicio);
+					$operacion = $this->caja_mo->get_op_caja($id_caja);
+						foreach ($operacion->result() as $row) {
+							$id=$row->id_operacion;
+						}
+					$this->caja_mo->ing_apert_det($id, $m010, $m020, $m050, $m1, $m2, $m5, $b10, $b20, $b50, $b100, $b200, $b10d, $b20d, $b50d, $b100d);
+				}
+				$data['mensaje']='<p class="form-valid">La apertura de caja se realizó correctamente.</p>';
+				$this->usuarios_mo->log_usuario($this->session->userdata('idUsuario'),$idlog='003');
+				$this->session->set_userdata('caja_ok', 1);
+				$this->caja_mo->activar_caja($id_caja);
 			}
-			if($this->input->post('tipo_apertura')=='detallada'){
-				$m010 = ($this->input->post('mon_010i')!='')?$this->input->post('mon_010i'):0;
-				$m020 = ($this->input->post('mon_020i')!='')?$this->input->post('mon_020i'):0;
-				$m050 = ($this->input->post('mon_050i')!='')?$this->input->post('mon_050i'):0;
-				$m1 = ($this->input->post('mon_1i')!='')?$this->input->post('mon_1i'):0;
-				$m2 = ($this->input->post('mon_2i')!='')?$this->input->post('mon_2i'):0;
-				$m5 = ($this->input->post('mon_5i')!='')?$this->input->post('mon_5i'):0;
-				$b10 = ($this->input->post('bill_10i')!='')?$this->input->post('bill_10i'):0;
-				$b20 = ($this->input->post('bill_20i')!='')?$this->input->post('bill_20i'):0;
-				$b50 = ($this->input->post('bill_50i')!='')?$this->input->post('bill_50i'):0;
-				$b100 = ($this->input->post('bill_100i')!='')?$this->input->post('bill_100i'):0;
-				$b200 = ($this->input->post('bill_200i')!='')?$this->input->post('bill_200i'):0;
-				$b10d = ($this->input->post('bill_10di')!='')?$this->input->post('bill_10di'):0;
-				$b20d = ($this->input->post('bill_20di')!='')?$this->input->post('bill_20di'):0;
-				$b50d = ($this->input->post('bill_50di')!='')?$this->input->post('bill_50di'):0;
-				$b100d = ($this->input->post('bill_100di')!='')?$this->input->post('bill_100di'):0;
-				$soles_inicio = $m010*0.1+$m020*0.2+$m050*0.5+$m1+$m2*2+$m5*5+$b10*10+$b20*20+$b50*50+$b100*100+$b200*200;
-				$dolares_inicio = $b10d*10+$b20d*20+$b50d*50+$b100d*100;
-				$this->caja_mo->ing_apert($id_usuario, $id_caja, $soles_inicio, $dolares_inicio);
-				$operacion = $this->caja_mo->get_op_caja($id_caja);
-					foreach ($operacion->result() as $row) {
-						$id=$row->id_operacion;
-					}
-				$this->caja_mo->ing_apert_det($id, $m010, $m020, $m050, $m1, $m2, $m5, $b10, $b20, $b50, $b100, $b200, $b10d, $b20d, $b50d, $b100d);
-			}
-			$data['mensaje']='La apertura de caja se realizó correctamente';
-			//$this->session->set_userdata('id_apertura', $id);
-			$this->caja_mo->activar_caja($id_caja);
 			$this->load->view('apert_caja',$data);
 		}
 

@@ -48,5 +48,15 @@ class Usuarios_mo extends CI_Model {
         $this->db->query($q5);
   }
 
+  function log_usuario($idUsuario,$idlog){
+    $q6 = "INSERT INTO log_usuarios (`id_usuario`,`idevento`) VALUES ('".$idUsuario."','".$idlog."')";
+    $this->db->query($q6);
+  }
+  function check_user_caja($id_usuario){
+    $q7 = "SELECT * FROM operaciones_caja WHERE Usuario_idUsuario = '".$id_usuario."' AND estado_caja = 0;" ;
+    $r7 = $this->db->query($q7);
+        return $r7->result_array();
+
+  }
 }
 ?>
