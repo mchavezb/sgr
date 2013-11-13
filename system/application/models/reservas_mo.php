@@ -2,99 +2,60 @@
 
 class Reservas_mo extends CI_Model {
 
-  function __construct() {
-    parent::__construct();
-    $this->load->database();
-  }
+	function __construct() {
+		parent::__construct();
+		$this->load->database();
+	}
 
   
-  function insertar_reserva($fecha,$num_personas,$id_mesa,$id_usuario,$nombre_cliente){
-         $data = array(
-          'fecha' => $fecha ,
-          'numero_personas' => $num_personas ,
-          'Mesa_idMesa' => $id_mesa,
-          'Usuario_idUsuario' => $id_usuario,
-          'nombre_cliente'=>$nombre_cliente
-        );
+	function insertar_reserva($fecha,$num_personas,$id_mesa,$id_usuario,$cliente){
+		$data = array(
+  		 'fecha' => $fecha ,
+  		 'numero_personas' => $num_personas ,
+  		 'Mesa_idMesa' => $id_mesa,
+  		 'Usuario_idUsuario' => $id_usuario,
+  		 #'cliente'=>$cliente
+		);
+		var_dump($data);
+		//die();
+		return true;
+		#return $this->db->insert('reserva', $data); 
 
-     
-    $this->db->insert('reserva', $data);
-    $dat=array('mesa_estado'=>2);
-    $this->db->where('mesa_num',$id_mesa);
-    $this->db->update('mesa',$dat);
-
-    return true;
-    redirect('ventas/reservas');
-      
-    
-     
-  }
-
-  
+	}
 
     function modificar_reserva(){
-    $data = array(
+		$data = array(
          'fecha' => $fecha ,
-       'numero_personas' => $num_personas ,
-       'Mesa_idMesa' => $id_mesa,
-       'Usuario_idUsuario' => $id_usuario,
-       'nombre_cliente'=>$cliente
+  		 'numero_personas' => $num_personas ,
+  		 'Mesa_idMesa' => $id_mesa,
+  		 'Usuario_idUsuario' => $id_usuario,
+  		 'cliente'=>$cliente
             );
-    $this->db->where('idReserva', $id_reserva);
-    $this->db->update('reserva', $data); 
+		$this->db->where('id_reserva', $id_reserva);
+		$this->db->update('reserva', $data); 
 
     }
 
     function eliminar_reserva(){
-      $this->db->where('idReserva', $id_reserva);
-    $this->db->delete('reserva'); 
+    	$this->db->where('id_reserva', $id_reserva);
+		$this->db->delete('reserva'); 
 
     }
 
     function seleccionar_reserva(){
-      $query = $this->db->get('reserva');
-      if($query->num_rows() > 0 )
-       {
-         return $query;
-      }else{
-        return FALSE;
-      }
-    return $data; 
-
-  }
-
-    function modificar($id)
-    {
-      $this->db->where('idReserva', $id);
-      $query=$this->db->get('reserva');
-      if($query->num_rows() > 0 )
-       {
-         return $query;
-      }else{
-        return FALSE;
-      }
-    }
-
-    function cambiarReserva($id,$data)
-    {
-      $this->db->where('idReserva', $id);
-      $query=$this->db->update('reserva',$data);
-    }
-
-    function cancelarReserva($id)
-    {
-      $this->db->where('idReserva', $id);
-      $query=$this->db->delete('reserva');
-    }
-
-    function validar_mesa($id_mesa)
-    {
-      $this->db->where('mesa_num', $id_mesa);
-      $query=$this->db->get('mesa');
-      return $query;
-
-    }
-
+    	$query = $this->db->get('reserva');
+    	$data=array();
+    	foreach ($query->result() as $row)
+		{
+   			$fecha = $row->fecha;
+  		 	$numero_personas = $row->num_personas;
+  		 	$Mesa_idMesa = $row->id_mesa;
+  		    $Usuario_idUsuario = $row->id_usuario;
+  		 	$cliente=$row->cliente;
+  		 	$data[] = array('fecha'=>$fecha,'numero_personas'=>$numero_personas,'Mesa_idMesa'=>$Mesa_idMesa,'Usuario_idUsuario'=>$Usuario_idUsuario,'cliente'=>$cliente);
+		}
+		return $data;
+	}
 
 }
 
