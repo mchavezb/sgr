@@ -10,9 +10,11 @@ class Reservas extends CI_Controller {
  	}
  	
 	public function index()
-	{
+	{	
+		
 		$data=array(
 			'reservas'=>$this->reservas_mo->seleccionar_reserva(),
+			
 			);
 		$this->load->view('ventas/reservas',$data);
 	}
@@ -30,7 +32,7 @@ class Reservas extends CI_Controller {
 			
 		$query=$this->reservas_mo->validar_mesa($id_mesa);
 		foreach ($query->result() as $row) {
-			var_dump($row->mesa_estado);
+			//var_dump($row->mesa_estado);
 			if($row->mesa_estado==0){
 				$this->reservas_mo->insertar_reserva($fecha,$num_personas,$id_mesa,$id_usuario,$nombre_cliente);
 
