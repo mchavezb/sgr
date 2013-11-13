@@ -24,39 +24,77 @@
         <div id="main-content">
             <div id="contenido">
                 <div id="comanda">
-                    <input type="submit" value="Cancelar Comanda" style="width:128px;">
-                    
-                    <form style="display: inline;" method="post" action="<?php echo base_url()?>pedidos/enviar"><input type="hidden" id="comanda_id" name="comanda_id" value='<?php echo $idComanda?>'><input type="hidden" id="mesaid" name="mesaid" value='<?php echo $idmesa?>'><input type="submit" value="Enviar Pedido" style="width:128px;"></form>
-                    
-                    <form style="display: inline;" method="post" action="<?php echo base_url()?>comanda/imprimir"><input type="submit" value="Imprimir Cuenta" style="width:128px;" onclick="window.print()"></form>
+                    <form style="display: inline;" method="post" action="<?php echo base_url()?>pedidos/enviar">
+                        Tipo de Atención :
+                      <input type="radio" name="tipoA" value="00" checked="checked">Plato por plato
+                      <input type="radio" name="tipoA" value="01">Orden Completa
+                      <input type="hidden" id="comanda_id" name="comanda_id" value='<?php echo $idComanda?>'><input type="hidden" id="mesaid" name="mesaid" value='<?php echo $idmesa?>'><input type="submit" value="Enviar Pedido" style="width:128px;"></form>
+
+                      
+                    <form style="display: inline;" method="post" action="<?php echo base_url()?>comanda/m/<?php echo $idmesa;?>">
+                        <input type="submit" value="Imprimir Cuenta" style="width:128px;">
+                        <input type="hidden" id="mesa_d" name="mesa_d" value='<?php echo $idmesa?>'>
+                    </form>
                     
                     <form style="display: inline;" method="post" action="<?php echo base_url()?>mesas/desocupar"><input type="submit" value="Desocupar Mesa" style="width:128px;"><input type="hidden" id="comanda_d" name="comanda_d" value='<?php echo $idComanda ?>'><input type="hidden" id="mesa_d" name="mesa_d" value='<?php echo $idmesa?>'></form>
+                    <!-- ENVIAR A CAJA -->
+                    <form style="display: inline;" method="post" action="<?php echo base_url()?>comanda/cobrar">
+                        <input type="submit" value="Enviar a Caja" style="width:128px;">
+                        <input type="hidden" id="comanda_d" name="comanda_d" value='<?php echo $idComanda ?>'>
+                        <input type="hidden" id="mesaid" name="mesaid" value='<?php echo $idmesa?>'>
+                    </form>
+                    <!-- FIN DE ENVIAR A CAJA-->
+                    <input type="submit" value="Agregar Mesa" id="agr-mesa" style="width:128px;"/>
 
-                  <?php $orig = array('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday','September','October' ); $new = array('Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo','Setiembre','Octubre');?>
+                  <?php $orig = array('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday','September','October','November','December' ); $new = array('Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo','Setiembre','Octubre','Noviembre','Diciembre');?>
                     <?php if($info_comanda!==FALSE){?>
                     <div class="titulo-comanda">Comanda # <?php echo $idComanda ?></div>
                     <div class="mesa-comanda">Mesa <?php echo $numMesa?></div>
                     <div class="fecha-comanda"><?php echo str_replace($orig, $new, date_format($fecha, 'l j \d\e F \d\e\l Y'));?></div>
                     <div class="hora-comanda"><?php echo date_format($fecha, 'g:i A');?></div>
-                    <div class="mozo-comanda">Mozo <select width="150px" style="width: 150px"><option><?php echo $nombres.' '.$apellidos;?></option></select></div>
-                    <div class="client-comanda">Clientes <select><option><?php echo $clientes_mesa?></option></select></div>
-                    <div class="mozo-comanda" style="width:199px"><input type="submit" value="AGREGAR OTRA MESA" id="agr-mesa"/></div>
+                <form method="post" action="<?php echo base_url()?>comanda/actualizar">
+                    <div class="mozo-comanda">Mozo 
+                        <select name="mozo" width="150px" style="width: 160px">
+                            <option value="<?php echo $idMozo_c?>"><?php echo $nombres.' '.$apellidos;?></option>
+                                <?php foreach ($lista_mozos as $v) {
+                                    if($v['idUsuario']!==$idMozo_c){?>
+                                        <option value="<?php echo $v['idUsuario']?>"><?php echo $v['nombres'].' '.$v['apellidos'];?></option>
+                                <?php } }?>              
+                        </select>
+                    </div>
+                    <div class="client-comanda">Clientes 
+                        <select name="cant_clientes">
+                            <option><?php echo $clientes_mesa?></option>
+                                <?php for($i=1;$i<$capacidad_mesa+1;$i++){
+                                    if($i != $clientes_mesa){?>
+                                    <option><?php echo $i?></option>
+                                <?php } }?>
+                            
+                        </select>
+                    </div>
+                    
+                    <div class="mozo-comanda" style="width:199px">
+                        <input type="hidden" name="identComanda" value="<?php echo $idComanda ;?>">
+                        <input type="hidden" name="identMesa" value="<?php echo $idmesa ;?>">
+                        <input type="submit" value="Actualizar">
+                </form>
+                    </div>
                     <div class="tit-codigo-producto">#</div>
                     <div class="tit-cant-producto">Nota</div>
                     <div class="tit-cant-producto">Est.</div>
                     <div class="tit-desc-producto">Descripción</div>
                     <div class="tit-precio-u-producto">Precio</div>
                     <?php $i=0;
-                         foreach ($detalle_com as $value) {?>
-                        
-                        <div class="quitar-producto"><a href="#"><img src='<?=$this->config->item('base_url')?>f/img/delete.png' width="22px" height="22px" class="elim-pedido"/></a></div>
+                         foreach ($detalle_com as $value) {
+                                if($value->estado != 5){ ?>
+                        <div class="quitar-producto"><a href="#" class="elim_pedido"><input type="hidden" id="idPedidoel" value="<?php echo $value->idPedido?>"><img src='<?=$this->config->item('base_url')?>f/img/delete.png' width="22px" height="22px"/></a></div>
                         <div class="cant-producto"><a href="#" class="nota-pedido"><input type="hidden" id="idPedido" value="<?php echo $value->idPedido?>"><img src='<?=$this->config->item('base_url')?>f/img/nota.png' width="20px" height="20px"/></a>
                         </div>
-                        <div class="cant-producto"><img src='<?=$this->config->item('base_url')?>f/img/<?php if($value->estado==0){echo 'blank.png';}elseif($value->estado==1){echo 'green.gif';}elseif($value->estado==2){echo 'yellow.gif';}elseif($value->estado==3){echo 'red.gif';}elseif($value->estado==4){echo 'check.png';}?>' width="20px" height="20px"/>
+                        <div class="cant-producto"><img src='<?=$this->config->item('base_url')?>f/img/<?php if($value->estado==0){echo 'blank.png';}elseif($value->estado==1){echo 'green.gif';}elseif($value->estado==2){echo 'yellow.gif';}elseif($value->estado==3){echo 'red.gif';}elseif($value->estado==4 || $value->estado==6){echo 'check.png';}elseif($value->estado==4 || $value->estado==7){echo 'equis.png';}?>' width="20px" height="20px"/>
                         </div>
                         <div class="desc-producto"><?php echo $value->p_nombre?> - <?php echo $value->nota ?></div>
                         <div class="precio-u-producto"><?php echo $value->p_precio?></div>
-                        <?php $i = $value->p_precio + $i;
+                        <?php $i = $value->p_precio + $i;}
                           } ?>
                         <div class="precio-total"><?php echo $i;?></div><div class="nombre-total">SUB-TOTAL</div><div class="separator"></div>
                         <div class="precio-igv"><?php echo $i*0.19;?></div><div class="nombre-igv">I.G.V.</div><div class="separator"></div>
@@ -77,11 +115,7 @@
                         <?php } ?>
                 </div>
                 <div id="buscador">
-                    Tipo de Atención : <br>
-                    <form>
-                      <input type="radio" name="tipoA" value="plato" checked="checked">Plato por plato<br>
-                      <input type="radio" name="tipoA" value="orden">Orden Completa<br>
-                    </form>
+                    
                     <div class="busqueda-platillo">
                         <input type="text" id="busc"><input type="submit" value="BUSCAR" id="busc-submit"/>
                         <input type="hidden" id="comandamesa" name="comandamesa" value='<?php echo $idComanda ?>/<?php echo $idmesa?>'>
@@ -128,8 +162,10 @@
             hide: 'fade',
             modal: true
         });
-        $(".elim-pedido").on("click",function(){
+        $(".elim_pedido").on("click",function(){
+            var valor2 = $(this).children('input').val();
             $("#dialog3").dialog("open");
+            $("#elim_pedido").val(valor2);
         });
         $("#dialog4").dialog({
             autoOpen:false,

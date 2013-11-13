@@ -1,7 +1,7 @@
 body{
     background: #eee url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAMAAAC6sdbXAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF3d3d////riJKgAAAAAJ0Uk5T/wDltzBKAAAAFUlEQVR42mJgBAEGGMmAxAYCgAADAAGGABmnk/7aAAAAAElFTkSuQmCC);
     margin: 0;
-    font-family: 'Lucida sans', Arial, Helvetica;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: small;
 }
 /*------------------------------ BLOQUES ------------------------------*/
@@ -10,8 +10,10 @@ body{
 	background-color:#9c9c9c;
 }
 #separator{
-	height:50px;
+  padding-top: 5px;
+	height:45px;
 	width: 100%;
+  text-align: center;
 }
 #container{
 	width:980px;
@@ -32,6 +34,14 @@ body{
 	float: left;
 	/*background-color: white;*/
 	display: inline-block;
+}
+#main-content2{
+  width: 490px;
+  height: 500px;
+  position: relative;
+  float: left;
+  /*background-color: white;*/
+  display: inline-block;
 }
 /*------------------------------ FIN DE LOS BLOQUES ------------------------------*/
 
@@ -541,7 +551,280 @@ a{
   color: #444;  
   box-shadow: 0 1px 0 #ccc; 
 }
+#content-encolados{
+  width: 320px;
+  height: 500px;
+  position: relative;
+  float: left;
 
+  display: inline-block;
+  padding-left: 5px;
+}
+#content-en-atencion{
+  width: 320px;
+  height: 500px;
+  position: relative;
+  float: left;
+ 
+  display: inline-block;
+  padding-left: 5px;
+}
+#content-terminados{
+  width: 320px;
+  height: 500px;
+  position: relative;
+  float: left;
 
+  display: inline-block;
+  padding-left: 5px;
+}
+.platos{
+  width: 300px;
+  height: 70px;
+  border: 1px solid black;
+  margin: auto;
+  background-color: #9c9c9c;
+  border-bottom: 1px solid #fff;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+  margin-bottom: 5px;
+}
+.platos-carta{
+  position: relative;
 
+  width: 300px;
+  height: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+.platos-mesa{
+  position: relative;
 
+  width: 200px;
+  height: 30px;
+  text-align: left;
+  font-weight: bold;
+}
+.platos-cocinero{
+  position: relative;
+
+  width: 200px;
+  height: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+.platos-tiempo{
+  position: relative;
+
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 220%;
+  margin-left: 200px;
+  margin-top: 0px;
+}
+.platos-cont{
+  float: left;
+}
+#content-terminados-m{
+  width: 280px;
+  height: 500px;
+  position: relative;
+  float: left;
+  display: inline-block;
+  padding-left: 5px;
+}
+.platos-m{
+  width: 250px;
+  height: 70px;
+  border: 1px solid black;
+  margin: auto;
+  background-color: #9c9c9c;
+  border-bottom: 1px solid #fff;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+  margin-bottom: 5px;
+}
+.platos-carta-m{
+  position: relative;
+  width: 250px;
+  height: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+.platos-mesa-m{
+  position: relative;
+  width: 150px;
+  height: 30px;
+  text-align: left;
+  font-weight: bold;
+}
+.platos-cocinero-m{
+  position: relative;
+  width: 150px;
+  height: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+.platos-tiempo-m{
+  position: relative;
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 220%;
+  margin-left: 150px;
+  margin-top: 0px;
+}
+.platos-cont-m{
+  float: left;
+}
+.luzu.on{ 
+  color: #FF6533; 
+} 
+.luzu{ 
+  color: #FFF; 
+}
+
+#login-main{
+  position: relative;
+  margin-top: 20px;
+  text-align: center;
+}
+
+table.comprobante-table{
+  padding-left: 5px;
+  width: 520px;
+}
+table.comprobante-table thead tr{
+  background-color: #ddd;
+  height: 30px;
+
+}
+table.comprobante-table tbody td{
+  /*background-color: #ddd;*/
+  height: 30px;
+  border-bottom: 1pt solid white;
+  border-right: 1pt solid white;
+}
+table.comprobante-table tfoot td{
+  height: 30px;
+  font-weight: bold;
+  font-size: 12px;
+  border-bottom: 1pt solid white;
+  border-right: 1pt solid white;
+}
+.pull-right {
+  text-align: right;
+  padding-right: 10px;
+}
+
+.pull-left {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.pull-center {
+  text-align: center;
+}
+table.pagos-table{
+  padding-left: 5px;
+  width: 240px;
+}
+table.pagos-table thead tr{
+  background-color: #ddd;
+  height: 30px;
+
+}
+table.pagos-table tbody td{
+  /*background-color: #ddd;*/
+  height: 30px;
+  border-bottom: 1pt solid white;
+  border-right: 1pt solid white;
+}
+
+table.ventas-table{
+  text-align: center;
+  padding-left: 5px;
+  width: 750px;
+}
+table.ventas-table thead tr{
+  background-color: #ddd;
+  height: 30px;
+
+}
+table.ventas-table tbody td{
+  /*background-color: #ddd;*/
+  height: 30px;
+  border-bottom: 1pt solid white;
+  border-right: 1pt solid white;
+}
+
+table.balance-table{
+  text-align: center;
+  padding-top: 20px;
+  padding-left: 5px;
+  width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+table.balance-table thead tr{
+  background-color: #ddd;
+  height: 30px;
+
+}
+table.balance-table tbody td{
+  /*background-color: #ddd;*/
+  height: 30px;
+  border-bottom: 1pt solid white;
+  border-right: 1pt solid white;
+}
+
+table.prepagos-table{
+  padding-left: 5px;
+  width: 240px;
+}
+table.prepagos-table thead tr{
+  background-color: #ddd;
+  height: 30px;
+
+}
+table.prepagos-table tbody td{
+  /*background-color: #ddd;*/
+  height: 30px;
+  border-bottom: 1pt solid white;
+  border-right: 1pt solid white;
+}
+
+.form-error{
+  font-size: 90%;
+  color: red;
+  font-weight: bold;
+  font-family: Verdana, Arial;
+}
+.form-valid{
+  font-size: 90%;
+  color: blue;
+  font-weight: bold;
+  font-family: Verdana, Arial;
+}
+
+.form-message{
+  font-size: 150%;
+  font-weight: bold;
+  font-family: Verdana, Arial;
+}
+
+.form-labels{
+  font-size: 120%;
+  font-weight: bold;
+  font-family: Verdana, Arial;
+}
+.subtitulo{
+  font-size: 120%;
+  font-family: Verdana, Arial;
+}
+.sangria{
+  padding-left: 20px;
+}

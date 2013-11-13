@@ -26,16 +26,24 @@ class Reservas extends CI_Controller {
 			$fecha=$this->input->post('fecha');
 			$num_personas=$this->input->post('num_personas');
 			$id_mesa=$this->input->post('id_mesa');
-			$nom_cliente=$this->input->post('cliente');
-			$result = $this->reservas_mo->insertar_reserva($fecha,$num_personas,$id_mesa,$id_usuario,$nom_cliente);
-			if($result==false){
-				$data['mensaje']='La mesa no está disponible';
+			$nombre_cliente=$this->input->post('cliente');
+			
+		$query=$this->reservas_mo->validar_mesa($id_mesa);
+		foreach ($query->result() as $row) {
+			var_dump($row->mesa_estado);
+			if($row->mesa_estado==0){
+				$this->reservas_mo->insertar_reserva($fecha,$num_personas,$id_mesa,$id_usuario,$nombre_cliente);
+
+				$data['mensaje']='La mesa se reservó correctamente';
+
+			}else{
+				$data['mensaje']='La mesa ya está reservada. Seleccione otra mesa.';
 			}
 		}
-		    
+		}
 		    $this->load->view('ventas/registrarReserva',$data);
 
-
+		
 	}
 
 	public function modificarReserva($id)
@@ -49,10 +57,10 @@ class Reservas extends CI_Controller {
 				$id_mesa=$row->Mesa_idMesa;
 				$fecha=$row->fecha;
 				$num_personas=$row->numero_personas;
-				$nom_cliente=$row->nom_cliente;
+				$nombre_cliente=$row->nombre_cliente;
 			
 			}
-			$data=array('id'=>$id, 'id_mesa'=>$id_mesa, 'fecha'=>$fecha,'num_personas'=>$num_personas, 'nom_cliente'=>$nom_cliente);
+			$data=array('id'=>$id, 'id_mesa'=>$id_mesa, 'fecha'=>$fecha,'num_personas'=>$num_personas, 'nombre_cliente'=>$nombre_cliente);
 
 		}else{
 			$data='';
@@ -72,7 +80,7 @@ class Reservas extends CI_Controller {
 				'Mesa_idMesa'=>$this->input->post('id_mesa', true),
 				'fecha'=>$this->input->post('fecha', true),
 				'numero_personas'=>$this->input->post('num_personas',true),
-				'nom_cliente'=>$this->input->post('cliente',true),
+				'nombre_cliente'=>$this->input->post('cliente',true),
 			);
 		$this->reservas_mo->cambiarReserva($id,$data);
 		
