@@ -159,8 +159,13 @@
                     </tbody>
                 </table>
                 <table width="700px">
-                    <tbody><tr class="pull-right"><td><input type="submit" name="apert_caja" value ="Registrar" ></td></tr></tbody>
-                </table></form>
+                    <tbody>
+                        <tr class="pull-right">
+                            <td><input type="submit" name="apert_caja" value ="Registrar" ></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
              
                 
               </div><!--/row-->
