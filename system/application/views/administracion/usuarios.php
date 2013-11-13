@@ -38,7 +38,11 @@
                 </tr>
               
             
-                <?php foreach ($usuarios->result() as $row) {
+                <?php 
+                  if($usuarios==false){
+                    echo "<p>No hay usuarios registrados</p>";
+                  }else{
+                   foreach ($usuarios->result() as $row) {
                 echo '<tr>';
                 echo '<td>'.$row->usuario.'</td>';
                 echo '<td>'.$row->nombres.'</td>';
@@ -59,7 +63,7 @@
                 echo '<td><a href="'.base_url().'adm_usuarios/eliminarUsuario/'.$row->idUsuario.'" class="btn btn-info">Eliminar</a><a href=""  class="btn btn-danger"><i class="icon-trash icon-white"></i></a></td>';
                 echo '</tr>';
             
-               }?>
+               }}?>
               
             </table>
           </div>
