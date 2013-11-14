@@ -38,7 +38,11 @@
                 </tr>
               
             
-                <?php foreach ($productos->result() as $row) {
+                <?php 
+                  if($productos==false){
+                    echo "<p>No hay productoss registrados</p>";
+                  }else{
+                   foreach ($productos->result() as $row) {
                 echo '<tr>';
                 echo '<td>'.$row->p_nombre.'</td>';
                 echo '<td>'.$row->p_tiempoestimado.'</td>';
@@ -62,7 +66,7 @@
                 echo '<td><a href="'.base_url().'adm_platos/eliminarPlato/'.$row->idProducto.'" class="btn btn-info">Eliminar</a><a href=""  class="btn btn-danger"><i class="icon-trash icon-white"></i></a></td>';
                 echo '</tr>';
             
-               }?>
+               }}?>
               
             </table>
           </div>
