@@ -16,11 +16,12 @@ class Main extends CI_Controller {
 		if($this->session->userdata('esta_logueado')){
 			if($this->session->userdata('idPerfil')=='02'){
 				//$this->load->view('cocina_vw');
-				redirect("http://localhost/cocina/index.php");
+				redirect("http://192.168.43.142/cocina/index.php");
 			}
 			else{
 				//echo $this->session->userdata('idPerfil');
-				$this->load->view('welcome_vw');
+				$data['cotizacion'] = $this->caja_mo->get_cotiz();
+				$this->load->view('welcome_vw',$data);
 			}
 		}else{
 			$this->login();
@@ -73,11 +74,15 @@ class Main extends CI_Controller {
 				$caja_ok = 0;
 			}
 			$this->session->set_userdata('caja_ok', $caja_ok);
+			//aqui va
+			$data['cotizacion'] = $this->caja_mo->get_cotiz();
+
 				if($this->session->userdata('idPerfil')=='02'){
 					//redirect('cocina');
-					redirect("http://localhost/cocina/index.php");
+					redirect("http://192.168.43.142/cocina/index.php");
 				}else{
-					redirect('main/welcome');	
+					//redirect('main/welcome');
+					$this->load->view('welcome_vw', $data);
 				}
 		}else{
 			$this->load->view('login_vw');

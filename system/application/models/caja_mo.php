@@ -50,8 +50,8 @@ class Caja_mo extends CI_Model {
         return $r8->result_array();
   }
 
-  function ingresar_cambio($cambio){
-    $q9 = "INSERT INTO cotiz_dolar (`valor_s`) VALUES ('".$cambio."')";
+  function ingresar_cambio($v_compra, $v_venta){
+    $q9 = "INSERT INTO cotiz_dolar (`v_compra`,`v_venta`) VALUES ('".$v_compra."','".$v_venta."')";
         $this->db->query($q9);
   }
 
@@ -111,6 +111,12 @@ class Caja_mo extends CI_Model {
     $q20 = "SELECT * FROM operaciones_caja WHERE id_caja = '".$id_caja."' AND estado_caja = 0;" ;
     $r20 = $this->db->query($q20);
         return $r20->result_array();
+  }
+
+  function get_cotiz(){
+    $q21 = "SELECT * FROM cotiz_dolar ORDER BY fecha DESC;";
+    $r21 = $this->db->query($q21);
+        return $r21->result_array();
   }
 }
 

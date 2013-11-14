@@ -8,6 +8,17 @@
     <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/jquery-1.10.2.js'></script>
     <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/jquery-ui-1.10.3.custom.min.js'></script>
     <script type='text/javascript' src='<?=$this->config->item('base_url')?>f/js/busc.js'></script>
+    <script src="<?=$this->config->item('base_url')?>f/js/validar.js"></script>
+       <script type="text/javascript">
+            $(function(){
+                //Para escribir solo letras
+                $('.letras').validM(' abcdefghijklmnñopqrstuvwxyzáéiou');
+
+                //Para escribir solo numeros    
+                $('.numeros').validM('0123456789'); 
+                $('.numerosp').validM('.0123456789');   
+            });
+        </script>
   </head>
   <body>
     <div id="header">
@@ -21,7 +32,7 @@
             </div>
         </div>
         <div id="main-content2">
-            <div id="contenido">
+            
                 <h1 class="form-message sangria">¡ Bienvenido <?php echo $this->session->userdata('nombres');?> !</h1>
               
          
@@ -30,8 +41,13 @@
               
                 <?php if($this->session->userdata('caja_ok')==0){?>
                 <p class="subtitulo sangria">No existe una caja activa, por favor realiza una apertura de caja.</p>
-               <!--  <form method='post' action="<?php echo base_url()?>caja/cotizar"> -->
-                    <!-- <table>
+                <?php }else{
+                            if($this->session->userdata('idPerfil')==01 || $this->session->userdata('idPerfil')==04){?>
+                <p class="subtitulo sangria">Última cotización del dólar, vigente al <?php echo date_format(date_create($cotizacion[0]['fecha']),'d/m g:i a');?>.</p>
+                <p class="subtitulo sangria">Compra : <?php echo $cotizacion[0]['v_compra']?></p>
+                <p class="subtitulo sangria">Venta : <?php echo $cotizacion[0]['v_venta']?></p>
+                <form method='post' action="<?php echo base_url()?>caja/cotizar">
+                    <table class="pagos-table">
                         <thead>
                             <tr>
                                 <th colspan="2">Tipo de Cambio</th>
@@ -39,22 +55,22 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Compra :</td>
-                                <td><input type="text" name="cambio_dia"></td>
+                                <td class="pull-right">Compra :</td>
+                                <td><input class="numerosp" type="text" name="v_compra"></td>
                             </tr>
                             <tr>
-                                <td>Venta :</td>
-                                <td><input type="text" name="cambio_dia_2"></td>
+                                <td class="pull-right">Venta :</td>
+                                <td><input class="numerosp" type="text" name="v_venta"></td>
                             </tr>
                             <tr>
-                                <td colspan="2"><input type="submit" value="Ingresar"></td>
+                                <td colspan="2" class="pull-right"><input type="submit" value="Ingresar"></td>
                             </tr>
                         </tbody>
-                    </table> -->
-                <!-- </form> -->
-                <?php } ?>
+                    </table>
+                </form>
+                <?php } } ?>
                 
-            </div>
+         
         </div>
     </div>
   </body>

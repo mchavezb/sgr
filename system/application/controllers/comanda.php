@@ -95,9 +95,16 @@ class Comanda extends CI_Controller {
 		 //print_r($this->input->post());
 		$id_c = $this->input->post('comanda_d');
 		$mesaid = $this->input->post('mesaid');
-		$this->comanda_mo->enviar_a_caja($id_c);
-		$this->mesas_mo->update_mesa_est2($mesaid);
-		redirect('/mesas');
+		//consultar estado de la comanda
+		$res = $this->comanda_mo->get_comanda_by_id($id_c);
+		//$est = $res[0]->estado;
+		if($res[0]->estado==0){
+			$this->comanda_mo->enviar_a_caja($id_c);
+			$this->mesas_mo->update_mesa_est2($mesaid);
+			redirect('/mesas');
+		}else{
+			redirect('/comanda/m/'.$mesaid);
+		}
 	}
 
 	public function actualizar()

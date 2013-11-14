@@ -170,10 +170,14 @@ class Caja extends CI_Controller {
 		
 	}
 	function cotizar(){
-		$cambio = $this->input->post('cambio_dia');
-		$this->caja_mo->ingresar_cambio($cambio);
-		$this->load->view('welcome_vw');
+		$v_compra = $this->input->post('v_compra');
+		$v_venta = $this->input->post('v_venta');
+		$this->caja_mo->ingresar_cambio($v_compra,$v_venta);
+		$data['cotizacion'] = $this->caja_mo->get_cotiz();
+		$this->usuarios_mo->log_usuario($this->session->userdata('idUsuario'),$idlog='005');
+		$this->load->view('welcome_vw',$data);
 	}
+
 	function operaciones()
 	{
 		$this->load->view('operaciones_vw');
