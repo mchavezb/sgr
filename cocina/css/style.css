@@ -1,0 +1,217 @@
+/* CSS Document */
+body{
+	font-family: sans-serif;
+	font-size: 0.875em;
+	background-color:grey;
+}
+
+.cocinero{
+	padding: 10px;
+	background-color: #ff9;
+	border: 1px solid #ccc;
+	width: 100px;
+	height: 30px;
+	text-align: center;
+	font-size: 1.5em;
+	
+}
+
+.cocineroPreparacion{
+	padding: 10px;
+	background-color: #ff9;
+	border: 1px solid #ccc;
+}
+
+.plato{
+	background-color: #FFD699;
+	border: 1px solid #ccc;
+	width: 100%;
+	height: 98px;
+	text-align: center;	
+}
+.preparandoContenedor{		
+	padding: 10px;
+	background-color: #DBCEBE;
+	border: 1px solid #ccc;
+	width: 100%;
+	height: 1060px;
+	text-align: center;
+	/*margin-left: 200px;
+	font-weight: bold;*/
+}
+.platosContenedor{		
+	/*background-color: yellow;*/
+	width: 100%;
+}
+.preparando{		
+	padding: 10px;
+	background-color: #71C3D3;
+	border: 1px solid #ccc;	
+	text-align: center;	
+}
+.terminadoContenedor{		
+	padding: 10px;
+	background-color: #38D169;
+	border: 1px solid #ccc;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+.terminado{		
+	background-color: #38D169;
+	border: 1px solid #ccc;
+	height: 1000px;
+	text-align: center;
+	list-style-type: none;	
+}
+
+.terminadoDIV
+{
+	padding: 10px;
+	background-color: #71C3D3;
+	border: 1px solid #ccc;
+	text-align: center;
+}
+
+.terminadoContenedorUL
+{
+	background-color: #27A6AB;
+}
+
+.cocina	{
+	border: 1px solid #ccc;	
+	padding: 5px;
+	text-align: center;
+	border-collapse:collapse;
+}
+
+.border
+{
+	border: 1px solid #000;
+}
+
+.tablaPrincipal {
+	position: static;
+	height: 1000px;
+	width: 100%;
+	padding-top: 10px;
+	text-align:center;
+
+}
+
+div.centraTabla{
+	text-align: center;		
+}
+
+div.centraTabla table {
+	margin: 0 auto;
+	text-align: left;
+}
+
+table
+{
+
+	width:100px;
+}
+
+table,td,th
+{
+	
+}
+th
+{
+	height:50px;
+	color:white;
+	background:black;
+}
+.td
+{
+	width:28%;
+	border:1px solid black;
+}
+
+#EnProceso 
+{ 
+	list-style-type: none; 
+}
+
+
+.notas-title
+{
+	/*border: 1px solid #aaaaaa;
+	background: #cccccc url(notes.png) 50% 50% repeat-x;
+	color: #222222;
+	font-weight: bold;
+	text-decoration: blink;*/
+}
+.aviso1 {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 15px;
+	font-style: normal;
+	/*font-weight: bold;*/
+	/*color: #666;*/
+	/*text-align: center;*/
+	/*vertical-align: top;*/
+}
+
+.aviso2 {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: bold;
+	color: red;
+	/*text-align: center;*/
+	/*vertical-align: top;*/
+}
+
+.position
+{
+	position: fixed;
+}
+
+/*.blink.ON
+{	
+	color:#FF6533;
+}
+
+.blink
+{
+	color:#FFF;	
+}*/
+
+/*************************/
+
+.demoHeaders {
+		margin-top: 2em;
+	}
+	#dialog-link {
+		padding: .4em 1em .4em 20px;
+		text-decoration: none;
+		position: relative;
+	}
+	#dialog-link span.ui-icon {
+		margin: 0 5px 0 0;
+		position: absolute;
+		left: .2em;
+		top: 50%;
+		margin-top: -8px;
+	}
+	#icons {
+		margin: 0;
+		padding: 0;
+	}
+	#icons li {
+		margin: 2px;
+		position: relative;
+		padding: 4px 0;
+		cursor: pointer;
+		float: left;
+		list-style: none;
+	}
+	#icons span.ui-icon {
+		float: left;
+		margin: 0 4px;
+	}
+	.fakewindowcontain .ui-widget-overlay {
+		position: absolute;
+	}
