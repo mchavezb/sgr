@@ -138,6 +138,10 @@
                                 <td colspan="3" class="pull-right">NUEVO TOTAL</td>
                                 <td class="pull-right"><?php echo round($i*1.19*(1-$descuento/100),2);?></td>
                             </tr>
+                            <tr>
+                                <td colspan="3" class="pull-right">NUEVO TOTAL ($)</td>
+                                <td class="pull-right"><?php echo round($i*1.19*(1-$descuento/100)/$v_compra,2);?></td>
+                            </tr>
                                 <?php } ?>
                         </tfoot>
                     </table>

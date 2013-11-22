@@ -41,8 +41,10 @@ class Pedidos extends CI_Controller {
 						$data['apellidos'] = $v['apellidos'];
 					}
 				$data['detalle_com'] = $this->comanda_mo->get_detalle_comanda($data['idComanda']);
+				$cotizacion = $this->caja_mo->get_cotiz();
+				$data['v_compra'] = $cotizacion[0]['v_compra'];
 			}
-			else{
+			else{// A ESTA PARTE NUNCA SE ACCEDE YA QUE SIEMPRE ESTAMOS LLAMANDO PEDIDOS QUE YA EXISTEN
 				// OBTENER ID DEL MOZO QUE HA INICIADO SESIÓN PARA INGRESARLO A LA COMANDA
 				$idMozo = '0002';//MOMENTÁNEAMENTE
 				$this->comanda_mo->add_new_comanda($id_mesa,$idMozo);
@@ -178,18 +180,54 @@ class Pedidos extends CI_Controller {
 		}elseif($this->input->post('medio_pago')=='ambos'){
 			$tipo_pago = 3;
 		}
-		//obtener id de operacion a partir del id de la caja
+		//obtener id de operacion a partir del id de la caja, el id de operacion sera el id de apertura
 		$operacion = $this->caja_mo->get_op_caja($id_caja);
 			foreach ($operacion->result() as $row) {
 				$id_apert=$row->id_operacion;
 			}
+		//obtenemos cantidad con lo que se abrio caja
+		$info_apertura = $this->caja_mo->get_monto_apertura_by_idapert($id_apert);
+			foreach ($info_apertura as $key => $value) {
+				$saldo_inicial = $value['soles'];
+			}		
+		//obtener cantidad de dinero en la caja para verificar posibilidad de vuelto
+		$info_dinero_ventas = $this->caja_mo->get_dinero_from_ventas($id_apert);
+			$suma = 0.00 ;
+			foreach ($info_dinero_ventas as $key => $value) {
+				$ingreso_venta = $value['pago_efectivo_s'];
+				$vuelto = $value['vuelto'];
+				$suma = $suma + $ingreso_venta - $vuelto ;
+			}
+		$disponibilidad = $saldo_inicial + $suma;
+		//echo $disponibilidad;	
+		//obtenemos cotizaciones del dolar, valor de compra
+		$cotizacion = $this->caja_mo->get_cotiz();
+		$v_compra = $cotizacion[0]['v_compra'];
+		//caso de pago con dolares calculamos en soles
+		$lo_que_paga = $ef_soles+ $ef_dolares*$v_compra + $tarj_soles+ $tarj_dolares*$v_compra ;
+		//teniendo dinero del pago menos valor a cobrar sacamos el vuelto
+		//si no alcanza mensaje de advertencia
+		if($total > $lo_que_paga){
+			//$data['mensaje'] ='<p class="form-error">El monto ingresado no cubre el valor de la cuenta.</p>';
+			redirect('/pedidos/p/'.$mesaid.'?mnsj=1');
+		}elseif ($total < $lo_que_paga) {
+			echo 'hay vuelto';
+		}else{
+			echo 'se paga sin vuelto';
+		}
+
+
+
+
+
+/*
 		$this->ventas_mo->ingresar_venta($total, $comanda_id, $tipo_pago, $tipo_comprobante, $ef_soles, $tarj_soles, $ef_dolares, $tarj_dolares,$id_apert, $dniruc, $razonsocial, $direccion, $nomb_tarj,$id_caja);
 		$id_usuario_ = $this->session->userdata('idUsuario');
 		//ingresar información de la venta a la tabla ingresos/egresos
 		$this->caja_mo->ing_venta_caja($ef_soles, $ef_dolares, $tarj_soles, $tarj_dolares,$id_usuario_);
 		$this->comanda_mo->cobrar_comanda($comanda_id);
 		//$this->mesas_mo->update_mesa_est0($mesaid);
-		redirect('/pedidos');
+		redirect('/pedidos');*/
 
 	}
 }

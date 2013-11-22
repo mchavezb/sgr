@@ -118,6 +118,18 @@ class Caja_mo extends CI_Model {
     $r21 = $this->db->query($q21);
         return $r21->result_array();
   }
+
+  function get_monto_apertura_by_idapert($id_apert){
+    $q22 = "SELECT * FROM operaciones_caja WHERE id_operacion = '".$id_apert."' ;";
+    $r22 = $this->db->query($q22);
+      return $r22->result_array();
+  }
+
+  function get_dinero_from_ventas($id_apert){
+    $q23 = "SELECT * FROM ventas WHERE id_apert = '".$id_apert."' ;";
+    $r23 = $this->db->query($q23);
+      return $r23->result_array();
+  }
 }
 
 ?>

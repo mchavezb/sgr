@@ -16,7 +16,7 @@ class Main extends CI_Controller {
 		if($this->session->userdata('esta_logueado')){
 			if($this->session->userdata('idPerfil')=='02'){
 				//$this->load->view('cocina_vw');
-				redirect("http://192.168.43.142/cocina/index.php");
+				redirect("http://localhost/cocina/index.php");
 			}
 			else{
 				//echo $this->session->userdata('idPerfil');
@@ -79,7 +79,7 @@ class Main extends CI_Controller {
 
 				if($this->session->userdata('idPerfil')=='02'){
 					//redirect('cocina');
-					redirect("http://192.168.43.142/cocina/index.php");
+					redirect("http://localhost/cocina/index.php");
 				}else{
 					//redirect('main/welcome');
 					$this->load->view('welcome_vw', $data);
