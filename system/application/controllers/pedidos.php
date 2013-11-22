@@ -211,6 +211,11 @@ class Pedidos extends CI_Controller {
 			//$data['mensaje'] ='<p class="form-error">El monto ingresado no cubre el valor de la cuenta.</p>';
 			redirect('/pedidos/p/'.$mesaid.'?mnsj=1');
 		}elseif ($total < $lo_que_paga) {
+			$cambio = $lo_que_paga - $total ;
+			if ($disponibilidad < $cambio) {
+				$faltante = $cambio - $disponibilidad;
+				redirect('/pedidos/p/'.$mesaid.'?mnsj=2&det='.urlencode("Dinero insuficiente para dar vuelto, faltan S/. $faltante soles"));
+			}
 			echo 'hay vuelto';
 		}else{
 			echo 'se paga sin vuelto';

@@ -164,7 +164,16 @@
                                     <th colspan="2">Pago</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody><?php if(isset($_GET['mnsj'])&& $_GET['mnsj']==1){?>
+                                <tr>
+                                    <td colspan="2"><p class="form-error">El monto ingresado no cubre el valor de la cuenta.</p></td>
+                                </tr>
+                                <?php } 
+                                        elseif(isset($_GET['mnsj'])&& $_GET['mnsj']==2){?>
+                                <tr>
+                                    <td colspan="2"><p class="form-error"><?php echo $_GET['det'];?></p></td>
+                                </tr>
+                                <?php } ?>
                                 <tr>
                                     <td>Caja</td>
                                     <td>
